@@ -2140,49 +2140,53 @@ renderPanes(0);
 <script>var L=function(name){return {label:name[0],href:name[1]}};
 var FULL='prototype.html';
 window.__TOURS={
-prioritize:{kicker:'Tour 1 of 3 · Prioritize',title:'Decide what needs you first',
- intro:'Harbor handles most alerts on its own. This tour shows how the list tells you, in a few seconds, which ones need a person.',
- endTitle:'You know what needs you',endBody:'Next, see how to investigate one alert.',
+prioritize:{kicker:'Tour 1 of 3 · Prioritize',title:'Find the alerts that need you',
+ intro:'Harbor closes most alerts on its own. This tour shows where to look for the few that need a person.',
+ endTitle:'You know what needs you',endBody:'Next, investigate one alert.',
  steps:[
- {title:'Four counts',what:'Critical, awaiting analyst, remediated by Harbor, auto-closed.',helps:'Shows how much is yours and how much Harbor already handled.',before:async function(S){await S.list()},find:function(F,$){return $('#f1 .st.hot')},side:'bottom'},
- {title:'Awaiting analyst',what:'Alerts Harbor will not close without you.',helps:'This is your queue. Everything else needs no action.',find:function(F,$){return $('#f1 .st.warn')},side:'bottom'},
- {title:'Auto-resolved',what:'The share of alerts closed with no person involved.',helps:'Tells you the list was already thinned before you opened it.',find:function(F,$){return $('#f1 .ring')},side:'bottom'},
- {title:'Overview',what:'Top policies, assignee load, response times.',helps:'Shows where alerts come from and who has capacity to take more.',find:function(F,$){return $('#f1 details.ins summary')||F('#f1','Overview')},side:'bottom'},
- {title:'Ask Harbor',what:'Type a question in plain words.',helps:'Narrows the list without building a filter by hand.',find:function(F,$){return $('#f1 .qask')},side:'bottom'},
- {title:'Filters',what:'Status, severity, verdict and assignee as chips.',helps:'Keeps your working view the same until you clear it.',find:function(F,$){return $('#f1 .qrow')||F('#f1','Filters')},side:'bottom'},
- {title:'High-value assets first',what:'Critical alerts on the assets that matter most sit at the top.',helps:'Start here. These carry the most business risk.',find:function(F){return F('#f1','High-value assets')},side:'bottom'},
- {title:'Severity',what:'Critical, High, Medium or Low.',helps:'How serious Harbor judges the alert, before you read it.',find:function(F,$){return $('#f1 tbody tr .sev')},side:'right'},
- {title:'Harbor action',what:'What Harbor did, or what it needs from you.',helps:'Remediated means done. Action required means your decision.',find:function(F,$){return $('#f1 tbody tr .hs')},side:'left'},
- {title:'Open a row',what:'Click any alert to read it in a side panel.',helps:'You stay on the list while you read.',find:function(F,$){return $('#f1 tbody tr td.al')},side:'bottom'}
+ {title:'Alerts not auto-closed today',what:'163 alerts that Harbor did not close on its own, split into Critical, Awaiting analyst and Remediated by Harbor.',helps:'Read this first to see how much is left for a person today.',before:async function(S){await S.list()},find:function(F,$){return $('#f1 .vbar')},side:'bottom'},
+ {title:'Awaiting analyst',what:'42 alerts that wait for an analyst to decide.',helps:'This is your queue.',find:function(F,$){return $('#f1 .vbar .st.warn')},side:'bottom'},
+ {title:'Auto-resolved',what:'The share of today’s alerts closed with no analyst involved.',helps:'Most of the list is closed before you start.',find:function(F,$){return V($,'#f1 .ring',function(e){return /Auto-resolved/.test(e.textContent)})},side:'bottom'},
+ {title:'Overview',what:'Top policies, assignee load and response times. Expand overview opens the charts.',helps:'Check which policies fire most and who has room for more work.',find:function(F,$){return $('#f1 details.ins summary')||F('#f1','Overview')},side:'bottom'},
+ {title:'Ask Harbor',what:'A search box for questions in plain words, such as “critical alerts on finance assets”.',helps:'Harbor turns the question into filters on the list.',find:function(F,$){return $('#f1 .qask')},side:'bottom'},
+ {title:'Filters',what:'Status, severity, verdict and assignee as chips. Add puts another filter on the list.',helps:'Filters stay applied until you clear them.',find:function(F,$){return $('#f1 .qrow')||F('#f1','Filters')},side:'bottom'},
+ {title:'High-value assets · Critical',what:'Critical alerts on high-value assets, grouped at the top of the list.',helps:'Start here. These carry the most business risk.',find:function(F){return F('#f1','High-value assets')},side:'bottom'},
+ {title:'Severity',what:'Critical, High, Medium or Low, each with its own icon.',helps:'You see how serious an alert is before you open it.',find:function(F,$){return $('#f1 tbody tr .sev')},side:'right'},
+ {title:'Harbor action',what:'Remediated means Harbor already acted. Action required means Harbor waits for your approval.',helps:'The line below says what Harbor did, for example “share link revoked”.',find:function(F,$){return $('#f1 tbody tr .hs')},side:'left'},
+ {title:'Open an alert',what:'Click a row to open the alert in a side panel.',helps:'The list stays visible beside it.',find:function(F,$){return $('#f1 tbody tr td.al')},side:'bottom'}
  ],links:[L(['Next: investigate an alert','tour-investigate.html']),L(['Full prototype',FULL])]},
 investigate:{kicker:'Tour 2 of 3 · Investigate',title:'Understand one alert',
- intro:'Open an alert and see why Harbor flagged it, what it found, and how to check its answer.',
- endTitle:'You can judge Harbor’s answer',endBody:'Next, see how to remediate it.',
+ intro:'Open one alert to see why Harbor flagged it, what it found and how to check its answer.',
+ endTitle:'You can check Harbor’s answer',endBody:'Next, remediate the alert.',
  steps:[
- {title:'Alert header',what:'Severity, time and title.',helps:'Confirms you opened the one you meant.',before:async function(S){await S.panel(1)},find:function(F,$){return $('#f2 .panel .tt')},side:'left'},
- {title:'Summary',what:'One short paragraph of what happened.',helps:'Read this first. Most of the time it is enough to know the stakes.',find:function(F){return F('#f2 .panel','Summary')},side:'left'},
- {title:'Data lineage',what:'Who, from where, to what, in a chain.',helps:'Shows the path of the activity. Red marks the risky link.',find:function(F){return F('#f2 .panel','Data lineage')},side:'left'},
- {title:'Harbor has not acted yet',what:'A plain note on Harbor’s state.',helps:'Tells you nothing has changed yet, so the call is open.',find:function(F,$){return $('#f2 .panel .fstop')},side:'left'},
- {title:'Reasoning',what:'Why Harbor reached its verdict.',helps:'Lets you check the answer instead of trusting it.',find:function(F){return F('#f2 .panel','Reasoning')},side:'left'},
- {title:'Remediation',what:'The action Harbor proposes, with its buttons.',helps:'You see exactly what will happen before you approve it.',find:function(F){return F('#f2 .panel','Remediation')},side:'left'},
- {title:'Open alert',what:'The full details page.',helps:'Use it when the panel is not enough.',find:function(F){return F('#f2 .panel','Open alert')},side:'bottom'},
- {title:'Reasoning, in detail',what:'Pattern, sources and exposure as tabs of evidence.',helps:'Each reason points to the evidence behind it.',before:async function(S){await S.details(1)},find:function(F){return F('#f3','Reasoning')},side:'left'},
- {title:'Recommended next steps',what:'Ranked actions, the best one marked Recommended.',helps:'Compare options before you pick one.',find:function(F){return F('#f3','Recommended next steps')},side:'left'},
- {title:'Ask Harbor',what:'A chat about this alert.',helps:'Ask why, or what if, before you decide.',find:function(F,$){return $('#f3 .ch')},side:'left'}
+ {title:'Alert header',what:'Severity, detection time and title.',helps:'Check that this is the alert you meant to open.',before:async function(S){await S.panel(1)},find:function(F,$){return V($,'#f2 .panel .tt')},side:'left'},
+ {title:'Summary',what:'What happened, in two or three sentences.',helps:'Read this first. It is usually enough to judge how serious the alert is.',find:function(F){return B(F('#f2 .panel','Summary'))},side:'left'},
+ {title:'Data lineage',what:'The chain from the user to the data to where it went.',helps:'The step marked Risky is where the problem is.',find:function(F){return B(F('#f2 .panel','Data lineage'))},side:'left'},
+ {title:'Harbor’s status',what:'A note that Harbor has not acted on this alert yet.',helps:'Nothing has changed yet, so the decision is still yours.',find:function(F,$){return V($,'#f2 .panel .fstop')},side:'left'},
+ {title:'Reasoning',what:'The evidence for Harbor’s verdict, as short points.',helps:'Check each point before you approve anything.',find:function(F){return B(F('#f2 .panel','Reasoning'))},side:'left'},
+ {title:'Remediation',what:'The action Harbor proposes, with a button to approve it and a smaller option.',helps:'Read what will change before you approve it.',find:function(F){return B(F('#f2 .panel','Remediation'))},side:'left'},
+ {title:'Open alert',what:'Opens the full details page.',helps:'Use it when the panel is not enough.',find:function(F){return F('#f2 .panel','Open alert')},side:'bottom'},
+ {title:'Reasoning, in detail',what:'Pattern, sources and exposure, each with its evidence.',helps:'Check Harbor’s reasoning one point at a time.',before:async function(S){await S.details(1)},find:function(F){return D(F('#f3','Reasoning'))},side:'left'},
+ {title:'Recommended next steps',what:'Actions ranked by Harbor. The best one is marked Recommended.',helps:'Compare the options before you pick one.',find:function(F){return D(F('#f3','Recommended next steps'))},side:'left'},
+ {title:'Ask Harbor',what:'A chat about this alert, with suggested questions.',helps:'Ask why, or what happens if, before you decide.',find:function(F,$){var c=V($,'#f3 .ch');return c&&c.parentElement||c},side:'left'}
  ],links:[L(['Next: remediate an alert','tour-remediate.html']),L(['Full prototype',FULL])]},
 act:{kicker:'Tour 3 of 3 · Remediate',title:'Confirm, undo or teach Harbor',
- intro:'Every action is reversible except one, and Harbor tells you which before you click.',
+ intro:'Every action here can be undone except one. Harbor marks that one before you click.',
  endTitle:'You can remediate with confidence',endBody:'Try it yourself in the full prototype.',
  steps:[
- {title:'Approve a proposal',what:'The button that lets Harbor do what it proposed.',helps:'You approve only after reading the reasoning.',before:async function(S){await S.panel(1)},find:function(F){return F('#f2 .panel','Disable 6 accounts')},side:'left'},
- {title:'A safer option',what:'Block IPs only.',helps:'A smaller action when you are not sure.',find:function(F){return F('#f2 .panel','Block IPs only')},side:'left'},
- {title:'Verdict',what:'Not set, pending, true positive, false positive, expected.',helps:'Your verdict teaches Harbor and shows in the list.',find:function(F,$){return F('#f2 .panel','Verdict')},side:'bottom'},
- {title:'Assign',what:'Hand the alert to a person.',helps:'Keeps the queue owned.',find:function(F){return F('#f2 .panel','Assign')},side:'bottom'},
- {title:'Snooze',what:'Hide the alert for a while.',helps:'For things that can wait.',find:function(F,$){return $('#f2 .panel .snz')},side:'bottom'},
- {title:'Mark as expected',what:'Tell Harbor this activity is normal.',helps:'Harbor will stop raising the same pattern.',before:async function(S){await S.details(1)},find:function(F){return F('#f3','Mark as expected')},side:'bottom'},
- {title:'Part of an incident',what:'Related alerts grouped together.',helps:'Act once on the whole group.',find:function(F,$){return $('#f3 .incb')},side:'bottom'}
+ {title:'Approve the proposal',what:'Disables the six accounts, as Harbor proposed.',helps:'This one cannot be undone, so you confirm it on a screen that names the accounts.',before:async function(S){await S.panel(1)},find:function(F){return F('#f2 .panel','Disable 6 accounts')},side:'left'},
+ {title:'A smaller option',what:'Blocks the 11 IP addresses and leaves the accounts active.',helps:'Use it when you are not sure.',find:function(F){return F('#f2 .panel','Block IPs only')},side:'left'},
+ {title:'Verdict',what:'Not set, Pending, True positive, False positive or Expected activity.',helps:'The verdict shows in the list and in the Audit trail.',find:function(F,$){return F('#f2 .panel','Verdict')},side:'bottom'},
+ {title:'Assign',what:'Gives the alert to a person.',helps:'Every alert has an owner.',find:function(F){return F('#f2 .panel','Assign')},side:'bottom'},
+ {title:'Snooze',what:'Hides the alert for a set time, with an optional note.',helps:'For alerts that can wait.',find:function(F,$){return V($,'#f2 .panel .snz')},side:'bottom'},
+ {title:'Mark as expected',what:'Records the activity as normal and opens Teach Harbor.',helps:'Pick a reason, and Harbor treats similar alerts differently.',before:async function(S){await S.details(1)},find:function(F){return F('#f3','Mark as expected')},side:'bottom'},
+ {title:'Part of an incident',what:'Related alerts grouped into one incident, here INC-1042 with 4 alerts.',helps:'Go to incident to work on the whole group.',find:function(F,$){return V($,'#f3 .incb')},side:'bottom'}
  ],links:[L(['Open the full prototype',FULL])]}
 };
+/* helpers for step targets: first visible match, the section block around a label, the open card around a summary */
+function V($,sel,test){var a=document.querySelectorAll(sel);for(var i=0;i<a.length;i++){var r=a[i].getBoundingClientRect();if(r.width>0&&r.height>0&&(!test||test(a[i])))return a[i]}return null}
+function B(e){return e&&(e.closest('.blk')||e)}
+function D(e){return e&&(e.closest('details')||e)}
 
 window.__TOUR=window.__TOURS["investigate"];</script><script>/* Harbor onboarding tour: small labels that point at the real prototype. Nothing is covered by a circle. */
 (function(){
@@ -2227,22 +2231,23 @@ window.__S=S;
 
 /* ---------- UI ---------- */
 var css='.'+NS+'{font-family:inherit}'
-+'.hbt-card{position:fixed;z-index:9000;width:304px;background:#fff;color:#1c1d26;border:1px solid #dcdde8;border-radius:14px;box-shadow:0 14px 40px rgba(22,24,31,.22);padding:14px 16px 12px;display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(6px);transition:left .38s cubic-bezier(.2,.8,.2,1),top .38s cubic-bezier(.2,.8,.2,1),opacity .25s ease,transform .25s ease}'
++'.hbt-card{position:fixed;z-index:9000;width:304px;background:#1d1f23;color:#f4f5f9;border:1px solid #34373f;border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.35);padding:14px 16px 12px;display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(6px);transition:left .38s cubic-bezier(.2,.8,.2,1),top .38s cubic-bezier(.2,.8,.2,1),opacity .25s ease,transform .25s ease}'
 +'.hbt-card.on{opacity:1;transform:none}'
-+'.hbt-n{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4a3cb4;display:flex;justify-content:space-between;align-items:center}'
-+'.hbt-x{cursor:pointer;color:#5f6679;font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;background:none;border:0;padding:2px 4px;font-family:inherit}'
-+'.hbt-x:hover{color:#1c1d26}'
++'.hbt-n{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#c9c3f5;display:flex;justify-content:space-between;align-items:center}'
++'.hbt-x{cursor:pointer;color:#a7acbb;font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;background:none;border:0;padding:2px 4px;font-family:inherit}'
++'.hbt-x:hover{color:#fff}'
 +'.hbt-t{font-size:14.5px;font-weight:700;line-height:1.3;margin:0}'
-+'.hbt-l{font-size:12.5px;line-height:1.5;margin:0;color:#2b2d38}'
-+'.hbt-l b{display:block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#5f6679;margin-bottom:1px}'
++'.hbt-l{font-size:12.5px;line-height:1.5;margin:0;color:#dfe1e8}'
++'.hbt-l b{display:block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#a7acbb;margin-bottom:1px}'
 +'.hbt-f{display:flex;align-items:center;gap:8px;margin-top:4px}'
-+'.hbt-bar{flex:1;height:3px;border-radius:9px;background:#e6e7ee;overflow:hidden}.hbt-bar i{display:block;height:100%;background:#4a3cb4;border-radius:9px;transition:width .35s ease}'
-+'.hbt-b{font:600 12.5px inherit;font-family:inherit;border-radius:999px;height:30px;padding:0 14px;cursor:pointer;border:1px solid #c9cbd6;background:#fff;color:#1c1d26;transition:background-color .15s ease,border-color .15s ease}'
-+'.hbt-b:hover{background:#f4f4f8}.hbt-b.p{background:#4a3cb4;border-color:#4a3cb4;color:#fff}.hbt-b.p:hover{background:#4a3bbf}.hbt-b[disabled]{opacity:.4;pointer-events:none}'
-+'.hbt-dot{position:fixed;z-index:8999;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#4a3cb4;box-shadow:0 0 0 3px #fff,0 0 0 4px rgba(74,60,180,.35);pointer-events:none;opacity:0;transition:left .38s cubic-bezier(.2,.8,.2,1),top .38s cubic-bezier(.2,.8,.2,1),opacity .25s ease}'
++'.hbt-bar{flex:1;height:3px;border-radius:9px;background:#3a3d45;overflow:hidden}.hbt-bar i{display:block;height:100%;background:#fff;border-radius:9px;transition:width .35s ease}'
++'.hbt-b{font:600 12.5px inherit;font-family:inherit;border-radius:999px;height:30px;padding:0 14px;cursor:pointer;border:1px solid #4a4e58;background:transparent;color:#f4f5f9;transition:background-color .15s ease,border-color .15s ease}'
++'.hbt-b:hover{background:#2a2d35}.hbt-b.p{background:#fff;border-color:#fff;color:#1d1f23}.hbt-b.p:hover{background:#e6e7ec}.hbt-b[disabled]{opacity:.4;pointer-events:none}'
++'.hbt-dot{position:fixed;z-index:8999;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#1d1f23;box-shadow:0 0 0 3px #fff,0 0 0 5px rgba(29,31,35,.35);pointer-events:none;opacity:0;transition:left .38s cubic-bezier(.2,.8,.2,1),top .38s cubic-bezier(.2,.8,.2,1),opacity .25s ease}'
 +'.hbt-dot.on{opacity:1}'
-+'.hbt-ln{position:fixed;z-index:8998;height:2px;margin-top:-1px;background:#4a3cb4;transform-origin:0 50%;pointer-events:none;opacity:0;transition:left .38s cubic-bezier(.2,.8,.2,1),top .38s cubic-bezier(.2,.8,.2,1),width .38s cubic-bezier(.2,.8,.2,1),transform .38s cubic-bezier(.2,.8,.2,1),opacity .25s ease}'
-+'.hbt-ln.on{opacity:.85}'
++'.hbt-ln{position:fixed;z-index:8998;height:2px;margin-top:-1px;background:#1d1f23;transform-origin:0 50%;pointer-events:none;opacity:0;transition:left .38s cubic-bezier(.2,.8,.2,1),top .38s cubic-bezier(.2,.8,.2,1),width .38s cubic-bezier(.2,.8,.2,1),transform .38s cubic-bezier(.2,.8,.2,1),opacity .25s ease}'
++'.hbt-ln.on{opacity:.9}'
++'.hbt-intro .hbt-l[style]{color:#a7acbb!important}'
 +'.hbt-intro{left:50%!important;top:50%!important;margin:-120px 0 0 -170px;width:340px}'
 +'.stx{display:none!important}'
 +'@media (prefers-reduced-motion:reduce){.hbt-card,.hbt-dot,.hbt-ln{transition:none}}';
@@ -2268,11 +2273,14 @@ function place(target,side){
  pos.l=Math.max(12,Math.min(vw-w-12,pos.l));pos.t=Math.max(12,Math.min(vh-h-12,pos.t));
  card.style.left=pos.l+'px';card.style.top=pos.t+'px';
  /* dot on the target edge, line to the card edge */
- var dx,dy,cx,cy;
- if(pos.s==='right'){dx=r.right+7;dy=r.top+r.height/2;cx=pos.l;cy=Math.max(pos.t+16,Math.min(pos.t+h-16,dy))}
- else if(pos.s==='left'){dx=r.left-7;dy=r.top+r.height/2;cx=pos.l+w;cy=Math.max(pos.t+16,Math.min(pos.t+h-16,dy))}
- else if(pos.s==='bottom'){dx=r.left+r.width/2;dy=r.bottom+7;cy=pos.t;cx=Math.max(pos.l+16,Math.min(pos.l+w-16,dx))}
- else{dx=r.left+r.width/2;dy=r.top-7;cy=pos.t+h;cx=Math.max(pos.l+16,Math.min(pos.l+w-16,dx))}
+ /* the dot sits on the target's own edge, on the side facing the card */
+ var dx,dy,cx,cy,I=Math.min(10,r.width/2,r.height/2);
+ if(pos.s==='right'||pos.s==='left'){dx=pos.s==='right'?r.right:r.left;dy=Math.max(r.top+I,Math.min(r.bottom-I,pos.t+h/2))}
+ else{dy=pos.s==='bottom'?r.bottom:r.top;dx=Math.max(r.left+I,Math.min(r.right-I,pos.l+w/2))}
+ if(pos.s==='right'){cx=pos.l;cy=Math.max(pos.t+16,Math.min(pos.t+h-16,dy))}
+ else if(pos.s==='left'){cx=pos.l+w;cy=Math.max(pos.t+16,Math.min(pos.t+h-16,dy))}
+ else if(pos.s==='bottom'){cy=pos.t;cx=Math.max(pos.l+16,Math.min(pos.l+w-16,dx))}
+ else{cy=pos.t+h;cx=Math.max(pos.l+16,Math.min(pos.l+w-16,dx))}
  dot.style.left=dx+'px';dot.style.top=dy+'px';
  var len=Math.sqrt((cx-dx)*(cx-dx)+(cy-dy)*(cy-dy)),ang=Math.atan2(cy-dy,cx-dx)*180/Math.PI;
  ln.style.left=dx+'px';ln.style.top=dy+'px';ln.style.width=len+'px';ln.style.transform='rotate('+ang+'deg)';
@@ -2303,6 +2311,9 @@ function end(){
  setTimeout(function(){card.classList.add('hbt-intro');
   card.innerHTML='<div class="hbt-n"><span>Done</span><button class="hbt-x" data-a="x">Close</button></div><h4 class="hbt-t" style="font-size:17px">'+T.endTitle+'</h4><p class="hbt-l">'+T.endBody+'</p><div class="hbt-f" style="flex-wrap:wrap">'+T.links.map(function(l){return '<a class="hbt-b p" style="text-decoration:none;display:inline-flex;align-items:center" target="_blank" rel="noopener" href="'+l.href+'">'+l.label+'</a>'}).join('')+'</div>';
   requestAnimationFrame(function(){card.classList.add('on')})},300)}
+/* keep the pointer on its target when the page or the panel scrolls */
+var _rq=0;function follow(){if(_rq)return;_rq=requestAnimationFrame(function(){_rq=0;if(card._tg&&card.classList.contains('on')&&idx>=0&&idx<N)place(card._tg,card._side)})}
+window.addEventListener('scroll',follow,true);window.addEventListener('resize',follow);
 card.addEventListener('click',function(e){var a=e.target.getAttribute&&e.target.getAttribute('data-a');if(!a)return;
  if(a==='x'){card.classList.remove('on');dot.classList.remove('on');ln.classList.remove('on')}
  if(a==='n'){if(idx>=N-1)end();else show(idx+1)}
