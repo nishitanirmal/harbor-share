@@ -1,26 +1,31 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<title>Analyze</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Analyze · Harbor documentation</title>
 <link rel="stylesheet" href="walk.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:#f5f5f7;-webkit-font-smoothing:antialiased}a{color:#0071e3}a:hover{color:#0058b9}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:transparent;-webkit-font-smoothing:antialiased}
-a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
-.ni{display:flex;align-items:center;gap:9px;min-height:34px;padding:5px 11px;border-radius:11px;font-size:13.5px;line-height:1.25;letter-spacing:-.005em;transition:background-color .15s ease,color .15s ease}
-.ni:hover{background:rgba(0,0,0,.045)}
-.ni b{width:20px;flex:0 0 20px;font-size:10.5px;font-weight:600;color:inherit;opacity:.55;font-variant-numeric:tabular-nums}
-.ni span{flex:1 1 auto;min-width:0}
-.sl{display:flex;flex-direction:column;gap:1px;margin:4px 0 8px 21px;padding:0 0 0 11px;border-left:1.5px solid #d6e4f7}
-.si{display:flex;align-items:center;min-height:26px;padding:3px 9px;border-radius:8px;font-size:12.5px;line-height:1.25;color:#6e6e73;transition:background-color .15s ease,color .15s ease}
-.si:hover{color:#0071e3;background:rgba(0,113,227,.06)}
-</style></head>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:#f5f5f7;-webkit-font-smoothing:antialiased}a{color:#0071e3}a:hover{color:#0058b9}</style>
+
+<style>
+.dnav a{color:#1d1d1f;text-decoration:none}.dnav a:hover{color:#0071e3}
+.dnav .ni{display:flex;align-items:center;gap:9px;min-height:34px;padding:5px 11px;border-radius:11px;font-size:13.5px;line-height:1.25;letter-spacing:-.005em;transition:background-color .15s ease,color .15s ease}
+.dnav .ni:hover{background:rgba(0,0,0,.045)}
+.dnav .ni b{width:20px;flex:0 0 20px;font-size:10.5px;font-weight:600;color:inherit;opacity:.55;font-variant-numeric:tabular-nums}
+.dnav .ni span{flex:1 1 auto;min-width:0}
+.dnav .sl{display:flex;flex-direction:column;gap:1px;margin:4px 0 8px 21px;padding:0 0 0 11px;border-left:1.5px solid #d6e4f7}
+.dnav .si{display:flex;align-items:center;min-height:26px;padding:3px 9px;border-radius:8px;font-size:12.5px;line-height:1.25;color:#6e6e73;transition:background-color .15s ease,color .15s ease}
+.dnav .si:hover{color:#0071e3;background:rgba(0,113,227,.06)}
+</style>
+</head>
 <body>
-<div id="dcroot" style="display: contents;">
+
 
 <div style="display:flex; flex-wrap:wrap; align-items:flex-start; box-sizing: border-box; height: auto; min-height: 100vh">
-  <div class="navcol"><div data-import="Nav" style="display: contents;">
-
+  <div class="navcol"><div class="dnav">
 <nav aria-label="Sections" style="width:212px;display:flex;flex-direction:column;gap:12px">
   <div style="display:flex;flex-direction:column;gap:2px">
     <span style="font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0071e3">Harbor</span>
@@ -183,7 +188,7 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
     </div>
 
     <div class="card" id="insights" style="padding: 32px; gap: 20px; border: none; background: #eef4fc; box-shadow: inset 0 0 0 2px #0071e3">
-      <div class="row"><span class="h2">Insights from the competitor analysis</span><button class="tog" type="button">Show 3 more</button></div>
+      <div class="row"><span class="h2">Insights from the competitor analysis</span><button class="tog" type="button" data-on="ti"><span data-v="li"></span></button></div>
       <ul class="l" style="line-height: 1.6">
         <li><strong>Side panel, deliberate step out.</strong> Falcon opens a detection in a side panel over the list so the analyst keeps their place; See full detection is a deliberate step out. In Harbor, an alert opens in a panel beside the list and Open alert is the one step to the full page.</li>
         <li><strong>Defensible closure.</strong> Who closed an alert, on what evidence, and why. Microsoft Defender makes a resolution note mandatory. In Harbor, every action is written to the Audit trail with a name and a time.</li>
@@ -195,7 +200,13 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
         <li><strong>Correction becomes a rule.</strong> Purview's Teach agent and Nightfall's apply to all identical findings turn one disagreement into lasting tuning. In Harbor, Teach Harbor asks why, and the reason is logged. How Harbor learns from it is not built.</li>
         <li><strong>The gap nobody fills.</strong> No product shows what the AI checked and could not confirm, which an analyst needs before trusting a verdict. That is the opening Harbor's brief points at. The prototype does not show it yet.</li>
       </ul>
-      
+      <div data-if="i" style="display:none">
+        <ul class="l" style="line-height: 1.6">
+          <li>Splunk separates status from disposition. Nightfall collapses them: its status says what was done to the data.</li>
+          <li>Purview lets the analyst teach the agent directly; Splunk makes suppression an analyst action.</li>
+          <li>Darktrace cuts the queue with a severity threshold instead of filters and closes with a comment plus acknowledgement, with no disposition field.</li>
+        </ul>
+      </div>
     </div>
 
     <div class="card" id="matrix" style="padding: 32px; gap: 20px">
@@ -247,8 +258,27 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
     </div>
   </div>
 </div>
-</div>
 
+<script>
+class DCLogic{constructor(){this.props={};this.state=null}setState(s){this.state=Object.assign({},this.state||{},s);__r()}}
 
+class Component extends DCLogic {
+  tg(k) { var self = this; return function () { var o = Object.assign({}, (self.state && self.state.o) || {}); o[k] = !o[k]; self.setState({ o: o }); }; }
+  renderVals() {
+    var o = (this.state && this.state.o) || {};
+    var v = { w: !!o.w, tw: this.tg('w'), lw: o.w ? 'Hide' : 'How competitors handle it',
+              i: !!o.i, ti: this.tg('i'), li: o.i ? 'Hide' : 'Show 3 more' };
+    for (var n = 1; n <= 6; n++) { var k = 'q' + n; v[k] = !!o[k]; v['t' + k] = this.tg(k); v['l' + k] = o[k] ? 'Hide' : 'Consequence'; }
+    return v;
+  }
+}
 
-</body></html>
+var __c=new Component();
+function __r(){var v=__c.renderVals()||{};
+document.querySelectorAll('[data-v]').forEach(function(e){e.textContent=v[e.dataset.v]==null?'':v[e.dataset.v]});
+document.querySelectorAll('[data-if]').forEach(function(e){e.style.display=v[e.dataset.if]?'contents':'none'});
+document.querySelectorAll('[data-on]').forEach(function(e){e.onclick=v[e.dataset.on]||null});}
+__r();
+</script>
+</body>
+</html>

@@ -1,26 +1,31 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<title>The AI workflow</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The AI workflow · Harbor documentation</title>
 <link rel="stylesheet" href="walk.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:#f5f5f7;-webkit-font-smoothing:antialiased}a{color:#0071e3}a:hover{color:#0058b9}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:transparent;-webkit-font-smoothing:antialiased}
-a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
-.ni{display:flex;align-items:center;gap:9px;min-height:34px;padding:5px 11px;border-radius:11px;font-size:13.5px;line-height:1.25;letter-spacing:-.005em;transition:background-color .15s ease,color .15s ease}
-.ni:hover{background:rgba(0,0,0,.045)}
-.ni b{width:20px;flex:0 0 20px;font-size:10.5px;font-weight:600;color:inherit;opacity:.55;font-variant-numeric:tabular-nums}
-.ni span{flex:1 1 auto;min-width:0}
-.sl{display:flex;flex-direction:column;gap:1px;margin:4px 0 8px 21px;padding:0 0 0 11px;border-left:1.5px solid #d6e4f7}
-.si{display:flex;align-items:center;min-height:26px;padding:3px 9px;border-radius:8px;font-size:12.5px;line-height:1.25;color:#6e6e73;transition:background-color .15s ease,color .15s ease}
-.si:hover{color:#0071e3;background:rgba(0,113,227,.06)}
-</style></head>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:#f5f5f7;-webkit-font-smoothing:antialiased}a{color:#0071e3}a:hover{color:#0058b9}</style>
+
+<style>
+.dnav a{color:#1d1d1f;text-decoration:none}.dnav a:hover{color:#0071e3}
+.dnav .ni{display:flex;align-items:center;gap:9px;min-height:34px;padding:5px 11px;border-radius:11px;font-size:13.5px;line-height:1.25;letter-spacing:-.005em;transition:background-color .15s ease,color .15s ease}
+.dnav .ni:hover{background:rgba(0,0,0,.045)}
+.dnav .ni b{width:20px;flex:0 0 20px;font-size:10.5px;font-weight:600;color:inherit;opacity:.55;font-variant-numeric:tabular-nums}
+.dnav .ni span{flex:1 1 auto;min-width:0}
+.dnav .sl{display:flex;flex-direction:column;gap:1px;margin:4px 0 8px 21px;padding:0 0 0 11px;border-left:1.5px solid #d6e4f7}
+.dnav .si{display:flex;align-items:center;min-height:26px;padding:3px 9px;border-radius:8px;font-size:12.5px;line-height:1.25;color:#6e6e73;transition:background-color .15s ease,color .15s ease}
+.dnav .si:hover{color:#0071e3;background:rgba(0,113,227,.06)}
+</style>
+</head>
 <body>
-<div id="dcroot" style="display: contents;">
+
 
 <div style="display:flex;flex-wrap:wrap;align-items:flex-start">
-  <div class="navcol"><div data-import="Nav" style="display: contents;">
-
+  <div class="navcol"><div class="dnav">
 <nav aria-label="Sections" style="width:212px;display:flex;flex-direction:column;gap:12px">
   <div style="display:flex;flex-direction:column;gap:2px">
     <span style="font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0071e3">Harbor</span>
@@ -88,7 +93,7 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
     </div>
 
     <div class="card" id="priority">
-      <div class="row"><span class="h2">Prioritization logic</span><button class="tog" type="button">Where this comes from</button></div>
+      <div class="row"><span class="h2">Prioritization logic</span><button class="tog" type="button" data-on="tp"><span data-v="lp"></span></button></div>
       <p class="p">Alerts are listed by severity, with alerts on high-value assets first. Each alert carries a Priority and Reasoning section that says what moved it.</p>
       <div class="g4">
         <div class="sub"><span class="small muted">Weighs</span><span class="h3">Sensitivity of the data</span></div>
@@ -97,7 +102,9 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
         <div class="sub"><span class="small muted">Weighs</span><span class="h3">Whether the asset is marked critical</span></div>
       </div>
       <div class="sub" style="background:#fff4e5"><span class="small" style="color:#8a4b08;font-weight:600">Listed first</span><span class="h3">Alerts on high-value assets sit under High-value assets · Critical, above Other alerts</span></div>
-      
+      <div data-if="p" style="display:none">
+        <p class="p muted">Splunk is the precedent: its urgency combines the finding's severity with the priority of the asset or identity, so a medium alert on a crown-jewel system can outrank a high one elsewhere.</p>
+      </div>
     </div>
 
     <div class="g2" id="reasoning">
@@ -146,8 +153,24 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
     </div>
   </div>
 </div>
-</div>
 
+<script>
+class DCLogic{constructor(){this.props={};this.state=null}setState(s){this.state=Object.assign({},this.state||{},s);__r()}}
 
+class Component extends DCLogic {
+  tg(k) { var self = this; return function () { var o = Object.assign({}, (self.state && self.state.o) || {}); o[k] = !o[k]; self.setState({ o: o }); }; }
+  renderVals() {
+    var o = (this.state && this.state.o) || {};
+    return { p: !!o.p, tp: this.tg('p'), lp: o.p ? 'Hide' : 'Where this comes from' };
+  }
+}
 
-</body></html>
+var __c=new Component();
+function __r(){var v=__c.renderVals()||{};
+document.querySelectorAll('[data-v]').forEach(function(e){e.textContent=v[e.dataset.v]==null?'':v[e.dataset.v]});
+document.querySelectorAll('[data-if]').forEach(function(e){e.style.display=v[e.dataset.if]?'contents':'none'});
+document.querySelectorAll('[data-on]').forEach(function(e){e.onclick=v[e.dataset.on]||null});}
+__r();
+</script>
+</body>
+</html>

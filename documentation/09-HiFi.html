@@ -1,30 +1,35 @@
 <!doctype html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8">
-<title>High-fidelity UI</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>High-fidelity UI · Harbor documentation</title>
 <link rel="stylesheet" href="walk.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:#f5f5f7;-webkit-font-smoothing:antialiased}a{color:#0071e3}a:hover{color:#0058b9}
 .bp{display:grid;grid-template-columns:70px minmax(0,1fr);gap:14px;align-items:center}
 .track{display:flex;align-items:center;gap:12px;min-width:0}
-</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:transparent;-webkit-font-smoothing:antialiased}
-a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
-.ni{display:flex;align-items:center;gap:9px;min-height:34px;padding:5px 11px;border-radius:11px;font-size:13.5px;line-height:1.25;letter-spacing:-.005em;transition:background-color .15s ease,color .15s ease}
-.ni:hover{background:rgba(0,0,0,.045)}
-.ni b{width:20px;flex:0 0 20px;font-size:10.5px;font-weight:600;color:inherit;opacity:.55;font-variant-numeric:tabular-nums}
-.ni span{flex:1 1 auto;min-width:0}
-.sl{display:flex;flex-direction:column;gap:1px;margin:4px 0 8px 21px;padding:0 0 0 11px;border-left:1.5px solid #d6e4f7}
-.si{display:flex;align-items:center;min-height:26px;padding:3px 9px;border-radius:8px;font-size:12.5px;line-height:1.25;color:#6e6e73;transition:background-color .15s ease,color .15s ease}
-.si:hover{color:#0071e3;background:rgba(0,113,227,.06)}
-</style></head>
+</style>
+
+<style>
+.dnav a{color:#1d1d1f;text-decoration:none}.dnav a:hover{color:#0071e3}
+.dnav .ni{display:flex;align-items:center;gap:9px;min-height:34px;padding:5px 11px;border-radius:11px;font-size:13.5px;line-height:1.25;letter-spacing:-.005em;transition:background-color .15s ease,color .15s ease}
+.dnav .ni:hover{background:rgba(0,0,0,.045)}
+.dnav .ni b{width:20px;flex:0 0 20px;font-size:10.5px;font-weight:600;color:inherit;opacity:.55;font-variant-numeric:tabular-nums}
+.dnav .ni span{flex:1 1 auto;min-width:0}
+.dnav .sl{display:flex;flex-direction:column;gap:1px;margin:4px 0 8px 21px;padding:0 0 0 11px;border-left:1.5px solid #d6e4f7}
+.dnav .si{display:flex;align-items:center;min-height:26px;padding:3px 9px;border-radius:8px;font-size:12.5px;line-height:1.25;color:#6e6e73;transition:background-color .15s ease,color .15s ease}
+.dnav .si:hover{color:#0071e3;background:rgba(0,113,227,.06)}
+</style>
+</head>
 <body>
-<div id="dcroot" style="display: contents;">
+
 
 <div style="display:flex;flex-wrap:wrap;align-items:flex-start">
-  <div class="navcol"><div data-import="Nav" style="display: contents;">
-
+  <div class="navcol"><div class="dnav">
 <nav aria-label="Sections" style="width:212px;display:flex;flex-direction:column;gap:12px">
   <div style="display:flex;flex-direction:column;gap:2px">
     <span style="font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0071e3">Harbor</span>
@@ -104,7 +109,7 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
     </div>
 
     <div class="card" id="responsive">
-      <div class="row"><span class="h2">Responsiveness: 1440 as the base, and what collapses</span><button class="tog" type="button">Why, and the collapse order</button></div>
+      <div class="row"><span class="h2">Responsiveness: 1440 as the base, and what collapses</span><button class="tog" type="button" data-on="tr"><span data-v="lr"></span></button></div>
       <div style="display:flex;flex-direction:column;gap:10px">
         <div class="bp" style="align-items: flex-start"><span class="h3">1440</span><div class="track" style="flex-direction: column; align-items: flex-start; gap: 10px; flex-wrap: nowrap"><div class="bar" style="width:100%; flex: none; height: 26px"></div><span class="small muted" style="display: block; max-width: 560px; line-height: 1.5">Base</span></div></div>
         <div class="bp" style="align-items: flex-start"><span class="h3">1280</span><div class="track" style="flex-direction: column; align-items: flex-start; gap: 10px; flex-wrap: nowrap"><div class="bar" style="width:70%; height: 26px; flex: none"></div><span class="small muted" style="display: block; max-width: 560px; line-height: 1.5">The panel sits beside the list.<br>The table scrolls sideways, with a fade on the edge that has more</span></div></div>
@@ -112,7 +117,14 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
         <div class="bp" style="align-items: flex-start"><span class="h3">768</span><div class="track" style="flex-direction: column; align-items: flex-start; gap: 10px; flex-wrap: nowrap"><div class="bar soft" style="width:36%; height: 26px; flex: none"></div><span class="small muted" style="display: block; max-width: 560px; line-height: 1.5">The panel covers the full width.<br>The details show an All alerts button</span></div></div>
       </div>
       <p class="p"><strong>What never collapses:</strong> the alert title and its description. When space runs out, the table scrolls sideways instead of dropping them.</p>
-      
+      <div data-if="r" style="display:none">
+        <ul class="l small">
+          <li>1440 because triage is fast when the list, the detail and the actions are visible at once. This rests on the competitors' layouts, not on research into what analysts own.</li>
+          <li>When the panel opens on a smaller screen, the left navigation contracts to icons. On a large screen everything stays open until Open alert is clicked.</li>
+          <li>At 1024 the Filters sit behind one button that keeps every applied filter visible as a chip.</li>
+          <li>At 768 the panel covers the list, and the details show an All alerts button to go back.</li>
+        </ul>
+      </div>
     </div>
 
     <div class="card" id="a11y">
@@ -153,12 +165,18 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
     </div>
 
     <div class="card" id="microcopy">
-      <div class="row"><span class="h2">Interaction detail and microcopy</span><button class="tog" type="button">Show 3 more</button></div>
+      <div class="row"><span class="h2">Interaction detail and microcopy</span><button class="tog" type="button" data-on="tm"><span data-v="lm"></span></button></div>
       <ul class="l">
         <li>Every irreversible action names its object on the button, such as "Revoke access for A. Rao", never "Confirm".</li>
         <li>Ticking rows shows "N selected" with what Harbor suggests, and a field to tell it what to do in words.</li>
       </ul>
-      
+      <div data-if="m" style="display:none">
+        <ul class="l">
+          <li>Every menu highlights its current value and changes color on hover.</li>
+          <li>Snooze starts at 5 hours and takes an optional note.</li>
+          <li>Every action is written to the Audit trail with a name and a time.</li>
+        </ul>
+      </div>
     </div>
 
     
@@ -169,8 +187,25 @@ a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
     </div>
   </div>
 </div>
-</div>
 
+<script>
+class DCLogic{constructor(){this.props={};this.state=null}setState(s){this.state=Object.assign({},this.state||{},s);__r()}}
 
+class Component extends DCLogic {
+  tg(k) { var self = this; return function () { var o = Object.assign({}, (self.state && self.state.o) || {}); o[k] = !o[k]; self.setState({ o: o }); }; }
+  renderVals() {
+    var o = (this.state && this.state.o) || {};
+    return { r: !!o.r, tr: this.tg('r'), lr: o.r ? 'Hide' : 'Why, and the collapse order',
+             m: !!o.m, tm: this.tg('m'), lm: o.m ? 'Hide' : 'Show 3 more' };
+  }
+}
 
-</body></html>
+var __c=new Component();
+function __r(){var v=__c.renderVals()||{};
+document.querySelectorAll('[data-v]').forEach(function(e){e.textContent=v[e.dataset.v]==null?'':v[e.dataset.v]});
+document.querySelectorAll('[data-if]').forEach(function(e){e.style.display=v[e.dataset.if]?'contents':'none'});
+document.querySelectorAll('[data-on]').forEach(function(e){e.onclick=v[e.dataset.on]||null});}
+__r();
+</script>
+</body>
+</html>
