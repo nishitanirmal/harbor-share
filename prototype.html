@@ -570,7 +570,9 @@ tr.qhide{display:none !important}
 
 /* overview toggle as a labelled button */
 .ins summary .cv{margin-left:0}
-.ins summary .tg{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px 0 14px;border-radius:999px;background:var(--white);border:1px solid var(--line2);color:var(--fg);font-weight:600;font-size:12.5px;flex:none}
+.ins summary .lb{order:0}
+.ins summary .dash{order:2}
+.ins summary .tg{order:1;margin-left:2px;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px 0 14px;border-radius:999px;background:var(--white);border:1px solid var(--line2);color:var(--fg);font-weight:600;font-size:12.5px;flex:none}
 .ins summary:hover .tg{background:var(--ph)}
 .ins summary .tg .o{display:none}
 .ins[open] summary .tg .o{display:inline}
@@ -1003,7 +1005,7 @@ details.card.dopen>summary .cv{transform:none}
 .qask .aif .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .qask .aif.has .t{color:var(--fg);font-weight:500}
 .qask .aif .t{flex:1 1 auto}
-.qask .aif{padding-right:0;overflow:hidden}
+.qask .aif,#f2 .qask .aif{padding-right:0;overflow:hidden}
 .qask .aifgo{height:100%;border-radius:0;padding:0 20px 0 18px}
 .aifgo{gap:5px;flex:none;height:26px;padding:0 14px;border-radius:999px;background:var(--hb);color:#fff;font-weight:600;font-size:12.5px;display:inline-flex;align-items:center;cursor:pointer;transition:filter var(--d1) ease,transform var(--d1) ease}
 .aifgo:hover{filter:brightness(1.08)}.aifgo:active{transform:scale(.96)}
@@ -1209,10 +1211,10 @@ html.r768 #f2 .panel{position:absolute;right:0;top:0;bottom:0;width:100%;z-index
 .sw .fzl{display:block;position:absolute;left:-32px;width:66px;pointer-events:none;background:linear-gradient(to left,rgba(255,255,255,0),rgba(255,255,255,.8) 50%,#fff);z-index:2;opacity:0;transition:opacity .25s ease}
 .sw.fadel .fzl{opacity:1}
 html.r768 .qb .qpm{left:auto !important;right:0 !important}
-/* suggested filters: quiet text hints, no outline, so they read as secondary to the real chips */
-.qsug .sg,.qerr .sg{height:24px;padding:0 7px;border:0;border-radius:999px;background:transparent;color:#8a82d8;font-size:12px;font-weight:400}
-.qsug .sg:hover,.qerr .sg:hover{background:var(--hb-bg);color:var(--hb)}
-.qsug .sl{font-weight:500;color:#8a82d8}
+/* suggested filters: lighter, so they read as hints next to the real chips */
+.qsug .sg{height:24px;padding:0 9px;border:1px dashed rgba(91,75,214,.32);background:transparent;color:#6f62d8;font-size:12px;font-weight:400}
+.qsug .sg:hover{background:var(--hb-bg);border-style:dashed;border-color:rgba(91,75,214,.5)}
+.qsug .sl{font-weight:500;color:#6f62d8}
 </style>
 <div class="frame" id="f1">
       <div class="top"><div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg></div><span class="brand">Harbor AI</span><div class="search"><svg class="li sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Search alerts, users, files, policies</div><span class="hpill"><i></i>Harbor shield is on</span><div class="avatar">NN</div></div>
