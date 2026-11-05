@@ -2147,7 +2147,7 @@ prioritize:{kicker:'Tour 1 of 3 · Prioritization',title:'Identify alerts that r
  {title:'Alerts not auto-closed today',what:'163 alerts not closed automatically today, divided into Critical · high-value, Awaiting analyst and Remediated by Harbor.',helps:'Indicates the volume of alerts that remain for analyst review.',before:async function(S){await S.list()},find:function(F,$){return $('#f1 .vbar')},side:'bottom'},
  {title:'Awaiting analyst',what:'42 alerts that require an analyst decision before they can be closed.',helps:'Defines the analyst’s working queue.',find:function(F,$){return $('#f1 .vbar .st.warn')},side:'bottom'},
  {title:'Auto-resolved',what:'The percentage of today’s alerts closed without analyst involvement.',helps:'Indicates how much of the volume was resolved before review.',find:function(F,$){return V($,'#f1 .ring',function(e){return /Auto-resolved/.test(e.textContent)})},side:'bottom'},
- {title:'Overview',what:'Top policies, assignee load and response times. Expand overview displays the charts.',helps:'Shows which policies generate the most alerts and how work is distributed across assignees.',find:function(F,$){return $('#f1 details.ins summary')||F('#f1','Overview')},side:'bottom'},
+ {title:'Overview',what:'Top policies, assignee load and response times. Expand overview displays the charts.',helps:'Shows which policies generate the most alerts and how work is distributed across assignees.',find:function(F,$){return V($,'#f1 details.ins summary .tg')||$('#f1 details.ins summary')},side:'bottom'},
  {title:'Ask Harbor',what:'A search field that accepts questions in natural language, for example “critical alerts on finance assets”.',helps:'Converts the question into filters on the alert list.',find:function(F,$){return $('#f1 .qask')},side:'bottom'},
  {title:'Filters',what:'Status, severity, verdict and assignee, displayed as chips. Add applies a further filter.',helps:'Filters remain applied until they are cleared.',find:function(F,$){return $('#f1 .qrow')||F('#f1','Filters')},side:'bottom'},
  {title:'High-value assets · Critical',what:'Critical alerts on high-value assets, grouped at the top of the list.',helps:'These alerts carry the highest business risk and are reviewed first.',find:function(F){return F('#f1','High-value assets')},side:'bottom'},
@@ -2275,8 +2275,9 @@ function place(target,side){
  /* dot on the target edge, line to the card edge */
  /* the dot sits on the target's own edge, on the side facing the card */
  var dx,dy,cx,cy,I=Math.min(10,r.width/2,r.height/2);
- if(pos.s==='right'||pos.s==='left'){dx=pos.s==='right'?r.right:r.left;dy=Math.max(r.top+I,Math.min(r.bottom-I,pos.t+h/2))}
- else{dy=pos.s==='bottom'?r.bottom:r.top;dx=Math.max(r.left+I,Math.min(r.right-I,pos.l+w/2))}
+ /* centred on the target, with the card centred on the dot */
+ if(pos.s==='right'||pos.s==='left'){dx=pos.s==='right'?r.right:r.left;dy=Math.max(12,Math.min(vh-12,r.top+r.height/2))}
+ else{dy=pos.s==='bottom'?r.bottom:r.top;dx=Math.max(12,Math.min(vw-12,r.left+r.width/2))}
  if(pos.s==='right'){cx=pos.l;cy=Math.max(pos.t+16,Math.min(pos.t+h-16,dy))}
  else if(pos.s==='left'){cx=pos.l+w;cy=Math.max(pos.t+16,Math.min(pos.t+h-16,dy))}
  else if(pos.s==='bottom'){cy=pos.t;cx=Math.max(pos.l+16,Math.min(pos.l+w-16,dx))}
