@@ -1211,6 +1211,10 @@ html.r768 #f2 .panel{position:absolute;right:0;top:0;bottom:0;width:100%;z-index
 .sw .fzl{display:block;position:absolute;left:-32px;width:66px;pointer-events:none;background:linear-gradient(to left,rgba(255,255,255,0),rgba(255,255,255,.8) 50%,#fff);z-index:2;opacity:0;transition:opacity .25s ease}
 .sw.fadel .fzl{opacity:1}
 html.r768 .qb .qpm{left:auto !important;right:0 !important}
+/* Go button keeps its own rounded right edge, so it never depends on the parent clip (Safari drops it during the panel transition) */
+.qask .aif,#f2 .qask .aif{isolation:isolate;clip-path:inset(0 round 999px);-webkit-mask-image:-webkit-radial-gradient(white,black)}
+.qask .aifgo{align-self:stretch;height:auto;margin-right:0;border-radius:0 999px 999px 0}
+.qask .aifgo:active{transform:none}
 /* suggested filters: lighter, so they read as hints next to the real chips */
 .qsug .sg{height:24px;padding:0 7px;border:0;border-radius:999px;background:transparent;color:#8a82d8;font-size:12px;font-weight:400}
 .qsug .sg:hover{background:var(--hb-bg);color:var(--hb)}
