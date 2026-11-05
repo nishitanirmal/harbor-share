@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>The AI workflow</title>
+
+<link rel="stylesheet" href="walk.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:#f5f5f7;-webkit-font-smoothing:antialiased}a{color:#0071e3}a:hover{color:#0058b9}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif;color:#1d1d1f;background:transparent;-webkit-font-smoothing:antialiased}
+a{color:#1d1d1f;text-decoration:none}a:hover{color:#0071e3}
+.ni{display:flex;align-items:center;gap:9px;min-height:34px;padding:5px 11px;border-radius:11px;font-size:13.5px;line-height:1.25;letter-spacing:-.005em;transition:background-color .15s ease,color .15s ease}
+.ni:hover{background:rgba(0,0,0,.045)}
+.ni b{width:20px;flex:0 0 20px;font-size:10.5px;font-weight:600;color:inherit;opacity:.55;font-variant-numeric:tabular-nums}
+.ni span{flex:1 1 auto;min-width:0}
+.sl{display:flex;flex-direction:column;gap:1px;margin:4px 0 8px 21px;padding:0 0 0 11px;border-left:1.5px solid #d6e4f7}
+.si{display:flex;align-items:center;min-height:26px;padding:3px 9px;border-radius:8px;font-size:12.5px;line-height:1.25;color:#6e6e73;transition:background-color .15s ease,color .15s ease}
+.si:hover{color:#0071e3;background:rgba(0,113,227,.06)}
+</style></head>
+<body>
+<div id="dcroot" style="display: contents;">
+
+<div style="display:flex;flex-wrap:wrap;align-items:flex-start">
+  <div class="navcol"><div data-import="Nav" style="display: contents;">
+
+<nav aria-label="Sections" style="width:212px;display:flex;flex-direction:column;gap:12px">
+  <div style="display:flex;flex-direction:column;gap:2px">
+    <span style="font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0071e3">Harbor</span>
+    <span style="font-size:12px;color:#6e6e73;line-height:1.35">Alerts experience for an AI-driven enterprise data security platform</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:1px">
+    <a class="ni" href="index.html" style="font-weight:500;color:#3a3a3f"><b>00</b><span>Overview</span></a>
+    <a class="ni" href="01-AI.html" style="font-weight:500;color:#3a3a3f"><b>01</b><span>How I used AI</span></a>
+    <a class="ni" href="02-Define.html" style="font-weight:500;color:#3a3a3f"><b>02</b><span>Define</span></a>
+    
+    <a class="ni" href="03-Analyze.html" style="font-weight:500;color:#3a3a3f"><b>03</b><span>Analyze</span></a>
+    
+    <a class="ni" href="04-Ideate.html" style="font-weight:500;color:#3a3a3f"><b>04</b><span>Ideate</span></a>
+    
+    <a class="ni" href="05-IA.html" style="font-weight:500;color:#3a3a3f"><b>05</b><span>Information architecture</span></a>
+    
+    <a class="ni" href="06-AI-Workflow.html" style="background:#fff;font-weight:600;color:#0058b9;box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px -8px rgba(0,0,0,.14)"><b>06</b><span>The AI workflow</span></a>
+    
+      <div class="sl">
+        <a class="si" href="#decides">Decides versus suggests</a>
+        <a class="si" href="#priority">Prioritization logic</a>
+        <a class="si" href="#reasoning">Reasoning and review</a>
+        <a class="si" href="#rejection">What happens to a correction</a>
+        <a class="si" href="#reversible">What is reversible</a>
+      </div>
+    
+    <a class="ni" href="08-Wireframes.html" style="font-weight:500;color:#3a3a3f"><b>08</b><span>Wireframes</span></a>
+    <a class="ni" href="09-HiFi.html" style="font-weight:500;color:#3a3a3f"><b>09</b><span>High-fidelity UI</span></a>
+    
+    <a class="ni" href="10-Prototype.html" style="font-weight:500;color:#3a3a3f"><b>10</b><span>Prototype</span></a>
+    <div style="display:flex;align-items:center;gap:8px;margin:12px 11px 4px"><span style="flex:1 1 auto;height:1px;background:#d2d2d7"></span><span style="font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6e6e73;white-space:nowrap">Additional context</span><span style="flex:1 1 auto;height:1px;background:#d2d2d7"></span></div>
+    <a class="ni" href="11-Test.html" style="font-weight:500;color:#3a3a3f"><b>11</b><span>Test</span></a>
+    <a class="ni" href="12-Appendix.html" style="font-weight:500;color:#3a3a3f"><b>12</b><span>Appendix</span></a>
+    <a class="ni" href="13-Brief.html" style="font-weight:500;color:#3a3a3f"><b>13</b><span>Back to the brief</span></a>
+  </div>
+</nav>
+</div></div>
+  <div class="main">
+
+    <div class="title">
+      <span class="eyebrow">06 · The AI workflow</span>
+      <h1>What the AI decides, what the analyst decides</h1>
+      <p class="lead">Harbor acts alone only where the action can be undone. Anything irreversible waits for a person. And every correction is logged.</p>
+    </div>
+
+    <div class="g2" id="decides">
+      <div class="card tint">
+        <span class="tag white">Decides, each with an undo</span>
+        <ul class="l">
+          <li>The severity</li>
+          <li>The one-line summary</li>
+          <li>Auto-closing low-risk alerts, listed under Auto-closed with Reopen case</li>
+          <li>Reversible fixes, such as revoking a share link, with Restore link</li>
+        </ul>
+      </div>
+      <div class="card tint">
+        <span class="tag white">Only suggests</span>
+        <ul class="l">
+          <li>The verdict, in Harbor's call</li>
+          <li>Recommended next steps</li>
+          <li>Grouping alerts into an incident, under Harbor suggests</li>
+          <li>Irreversible actions, which wait for a named confirmation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" id="priority">
+      <div class="row"><span class="h2">Prioritization logic</span><button class="tog" type="button">Where this comes from</button></div>
+      <p class="p">Alerts are listed by severity, with alerts on high-value assets first. Each alert carries a Priority and Reasoning section that says what moved it.</p>
+      <div class="g4">
+        <div class="sub"><span class="small muted">Weighs</span><span class="h3">Sensitivity of the data</span></div>
+        <div class="sub"><span class="small muted">Weighs</span><span class="h3">Exposure: internal, external, public</span></div>
+        <div class="sub"><span class="small muted">Weighs</span><span class="h3">Distance from the user's and device's baseline</span></div>
+        <div class="sub"><span class="small muted">Weighs</span><span class="h3">Whether the asset is marked critical</span></div>
+      </div>
+      <div class="sub" style="background:#fff4e5"><span class="small" style="color:#8a4b08;font-weight:600">Listed first</span><span class="h3">Alerts on high-value assets sit under High-value assets · Critical, above Other alerts</span></div>
+      
+    </div>
+
+    <div class="g2" id="reasoning">
+      <div class="card">
+        <span class="h2">How its reasoning is shown</span>
+        <ul class="l">
+          <li>A short Summary in plain words</li>
+          <li>Data lineage shows each hop with an icon, and a risky step says so in words, such as "Unusual destination for this user"</li>
+          <li>Harbor's call says what it did and why, and the details page adds Priority and Reasoning</li>
+          <li>While a query runs, Harbor says so and the list shows row skeletons</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="h2">Confirming, restoring and marking as expected</span>
+        <p class="p">Harbor's call carries three buttons.</p>
+        <div class="wrap">
+          <span class="chip" style="background:#0071e3;color:#fff;border-color:#0071e3;font-weight:600">Confirm</span><span class="chip" style="font-weight:600">Restore link</span><span class="chip" style="font-weight:600">Mark as expected</span>
+        </div>
+        <ul class="l small">
+          <li><strong>Confirm</strong> keeps what Harbor did and sets the verdict to True positive.</li>
+          <li><strong>Restore link</strong> brings the link back, then asks whether to edit the response or change the verdict.</li>
+          <li><strong>Mark as expected</strong> sets the verdict to Expected activity and opens Teach Harbor.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card tint" id="rejection">
+      <span class="h2">What happens to a correction</span>
+      <div class="wrap">
+        <span class="step" style="background:#fff"><span class="num">1</span>Logged on the alert with your name and time</span><span class="step" style="background:#fff"><span class="num">2</span>Shows in the Audit trail</span><span class="step" style="background:#fff"><span class="num">3</span>Teach Harbor asks why, with reasons to pick or your own</span><span class="step" style="background:#fff"><span class="num">4</span>False positive and Expected activity stay separate verdicts</span>
+      </div>
+      <p class="p muted">None of the products studied showed what happened to a rejection afterwards. In the prototype the reason is logged. How Harbor learns from it is not built.</p>
+    </div>
+
+    <div class="card" id="reversible">
+      <span class="h2">What is reversible</span>
+      <div class="g2">
+        <div class="sub" style="background:#dff2e3"><span class="h3" style="color:#14532d">Reversible</span><p class="small" style="color:#14532d">Harbor does it at once and the alert says what it did. Restore link undoes it.</p></div>
+        <div class="sub" style="background:#fbe3e0"><span class="h3" style="color:#7f1d1d">Not reversible</span><p class="small" style="color:#7f1d1d">A flag icon and the words "This action is irreversible", with a button that names the object. Only these actions get one.</p></div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <a class="btn ghost" href="05-IA.html">Previous</a>
+      <a class="btn" href="08-Wireframes.html">Next: Wireframes</a>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+</body></html>
