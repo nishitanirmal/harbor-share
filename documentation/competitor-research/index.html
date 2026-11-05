@@ -1,0 +1,629 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Competitor Research Report</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f4f4f2; --surface:#ffffff; --surface-2:#ececeb; --line:#d8d8d4; --line-soft:#e7e7e4;
+  --fg:#1b1c1a; --fg-2:#55574f; --fg-3:#80827a;
+  --accent:#2f5d50; --accent-soft:#dfeae5; --mark:#b4451f; --mark-soft:#f7e3d9;
+  --ai:#4b4a8f; --ai-soft:#e5e4f2;
+  --ok:#2f7d5a; --ok-ink:#ffffff; --bad:#c04a25; --bad-ink:#ffffff; --unk:#cfcfca; --unk-ink:#4a4c45;
+  --radius:10px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141513; --surface:#1d1f1c; --surface-2:#262824; --line:#35372f; --line-soft:#2b2d28;
+  --fg:#edeee9; --fg-2:#b2b5aa; --fg-3:#83867b;
+  --accent:#8fc9b4; --accent-soft:#1f2f29; --mark:#f0915f; --mark-soft:#3a251a;
+  --ai:#a8a6ea; --ai-soft:#25243b;
+  --ok:#3f9a72; --ok-ink:#0d1a14; --bad:#d9693f; --bad-ink:#1c0e07; --unk:#3a3c36; --unk-ink:#b2b5aa;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#141513; --surface:#1d1f1c; --surface-2:#262824; --line:#35372f; --line-soft:#2b2d28;
+  --fg:#edeee9; --fg-2:#b2b5aa; --fg-3:#83867b;
+  --accent:#8fc9b4; --accent-soft:#1f2f29; --mark:#f0915f; --mark-soft:#3a251a;
+  --ai:#a8a6ea; --ai-soft:#25243b;
+  --ok:#3f9a72; --ok-ink:#0d1a14; --bad:#d9693f; --bad-ink:#1c0e07; --unk:#3a3c36; --unk-ink:#b2b5aa;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.86em;background:var(--surface-2);padding:.1em .38em;border-radius:4px;border:1px solid var(--line-soft)}
+em{font-style:normal;font-weight:600}
+a{color:var(--accent)}
+h1,h2,h3,h4{text-wrap:balance;line-height:1.2;margin:0}
+hr{border:0;border-top:1px solid var(--line);margin:0}
+
+header.top{padding-block:56px 36px;border-bottom:1px solid var(--line)}
+.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);font-weight:600}
+h1{font-size:clamp(32px,6vw,52px);font-weight:600;letter-spacing:-.02em;margin-top:14px}
+.lede{font-size:clamp(17px,2.4vw,20px);color:var(--fg-2);max-width:60ch;margin-top:18px}
+.byline{margin-top:24px;font-size:13px;color:var(--fg-3);font-family:"IBM Plex Mono",monospace}
+
+.note{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);padding:18px 20px;margin-top:28px;font-size:15px;color:var(--fg-2)}
+.note strong{color:var(--fg)}
+
+nav.toc{padding-block:28px;border-bottom:1px solid var(--line)}
+nav.toc h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);margin-bottom:16px}
+.toclist{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2px 24px;list-style:none;padding:0;margin:0}
+.toclist li{border-top:1px solid var(--line-soft);padding:9px 0}
+.toclist a{text-decoration:none;color:var(--fg);font-weight:500;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.toclist a:hover{color:var(--accent)}
+.toclist span{font-size:11.5px;color:var(--fg-3);font-weight:400;text-align:right;flex:0 0 auto}
+
+section.tool{padding-block:56px;border-bottom:1px solid var(--line);scroll-margin-top:12px}
+.toolhead{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:baseline}
+.toolhead h2{font-size:clamp(24px,4vw,34px);font-weight:600;letter-spacing:-.015em}
+.origin{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--fg-3);margin-top:8px;font-weight:500}
+.pill{font-size:11px;letter-spacing:.07em;text-transform:uppercase;font-weight:600;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--fg-2);background:var(--surface)}
+.pill.direct{background:var(--accent-soft);border-color:transparent;color:var(--accent)}
+.thesis{font-size:clamp(17px,2.2vw,19px);color:var(--fg);max-width:62ch;margin-top:18px;font-weight:500}
+
+h3.sub{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);margin:40px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line-soft)}
+ul.plain{margin:0;padding-left:1.1em}
+ul.plain li{margin-bottom:9px;max-width:72ch}
+ul.plain li::marker{color:var(--fg-3)}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:720px){.cols{grid-template-columns:1fr;gap:8px}}
+.scalebox{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.scaleclaim{font-weight:600;margin-bottom:10px}
+.scaletag{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mark);border:1px dashed var(--mark);border-radius:999px;padding:2px 10px}
+.scalebox ul{margin:0;padding-left:1.05em;font-size:14.5px;color:var(--fg-2)}
+.scalebox li{margin-bottom:7px}
+.inference{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:14px;color:var(--fg-2)}
+.inference b{color:var(--mark);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* flow */
+.flow{display:flex;flex-direction:column;gap:0;max-width:760px}
+.step{display:flex;gap:14px;align-items:flex-start}
+.stepnum{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono",monospace;margin-top:2px}
+.stepbody{flex:1;min-width:0;padding-bottom:4px}
+.steplabel{font-weight:600}
+.stepdetail{font-size:14.5px;color:var(--fg-2);margin-top:3px}
+.branches{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.branch{font-size:13px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:5px 10px;color:var(--fg-2)}
+.rail{flex:0 0 auto;width:26px;display:flex;justify-content:center}
+.rail i{display:block;width:1px;background:var(--line);height:100%;min-height:18px}
+.steprow{display:flex;gap:14px}
+
+/* annotated screens */
+figure.shot{margin:0 0 42px}
+.shotframe{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface-2);line-height:0}
+.shotframe img{width:100%;height:auto;display:block}
+.mk{position:absolute;transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;background:var(--mark);color:#fff;font-size:12px;font-weight:600;font-family:"IBM Plex Mono",monospace;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px rgba(255,255,255,.85),0 2px 6px rgba(0,0,0,.35);cursor:default;line-height:1}
+figcaption{font-size:13px;color:var(--fg-3);margin-top:10px;font-family:"IBM Plex Mono",monospace}
+ol.notes{list-style:none;counter-reset:n;padding:0;margin:16px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px 24px}
+ol.notes li{counter-increment:n;position:relative;padding-left:32px;font-size:14.5px;color:var(--fg-2);min-width:0}
+ol.notes li::before{content:counter(n);position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:50%;background:var(--mark-soft);color:var(--mark);font-size:11.5px;font-weight:600;font-family:"IBM Plex Mono",monospace;display:flex;align-items:center;justify-content:center}
+
+.gaps{background:var(--surface-2);border:1px dashed var(--line);border-radius:var(--radius);padding:16px 20px;margin-top:28px}
+.gaps h4{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mark);margin-bottom:10px}
+.gaps ul{margin:0;padding-left:1.05em;font-size:14px;color:var(--fg-2)}
+.gaps li{margin-bottom:6px}
+.srcs{margin-top:22px;font-size:13.5px;color:var(--fg-3)}
+.srcs a{display:inline-block;margin-right:14px}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);margin-top:18px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:700px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);font-weight:600;white-space:nowrap;background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td code{white-space:nowrap}
+
+section.essay{padding-block:56px;border-bottom:1px solid var(--line)}
+section.essay h2{font-size:clamp(22px,3.6vw,30px);font-weight:600;letter-spacing:-.015em}
+section.essay p{max-width:68ch;margin:16px 0 0;color:var(--fg-2)}
+section.essay p strong{color:var(--fg)}
+.take{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-top:18px}
+.take h4{font-size:15px;margin-bottom:8px}
+.take p{margin:0;font-size:14.5px}
+.mentions{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:22px}
+.mention{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.mention h4{font-size:15px;margin:0 0 2px}
+.mention .morigin{font-size:12px;color:var(--fg-3);margin-bottom:10px}
+.mention ul{margin:0;padding-left:1.05em;font-size:14px;color:var(--fg-2)}
+.mention li{margin-bottom:6px}
+.mention.wide{grid-column:1/-1}
+.mention .mshots{display:flex;flex-direction:column;gap:22px;margin-top:16px}
+.mention .mshots figure{margin:0}
+.mention .mshots .notes{font-size:14px}
+.takes{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:22px}
+footer{padding-block:48px 72px;color:var(--fg-3);font-size:13.5px}
+footer p{max-width:70ch}
+
+/* Top filter tabs */
+.tabbar{position:fixed;top:0;left:0;right:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--line);
+  padding-top:env(safe-area-inset-top,0px);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:31}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{appearance:none;background:none;border:0;border-bottom:2px solid transparent;color:var(--fg-2);font:inherit;font-size:14px;font-weight:500;padding:14px 14px 11px;white-space:nowrap;cursor:pointer;margin-bottom:-1px}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:10px 0 10px;align-items:center}
+.chips .chiplabel{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);font-weight:600;margin-right:6px;white-space:nowrap}
+.chips::-webkit-scrollbar{display:none}
+.chips button{appearance:none;font:inherit;font-size:12.5px;font-weight:500;color:var(--fg-2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 11px;white-space:nowrap;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chips button::before{content:"";width:7px;height:7px;border-radius:50%;border:1.5px solid currentColor;box-sizing:border-box}
+.chips button[aria-pressed="true"]{color:var(--accent);background:var(--accent-soft);border-color:transparent;font-weight:600}
+.chips button[aria-pressed="true"]::before{background:currentColor}
+.chips button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.chips .chipall{margin-right:4px}
+body[data-filter="some"] section.essay, body[data-filter="some"] .tabhead{display:none}
+.tabhead{display:block;padding-block:56px 8px;border-top:1px solid var(--line);margin-top:0}
+.tabhead h1{font-size:clamp(26px,4.4vw,38px)}
+.tabhead .kicker{margin-bottom:10px}
+.tabhead p{color:var(--fg-2);max-width:62ch;margin-top:8px}
+table.matrix th:first-child{min-width:170px}
+table.matrix{min-width:860px}
+table.matrix th.crit{font-weight:500;font-size:12px;line-height:1.3;vertical-align:bottom;white-space:normal;text-transform:none;letter-spacing:0;color:var(--fg-2);min-width:78px;max-width:110px;text-align:center}
+table.matrix th:last-child{white-space:normal;text-transform:none;letter-spacing:0;font-size:12px;color:var(--fg-2);vertical-align:bottom}
+table.matrix{border-collapse:separate;border-spacing:0}
+table.matrix td.c{text-align:center;padding:4px}
+table.matrix td.c .tile{display:flex;align-items:center;justify-content:center;width:100%;min-width:44px;height:38px;border-radius:6px;font-family:"IBM Plex Mono",monospace;font-size:14px;font-weight:600}
+table.matrix td.c.y .tile{background:var(--ok);color:var(--ok-ink)}
+table.matrix td.c.n .tile{background:var(--bad);color:var(--bad-ink)}
+table.matrix td.c.q .tile{background:var(--unk);color:var(--unk-ink)}
+.legend{display:flex;flex-wrap:wrap;gap:14px 22px;margin:14px 0 0;font-size:13px;color:var(--fg-2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:22px;height:16px;border-radius:4px}
+.legend i.y{background:var(--ok)}.legend i.n{background:var(--bad)}.legend i.q{background:var(--unk)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+table.matrix td.score{font-family:"IBM Plex Mono",monospace;white-space:nowrap}
+table.matrix td.score b{color:var(--fg)}
+table.matrix td.score span{color:var(--fg-3);font-size:12px;display:block;white-space:normal;line-height:1.3}
+.matrixnote{font-size:14px;color:var(--fg-2);max-width:70ch;margin-top:14px}
+.tabs button:hover{color:var(--fg)}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:4px}
+body{padding-top:calc(52px + env(safe-area-inset-top,0px))}
+section.tool,section.essay,.tabhead{scroll-margin-top:calc(64px + env(safe-area-inset-top,0px))}
+.part[hidden]{display:none!important}
+body[data-filter="some"] nav.toc,
+body[data-filter="some"] header.top .note,
+body[data-filter="some"] header.top .lede,
+body[data-filter="some"] .thesis{display:none}
+body[data-filter="some"] section.tool{padding-block:36px}
+body[data-onecol] .cols{grid-template-columns:1fr}
+.filternote{display:none;font-size:13px;color:var(--fg-3);margin-top:10px}
+body[data-filter="some"] .filternote{display:block}
+.commnote{font-size:14px;color:var(--fg-2);max-width:70ch;margin:0 0 14px}
+ul.community{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+ul.community li{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;padding:12px 14px;border:1px solid var(--line-soft);border-radius:8px;background:var(--surface)}
+ul.community .ctag{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:2px 7px;border-radius:999px;white-space:nowrap}
+ul.community li.pain .ctag{color:var(--mark);background:var(--mark-soft)}
+ul.community li.good .ctag{color:var(--accent);background:var(--accent-soft)}
+ul.community .ctext{font-size:15px;min-width:0}
+ul.community .cwho{grid-column:2;font-size:12.5px;color:var(--fg-3);font-family:"IBM Plex Mono",monospace}
+ul.community .cwho a{color:var(--fg-3)}
+@media (min-width:1180px){
+  .tabbar{left:252px}
+  .railnav{padding-top:calc(24px + 52px + env(safe-area-inset-top,0px))}
+}
+
+.railnav{display:none}
+@media (min-width:1180px){
+  body{padding-left:252px}
+  .railnav{display:block;position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;background:var(--surface);border-right:1px solid var(--line);
+    padding-top:calc(28px + env(safe-area-inset-top,0px));padding-bottom:calc(28px + env(safe-area-inset-bottom,0px));
+    padding-left:calc(20px + env(safe-area-inset-left,0px));padding-right:16px;z-index:20}
+  .railnav .railtitle{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);font-weight:600;margin-bottom:12px}
+  .railnav .railtitle+.railtitle{margin-top:0}
+  .railnav .railgroup{margin-top:22px}
+  .railnav ul.sublist{margin:0 0 4px 12px;border-left:1px solid var(--line-soft)}
+  .railnav ul.sublist a{font-size:12.5px;padding:5px 10px}
+  body[data-filter="some"] .railnav .railgroup{display:none}
+  .railnav ul{list-style:none;margin:0;padding:0}
+  .railnav li{margin:0}
+  .railnav a{display:block;text-decoration:none;color:var(--fg-2);font-size:13.5px;line-height:1.35;padding:7px 10px 7px 11px;border-left:2px solid transparent;border-radius:0 6px 6px 0}
+  .railnav a:hover{color:var(--fg);background:var(--surface-2)}
+  .railnav a.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-soft);font-weight:600}
+  .railnav a .rorigin{display:block;font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--fg-3);margin-top:2px;font-weight:400}
+  .railnav a.active .rorigin{color:var(--accent)}
+  nav.toc{display:none}
+}
+
+/* Reader annotations: Nishita's own notes, shown to every reader */
+mark.nn{background:#fff1b8;color:inherit;padding:0 .15em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.nn-note{display:block;margin:10px 0 0;padding:10px 14px;border-left:3px solid #d9a400;background:#fff8dc;color:var(--fg);font-size:14px;line-height:1.5;border-radius:0 8px 8px 0;max-width:72ch}
+.nn-note b{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8a6a00;display:block;margin-bottom:3px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark.nn{background:#5a4a12}:root:not([data-theme="light"]) .nn-note{background:#2e2810;border-left-color:#d9a400}}
+:root[data-theme="dark"] mark.nn{background:#5a4a12}:root[data-theme="dark"] .nn-note{background:#2e2810}
+</style>
+
+<div class="tabbar" id="tabbar">
+  <div class="chips" id="chips" aria-label="Show only these parts of every product"><span class="chiplabel">Filter</span></div>
+</div>
+
+<aside class="railnav" id="railnav">
+  <div class="railtools-group"><div class="railtitle">Research</div>
+  <ul id="railtools"></ul></div>
+  <div class="railgroup"><ul id="railextras"></ul></div>
+</aside>
+
+<div class="wrap">
+<header class="top">
+  <div class="kicker">Competitor Research Report &middot; Harbor alerts</div>
+  <h1>How six products ask an analyst to work an alert</h1>
+  <p class="lede">A screen-by-screen teardown of the alerts experience in the six products with the most verifiable material, Matters.AI first, then five competitors. Seven more products with thinner public material sit at the end as special mentions. For each of the six: who each one is for, the volume it was drawn for, the design approach behind it, the workflow as a flowchart, and the specific thing it does that none of the others do.</p>
+  <p class="filternote" id="filternote"></p>
+  <p class="byline">4 November 2026 &middot; 6 products in full, 7 special mentions &middot; 15 annotated screens &middot; five US, one India</p>
+  <div class="note"><strong>How claims are handled here.</strong> Every statement is either taken from vendor documentation, with the source linked at the end of each section, or read off a screenshot that is reproduced on this page. Where something could not be verified it sits in a dashed <em>Not established</em> box rather than being filled in. Scale is the weakest ground: no vendor publishes endpoint or seat counts for these screens, so scale is inferred only from counts, pagination and bulk controls visible on the screen, and every inference is labelled as one.</div>
+</header>
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ul class="toclist" id="toc"></ul>
+</nav>
+
+<section class="essay" id="scale">
+  <h2>Reading these screens as scale decisions</h2>
+  <p>Nobody publishes how many endpoints their alerts page was drawn for. What a screen does admit is how much work it expects: the total in the heading, the page count at the foot, whether disposition happens in the row or behind a detail view, and whether the product has given up on the queue ever reaching zero.</p>
+  <p>Those tells sort the six products into three bands. The band changes almost every other decision on the page, which is why it is worth settling first.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Band</th><th>What the screen shows</th><th>Products</th><th>What it forces</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tens</strong></td><td>Netskope reads <code>20 TOTAL OPEN ALERTS</code>, with three summary widgets above a twenty-row table</td><td>Netskope DSPM</td><td>Summary charts can sit above the list. One filter button is enough. Disposition can live in the row.</td></tr>
+      <tr><td><strong>Hundreds</strong></td><td>Purview's agent view reads <code>All (406)</code></td><td>Microsoft Purview, Varonis, Nightfall</td><td>Buckets and top-five cuts replace sorting. Assignment and backlog become metrics. AI is introduced to read the queue for you.</td></tr>
+      <tr><td><strong>Ten thousand plus</strong></td><td>Matters.AI reads <code>Showing 1 - 10 of 11487</code> across 1,149 pages; Defender XDR groups alerts into incidents and offers bulk actions on the queue</td><td>Matters.AI, Microsoft Defender XDR</td><td>Triage has to happen in the list. Rows must be self-describing. Grouping, bulk actions and saved filtered views stop being niceties.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>The honest caveat: these numbers come from demo tenants and marketing screenshots, so they show the volume each vendor chose to depict. That is still evidence, because a vendor picks the number that makes their layout look right.</p>
+</section>
+
+<div id="tools"></div>
+
+<section class="essay" id="mentions">
+  <h2>Special mentions: seven products left out of the comparison</h2>
+  <p>These seven had the most cells that could not be established from public material, so they are not carried into the comparison table or the matrix in Conclusion. Each still does at least one thing on its alerts page that none of the six above does, and only those points are recorded here. Full write-ups, screens where they exist, and sources for each were kept in the earlier version of this report.</p>
+  <div class="mentions" id="mentionshost"></div>
+</section>
+
+<div class="tabhead conclusion" id="conclusion"><div class="kicker">Competitor Research Report &middot; Conclusion</div><h1>What this adds up to</h1><p>The same five decisions answered six ways, what it leaves Harbor, and at the end a matrix scored only on what was observed.</p></div>
+<section class="essay" id="react">
+  <h2>The REACT framework: five things an alert needs</h2>
+  <p>From a peer-reviewed study of SOC practitioners presented at USENIX Security 2022 by Bushra Alahmadi, Louise Axon and Ivan Martinovic at Oxford. The paper closes with five properties an alarm needs. Read against the products above, it doubles as a scoring sheet.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Property</th><th>What the paper asks for</th><th>Who in this set does it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Reliable</strong></td><td>Features and models that hold up in practice, with benign triggers measured separately from false positives, and analyst feedback fed back into the model</td><td>Purview&rsquo;s <em>Teach agent</em> and Nightfall&rsquo;s apply-to-all are the only two that feed a correction back. Nobody measures benign triggers separately.</td></tr>
+      <tr><td><strong>Explainable</strong></td><td>The system communicates its reasoning in terms an analyst understands, so trust can be calibrated</td><td>Purview writes a reason per row. Cyera grades its own match. Varonis explains and refuses to conclude. The one-sentence description the paper calls unusable is exactly what Falcon ships.</td></tr>
+      <tr><td><strong>Analytical</strong></td><td>Support the analyst&rsquo;s reasoning rather than replace it with full automation</td><td>Varonis is the clearest case: branches and commands, no verdict. Purview&rsquo;s agent sits at the other end, deciding and inviting correction.</td></tr>
+      <tr><td><strong>Contextual</strong></td><td>Carry context about the network, the assets, the customer and outside sources, down to working hours</td><td>Splunk mixes asset priority into urgency. Varonis&rsquo;s <em>Alert Insights</em> judge the account. Defender marks a <em>Critical asset</em>. Netskope carries none of this.</td></tr>
+      <tr><td><strong>Transferable</strong></td><td>Adapt to each environment instead of one size fitting all</td><td>Nobody in this set visibly adapts a model per tenant. Tuning is manual everywhere, through policy edits, suppression rules or taught properties.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+<section class="essay" id="compare">
+  <h2>The same five decisions, answered six ways</h2>
+  <p>Put side by side, the products differ less in features than in five decisions: what the unit of work is, how the AI speaks, whether status and disposition are one field or two, where disposition happens, and whether disagreeing with the system changes anything.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Product</th><th>Unit of work</th><th>What the AI does</th><th>Status and disposition</th><th>Where you dispose</th><th>Does disagreeing tune it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Matters.AI</strong></td><td>Alert, with a verdict already reached</td><td>States the verdict, runs remediation, then lays out four evidence sections</td><td>Separate. Status and Analyst Verdict are two columns</td><td>In the row, from the Analyst Verdict dropdown, or on the alert</td><td>Not shown in the video</td></tr>
+      <tr><td><strong>Purview</strong></td><td>Alert, holding events</td><td>Categorizes into three buckets and writes a reason per row</td><td>Separate. Category is agent-set, status is yours</td><td>Per event, inside the alert</td><td>Yes. <em>Teach agent</em> saves properties to weigh less</td></tr>
+      <tr><td><strong>Defender XDR</strong></td><td>Incident grouping alerts</td><td>Summarizes, and offers a classification from similar incidents</td><td>Separate. Status, then classification with a threat or activity type</td><td>On the incident, with a required resolution note</td><td>Not described on the pages read</td></tr>
+      <tr><td><strong>Varonis</strong></td><td>Alert as a page</td><td>Explains, branches, and hands over commands. Refuses to decide</td><td>Separate. Three statuses, seven close reasons</td><td>On the alert, at close</td><td>No. Feedback is a rating on the answer</td></tr>
+      <tr><td><strong>Netskope DSPM</strong></td><td>Policy violation row</td><td>None shown</td><td>One field: Open, Dismissed, Resolved</td><td>In the row, from a dropdown</td><td>Muting, as a tab beside All</td></tr>
+      <tr><td><strong>Nightfall</strong></td><td>Violation, holding findings</td><td>None shown</td><td>One field. Status is the action taken to the data</td><td>Per finding, annotated, with bulk</td><td>Yes. Apply to all identical findings, past and future</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="essay" id="harbor">
+  <h2>What this leaves Harbor to argue with</h2>
+  <p>Six things in this set, counting the special mentions, are genuinely good and underused. Each is a specific borrowing, not a theme, and each one has a visible cost that an assignment should be willing to name.</p>
+  <div class="takes">
+    <div class="take"><h4>Grade the detection, not just the content</h4><p>Cyera's <em>MATCH SUMMARY</em> states whether the rule was right to fire, separately from what the document is. Nobody else does it. Cost: a wrong self-grade is more damaging than a wrong summary, because it sounds like a verdict.</p></div>
+    <div class="take"><h4>Show the untriaged bucket</h4><p>Purview's <code>Not triaged (324)</code> tells an analyst where the AI stopped. Cost: it makes the product's limits the first thing a buyer sees.</p></div>
+    <div class="take"><h4>Split status from disposition</h4><p>Splunk keeps where the work is apart from what it turned out to be, and separates a wrong rule from wrong data. Cost: two fields to fill at close instead of one.</p></div>
+    <div class="take"><h4>Make correction produce a rule</h4><p>Purview's <em>Teach agent</em> and Nightfall's <em>Apply to all identical findings</em> turn one disagreement into lasting tuning. Cost: a careless correction silences a class of real alerts, so it needs an undo. Nightfall provides one.</p></div>
+    <div class="take"><h4>Name confidence, do not score it</h4><p>Nightfall uses <em>Possible</em>, <em>Likely</em>, <em>Very Likely</em>, each with a glyph. A percentage invites false precision that the model cannot support.</p></div>
+    <div class="take"><h4>Make rows self-describing</h4><p>Falcon repeats the field label inside every cell, so a row can be judged at page 300 without the header. Cost: visual density, and it only pays above a few hundred rows.</p></div>
+  </div>
+  <p><strong>The gap nobody fills.</strong> Varonis explains and refuses to decide. Purview decides and lets you correct the decision. Cyera decides about its own rule. None of them shows the analyst what the AI checked and failed to confirm, which is the thing an analyst has to know before they trust a verdict at all. That is an opening, and it is the one Harbor's brief points at.</p>
+</section>
+
+<section class="essay" id="matrix">
+  <h2>Scored on what was observed</h2>
+  <p>This is not a usability score. No usability test was run and no reviewer rating is comparable across sites, so inventing a number would be a guess dressed as a result. Instead, each product is checked against eight things this teardown actually looked for on the alerts page, and the score is simply how many it was seen to do. A dash means it was observed not to, and a question mark means the pages and screens read here did not settle it. Green is observed, red is observed absent, gray is not established. Only the six products covered in full are scored; the seven special mentions had too many unestablished cells to compare fairly.</p>
+  <div class="tablewrap" id="matrixhost"></div>
+  <div class="legend" aria-hidden="true"><span><i class="y"></i>Observed</span><span><i class="n"></i>Observed absent</span><span><i class="q"></i>Not established</span></div>
+  <p class="matrixnote">Read the criteria as the eight things Harbor should be able to answer yes to. Only one product here manages seven, and that one does it with a policy engine behind it.</p>
+</section>
+
+<footer>
+  <p>Built from documentation and from screens captured on 3 November 2026. Screenshots are reproduced from vendor documentation and product pages for design research. Product names and interfaces belong to their vendors.</p>
+</footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  var toc=document.getElementById('toc'), host=document.getElementById('tools');
+  var SHOWN=(typeof FULL_IDS!=='undefined')?TOOLS.filter(function(t){return FULL_IDS.indexOf(t.id)>=0;}):TOOLS;
+  var extras=[['scale','Reading these screens as scale decisions','Scale bands'],['mentions','Special mentions','Seven products'],['react','The REACT framework','Framework'],['compare','The same five decisions','Comparison'],['harbor','What this leaves Harbor','Takeaways']];
+  function el(t,c,h){var e=document.createElement(t); if(c)e.className=c; if(h!==undefined)e.innerHTML=h; return e;}
+
+  SHOWN.forEach(function(t){
+    var li=el('li'); li.innerHTML='<a href="#'+t.id+'">'+t.name+'<span>'+t.tag+'</span></a>'; toc.appendChild(li);
+
+    var s=el('section','tool'); s.id=t.id;
+    var hd=el('div','toolhead');
+    hd.appendChild(el('h2',null,t.name));
+    hd.appendChild(el('span','pill '+(t.kind==='Direct'?'direct':''),t.kind==='Direct'?'Direct competitor':'Adjacent pattern'));
+    s.appendChild(hd);
+    if(t.origin) s.appendChild(el('div','origin','Origin: '+t.origin));
+    s.appendChild(el('p','thesis',t.thesis));
+
+    var cols=el('div','cols');
+    var c1=el('div','part'); c1.setAttribute('data-part','users');
+    c1.appendChild(el('h3','sub','Who it is for'));
+    var ul=el('ul','plain'); t.users.forEach(function(u){ul.appendChild(el('li',null,u));}); c1.appendChild(ul);
+    cols.appendChild(c1);
+
+    var c2=el('div','part'); c2.setAttribute('data-part','scale');
+    c2.appendChild(el('h3','sub','The scale it was drawn for'));
+    var box=el('div','scalebox');
+    box.appendChild(el('div','scaleclaim',t.scale.claim));
+    box.appendChild(el('span','scaletag','Inferred'));
+    c2.appendChild(box); cols.appendChild(c2);
+    s.appendChild(cols);
+
+    var pa=el('div','part'); pa.setAttribute('data-part','approach');
+    pa.appendChild(el('h3','sub','Design approach'));
+    var au=el('ul','plain'); t.approach.forEach(function(a){au.appendChild(el('li',null,a));}); pa.appendChild(au); s.appendChild(pa);
+
+    var pw=el('div','part'); pw.setAttribute('data-part','workflow');
+    pw.appendChild(el('h3','sub','The alerts workflow'));
+    var flow=el('div','flow');
+    t.flow.forEach(function(st,i){
+      var row=el('div','step');
+      row.appendChild(el('div','stepnum',String(i+1)));
+      var b=el('div','stepbody');
+      b.appendChild(el('div','steplabel',st.s));
+      if(st.d) b.appendChild(el('div','stepdetail',st.d));
+      if(st.b){var br=el('div','branches'); st.b.forEach(function(x){br.appendChild(el('span','branch',x));}); b.appendChild(br);}
+      row.appendChild(b); flow.appendChild(row);
+      if(i<t.flow.length-1){var r=el('div','steprow'); var rl=el('div','rail'); rl.appendChild(el('i')); r.appendChild(rl); r.appendChild(el('div',null,'&nbsp;')); flow.appendChild(r);}
+    });
+    pw.appendChild(flow); s.appendChild(pw);
+
+    if(t.screens && t.screens.length){
+      var ps=el('div','part'); ps.setAttribute('data-part','screens');
+      ps.appendChild(el('h3','sub','The screens, annotated'));
+      t.screens.forEach(function(sc){
+        var fig=el('figure','shot');
+        var fr=el('div','shotframe');
+        var img=document.createElement('img'); img.src=sc.src; img.alt=sc.cap; img.loading='lazy'; fr.appendChild(img);
+        sc.notes.forEach(function(n,i){
+          var m=el('div','mk',String(i+1)); m.style.left=n.x+'%'; m.style.top=n.y+'%'; fr.appendChild(m);
+        });
+        fig.appendChild(fr);
+        fig.appendChild(el('figcaption',null,sc.cap));
+        var ol=el('ol','notes'); sc.notes.forEach(function(n){ol.appendChild(el('li',null,n.t));}); fig.appendChild(ol);
+        ps.appendChild(fig);
+      });
+      s.appendChild(ps);
+    }
+
+    var pd=el('div','part'); pd.setAttribute('data-part','different');
+    pd.appendChild(el('h3','sub','What is different about it'));
+    var du=el('ul','plain'); t.different.forEach(function(d){du.appendChild(el('li',null,d));}); pd.appendChild(du); s.appendChild(pd);
+
+    if(t.community && t.community.length){
+      var pc=el('div','part'); pc.setAttribute('data-part','community');
+      pc.appendChild(el('h3','sub','What the community says'));
+      if(t.communityNote) pc.appendChild(el('p','commnote',t.communityNote));
+      var cu=el('ul','community');
+      t.community.forEach(function(c){
+        var li=el('li',c.kind==='good'?'good':'pain');
+        var tag=c.kind==='good'?'Doing right':'Pain point';
+        li.innerHTML='<span class="ctag">'+tag+'</span><span class="ctext">'+c.t+'</span>'+(c.who?'<span class="cwho">'+c.who+(c.when?', '+c.when:'')+(c.u?' &#183; <a href="'+c.u+'" target="_blank" rel="noopener">'+(c.src||'source')+'</a>':'')+'</span>':'');
+        cu.appendChild(li);
+      });
+      pc.appendChild(cu); s.appendChild(pc);
+    }
+
+    if(t.gaps && t.gaps.length){
+      var pg=el('div','part'); pg.setAttribute('data-part','gaps');
+      var g=el('div','gaps'); g.appendChild(el('h4',null,'Not established'));
+      var gu=el('ul'); t.gaps.forEach(function(x){gu.appendChild(el('li',null,x));}); g.appendChild(gu); pg.appendChild(g); s.appendChild(pg);
+    }
+    var sr=el('div','srcs','Sources: ');
+    t.sources.forEach(function(x){var a=document.createElement('a'); a.href=x.u; a.textContent=x.l; a.target='_blank'; a.rel='noopener'; sr.appendChild(a);});
+    s.appendChild(sr);
+    host.appendChild(s);
+  });
+
+  extras.forEach(function(e){
+    var li=el('li'); li.innerHTML='<a href="#'+e[0]+'">'+e[1]+'<span>'+e[2]+'</span></a>'; toc.appendChild(li);
+  });
+
+  // Fixed left rail: every product, then the cross-cutting sections.
+  var rt=document.getElementById('railtools'), rx=document.getElementById('railextras'), links=[];
+  function railItem(host,id,label,sub){
+    var li=el('li');
+    var a=document.createElement('a'); a.href='#'+id;
+    a.innerHTML=label+(sub?'<span class="rorigin">'+sub+'</span>':'');
+    li.appendChild(a); host.appendChild(li); links.push(a); return a;
+  }
+  railItem(rt,'scale','Scale bands','');
+  SHOWN.forEach(function(t){
+    var c=t.origin?String(t.origin).split('&#183;')[0].replace(/&#183;/g,'').trim():'';
+    railItem(rt,t.id,t.name,c);
+  });
+  railItem(rt,'mentions','Special mentions','');
+  railItem(rx,'conclusion','Conclusion','');
+  var sub=el('ul','sublist'); rx.appendChild(sub);
+  [['react','The REACT framework'],['compare','The same five decisions'],['harbor','What this leaves Harbor'],['matrix','Scored on what was observed']].forEach(function(e){ railItem(sub,e[0],e[1],''); });
+
+  var byId={}; links.forEach(function(a){byId[a.getAttribute('href').slice(1)]=a;});
+  function setActive(id){
+    // Conclusion stays lit while any of its sub-sections is current.
+    var concl=['react','compare','harbor','matrix'].indexOf(id)>=0;
+    links.forEach(function(a){var h=a.getAttribute('href').slice(1); a.classList.toggle('active', h===id || (h==='conclusion'&&concl));});
+  }
+  var targets=[].slice.call(document.querySelectorAll('section.tool, section.essay, .tabhead')).filter(function(el){return byId[el.id];});
+  var CHIPS=[['users','Who it is for'],['scale','Scale'],['approach','Design approach'],['workflow','Workflow'],['screens','Screens'],['different','What is different'],['community','Community'],['gaps','Not established']];
+    var chipsHost=document.getElementById('chips'), fnote=document.getElementById('filternote');
+  var chipBtns=[], selected={}; // selected chip keys; empty = all
+  function selectedKeys(){ return Object.keys(selected).filter(function(k){return selected[k];}); }
+  function applyChips(){
+    var keys=selectedKeys(), all=keys.length===0;
+    document.body.setAttribute('data-filter', all?'all':'some');
+    var parts=document.querySelectorAll('.part');
+    for(var i=0;i<parts.length;i++){ parts[i].hidden = !all && !selected[parts[i].getAttribute('data-part')]; }
+    chipBtns.forEach(function(b){ var k=b.getAttribute('data-key'); b.setAttribute('aria-pressed', k==='all' ? (all?'true':'false') : (selected[k]?'true':'false')); });
+    var labels=CHIPS.filter(function(c){return selected[c[0]];}).map(function(c){return c[1];});
+    fnote.textContent = all ? '' : 'Showing only '+labels.join(', ')+' for every product, product by product. Choose All sections to see everything again.';
+    if(keys.length===1 && (keys[0]==='users'||keys[0]==='scale')) document.body.setAttribute('data-onecol','1'); else document.body.removeAttribute('data-onecol');
+    onScroll();
+  }
+  function toggleChip(k){
+    if(k==='all'){ selected={}; } else { selected[k]=!selected[k]; if(!selected[k]) delete selected[k]; }
+    applyChips();
+  }
+  [['all','All sections']].concat(CHIPS).forEach(function(c){
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('data-key',c[0]); b.textContent=c[1]; if(c[0]==='all') b.className='chipall';
+    b.setAttribute('aria-pressed','false');
+    b.addEventListener('click',function(){toggleChip(c[0]);});
+    chipsHost.appendChild(b); chipBtns.push(b);
+  });
+
+  // Matrix
+  (function(){
+    var host=document.getElementById('matrixhost'); if(!host||typeof MATRIX==='undefined') return;
+    var tbl=el('table','matrix'), thead=el('thead'), tr=el('tr');
+    tr.appendChild(el('th',null,'Product'));
+    MATRIX_CRITERIA.forEach(function(c){ tr.appendChild(el('th','crit',c.l)); });
+    tr.appendChild(el('th',null,'Observed'));
+    thead.appendChild(tr); tbl.appendChild(thead);
+    var tb=el('tbody');
+    var rows=SHOWN.map(function(t){
+      var m=MATRIX[t.id]||{}, y=0,n=0,q=0;
+      MATRIX_CRITERIA.forEach(function(c){ var v=m[c.k]||'?'; if(v==='y')y++; else if(v==='n')n++; else q++; });
+      return {t:t,m:m,y:y,n:n,q:q};
+    });
+    rows.sort(function(a,b){ return b.y-a.y || a.q-b.q; });
+    rows.forEach(function(r){
+      var tr=el('tr'); tr.appendChild(el('td',null,'<strong><a href="#'+r.t.id+'">'+r.t.name+'</a></strong>'));
+      MATRIX_CRITERIA.forEach(function(c){ var v=r.m[c.k]||'?'; var lab=(v==='y'?'observed':v==='n'?'observed absent':'not established'); var td=el('td','c '+(v==='y'?'y':v==='n'?'n':'q'), '<span class="tile" aria-hidden="true">'+(v==='y'?'&#10003;':v==='n'?'&#8211;':'?')+'</span><span class="sr">'+lab+'</span>'); td.title=c.l+': '+lab; tr.appendChild(td); });
+      tr.appendChild(el('td','score','<b>'+r.y+'</b> of 8 <span>'+(r.q?r.q+' not established':'')+'</span>'));
+      tb.appendChild(tr);
+    });
+    tbl.appendChild(tb); host.appendChild(tbl);
+  })();
+
+  // Special mentions
+  (function(){
+    var mh=document.getElementById('mentionshost'); if(!mh||typeof MENTIONS==='undefined') return;
+    MENTIONS.forEach(function(m){
+      var d=el('div','mention'); d.appendChild(el('h4',null,m.name)); d.appendChild(el('div','morigin','Origin: '+m.origin));
+      var u=el('ul'); m.points.forEach(function(x){u.appendChild(el('li',null,x));}); d.appendChild(u);
+      // Show the captured screens for this product too, where we have them.
+      var t=(typeof TOOLS!=='undefined')?TOOLS.find(function(x){return x.id===m.id;}):null;
+      if(t && t.screens && t.screens.length){
+        d.className='mention wide';
+        var box=el('div','mshots');
+        t.screens.forEach(function(sc){
+          var fig=el('figure','shot'); var fr=el('div','shotframe');
+          var img=document.createElement('img'); img.src=sc.src; img.alt=sc.cap; img.loading='lazy'; fr.appendChild(img);
+          (sc.notes||[]).forEach(function(n,i){var mk=el('div','mk',String(i+1)); mk.style.left=n.x+'%'; mk.style.top=n.y+'%'; fr.appendChild(mk);});
+          fig.appendChild(fr); fig.appendChild(el('figcaption',null,sc.cap));
+          if(sc.notes && sc.notes.length){var ol=el('ol','notes'); sc.notes.forEach(function(n){ol.appendChild(el('li',null,n.t));}); fig.appendChild(ol);}
+          box.appendChild(fig);
+        });
+        d.appendChild(box);
+      }
+      mh.appendChild(d);
+    });
+  })();
+
+  function onScroll(){
+    // Only sections that are actually on the page count; a hidden one reports a zero box and would steal the highlight.
+    var line=(document.getElementById('tabbar').offsetHeight||52)+40, cur=null, first=null;
+    for(var i=0;i<targets.length;i++){
+      var el=targets[i]; if(el.offsetParent===null) continue;
+      if(first===null) first=el.id;
+      if(el.getBoundingClientRect().top<=line) cur=el.id;
+    }
+    if(!cur) cur=first;
+    if(cur) setActive(cur);
+  }
+  applyChips();
+  links.forEach(function(a){ a.addEventListener('click',function(){ setTimeout(onScroll,50); }); });
+  // Nishita's annotations: each one highlights the quoted text wherever it is on the page and shows her note under it.
+  var ANNOTATIONS=[
+    {text:'record a judgment separately from where the work is.', note:'This could be changed, or a redundancy could be added where the user is also able to add it from the details page.'},
+    {text:'can overrule the AI verdict without a comment.', note:'Should be allowed, because bulk actions would not allow a comment to be added for each and every overrule. As well, when it becomes a daily repetitive task, adding comments could become taxing, especially when the user knows that nobody else might read this. We can only maybe require it to overrule in highly critical tasks or crown jewel tasks.'},
+    {text:'Why High Risk? list, so the reasoning is written as bullet points rather than as a score.'},
+    {text:'Data Lineage is a chain of rows, each labelled Normal or Risky, with person and role, action, file and destination', note:'This is good, because one of the user pain points in one of the other tools was that knowledge graphs are hard to read for tier 1 analysts.'},
+    {img:'matters-01-alerts-list.jpg', note:'I like that shapes are used and red is used minimally, because: 1. It makes it more accessible to people with color blindness. 2. Seeing too much red all the time desensitizes the user to an actually highly critical task shown in red. So good that it is used sparingly.'},
+    {text:'clear priority and a recommended next step', note:'Definitely, adding CTAs and next steps is a good step for alerts. Also, providing the option to perform the action at the click of a button would be a great feature add.'},
+    {text:'Teams stopped validating classifier output after the first month because accuracy stayed consistent.', note:'This answers the question of whether we should make each AI override mandatory. We shouldn’t, because the consistency is already achieved with this tool, so it is possible.'},
+    {text:'Initial tuning is needed before alerts are consistently high-signal, so it is not fully hands-off.', note:'Assuming that this is a required step for the AI to learn company patterns in the individual context of that company.'},
+    {text:'Wants more advanced filtering and quicker drill-downs during investigation; the findings view needs more filter dimensions for very large result sets.', note:'This makes sense. What research do we have from other products on how they drill down during investigation? Bring this up during the design.'},
+    {text:'wants custom classification labels alongside the built-in taxonomy.', note:'This could be a good addition to the alerts feature: to be able to create a classification label in the alerts and send it to the configuration screen, because all classifications cannot just be created from a configuration screen (it occurs to the user mid-workflow).'},
+    {text:'and more export options for findings.', note:'We can look into more export options, as this was also highlighted by one of the users I spoke to.'},
+    {text:'Standard is a sortable table you customize with', note:'Something to think about. Not sure whether having two different lists is the right solution. It seems that users are not able to flexibly navigate the agent view, so that is why they need a standard view. We need to dig deep into how we can give flexibility to users for customizing columns within the agent view, and also creating their own buckets.'},
+    {text:'You read the queue as sentences rather than as a severity column.', note:'What if we provided both?'},
+    {text:'lets you recategorize one alert and then pick the properties the agent should weigh less, which it saves as feedback.', note:'Noted as one approach to correction.'},
+    {text:'Mitigated but user needs education', note:'How do we follow up with, or create an alert for, the endpoint user when they are in a policy violation?'},
+    {img:'purview-triage-agent-img2.jpg', note:'Not sure these agent settings are required upfront. These settings should be hidden.'},
+    {text:'next to it, so disagreeing is one click from the verdict.'},
+    {text:'are separate headed blocks, so the person and the behaviour are judged apart from the file.'},
+    {img:'purview-triage-agent-img3.jpg', note:'Having that setting here makes more sense, as it is contextualized to what the user is reading and from where they would like to make that change.'},
+    {img:'purview-triage-agent-img4.jpg', note:'Instead of this whole template with a lot of text that the user needs to read, we can provide a chatbot-style quick recategorization assisted by the Harbor AI chatbot, which asks quick questions that can be responded to.'},
+    {text:'It is the only tool here that shows an untriaged bucket.', note:'This is important, or could be important, if there is a threshold on how many cases can be assigned to each analyst. Untriaged could have the option to quickly be manually assigned as well, and to be gone through quickly and dismissed before it is even triaged.'},
+    {text:'Alerting can lag by hours.', note:'Infrastructure issue, not design issue.'},
+    {text:'Related alerts are grouped into one incident before a human sees them', note:'Since this is not a direct competitor, we can simply borrow patterns. Related alerts being grouped into one bucket does make sense from a context standpoint, but what do we mean by related alerts? On what basis are they related?'},
+    {text:'Closing is a judgement with a controlled vocabulary. Status is ', note:'We can borrow this status versus classification vocabulary for Harbor.'},
+    {img:'defender-copilot-img1.jpg', note:'I honestly do not know how to read this, so for this assignment, I am not going to touch it.'},
+    {text:'Built for deep work on one alert at a time,', note:'We can provide this option for someone who works that way: an alert-by-alert view. This would be for someone who wants to fine-tune patterns, like a tier 3 analyst.'},
+    {img:'varonis-athena-search-gif-frame4.jpg', note:'Sometimes providing filters or query builders up front is also useful for users who are not used to freeform querying, or who need some visual reminders of what kind of filtering is possible.'},
+    {text:'judges the actor, where Purview and Cyera judge the content.', note:'Why not both, like Matters.AI does?'},
+    {text:'Status is the richest vocabulary in this whole study, around twenty-five values, and almost all of them are actions on the data or the user: ', note:'Not very sure if this should be a status. It seems like just actions, and there could be innumerable actions. It could be a growing list of actions.'},
+    {img:'nightfall-events-header.jpg', note:'Expired is an interesting bucket as well. We could remove expired ones from the main alerts, but we should have some way of finding them. We must also allow a date picker, just for convenience of search.'},
+    {text:'severity and the priority of the asset or identity, so a medium alert on a crown-jewel system can outrank a high one elsewhere.', note:'Must keep this in mind while designing Harbor. This is a good approach.'},
+    {text:'what the AI checked and failed to confirm', note:'This is definitely a gap that could make decision-making better, so I would like to add it to the Harbor design.'},
+    {text:', so a wrong rule and a broken pipeline are different outcomes with different fixes.'},
+    {img:'falcon-xdr-img2.jpg', note:'A lot of repetitive information. Why do these columns exist? Or rather, how do anomalies in these patterns show up visually? Also, not very visually accessible colors.'},
+    {img:'falcon-xdr-img12.jpg', note:'Again, not sure how to read this graph.'},
+    {img:'sentinelone-purple-img14.jpg', note:'Having this darker UI somehow makes it hard to highlight something important, because everything looks a bit like a highlight.'},
+    {img:'sentinelone-purple-img2.jpg', note:'Showing IDs and metadata up front is not really helpful to the user. We should have natural language labels wherever possible up front.'}
+  ];
+  (function(){
+    function textNodes(root){var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),a=[],n;while((n=w.nextNode()))a.push(n);return a;}
+    ANNOTATIONS.forEach(function(an){
+      if(an.img){
+        var im=document.querySelector('img[src$="'+an.img+'"]'); if(!im) return;
+        var fr=im.closest('.shotframe'); if(fr) fr.style.boxShadow='0 0 0 3px #f2cf4a';
+        var cap=im.closest('figure').querySelector('figcaption'); var nt=document.createElement('span'); nt.className='nn-note'; nt.innerHTML='<b>Nishita&rsquo;s note on this screen</b>'+an.note.replace(/</g,'&lt;');
+        if(cap) cap.parentNode.insertBefore(nt,cap.nextSibling); return;
+      }
+      var hit=null;
+      textNodes(document.querySelector('.wrap')).some(function(n){ var i=n.nodeValue.indexOf(an.text); if(i>=0&&!n.parentNode.closest('.nn-note, mark.nn')){hit={n:n,i:i};return true;} return false; });
+      if(!hit) return;
+      var r=document.createRange(); r.setStart(hit.n,hit.i); r.setEnd(hit.n,hit.i+an.text.length);
+      var m=document.createElement('mark'); m.className='nn'; r.surroundContents(m);
+      if(!an.note) return;
+      var host=m.closest('li,p,td,div'); var note=document.createElement('span'); note.className='nn-note'; note.innerHTML='<b>Nishita&rsquo;s note</b>'+an.note.replace(/</g,'&lt;');
+      (host||m.parentNode).appendChild(note);
+    });
+  })();
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+</script>
+
+</body></html>

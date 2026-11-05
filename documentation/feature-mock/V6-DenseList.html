@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Clash 6: dense list, no summary widgets</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#e5e7eb;background:#0f172a}
+a{color:#93c5fd}a:hover{color:#bfdbfe}
+.lbl{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#94a3b8;font-weight:600}
+.f{display:inline-flex;align-items:center;height:26px;padding:0 8px;border-radius:4px;border:1px solid #334155;background:#1e293b;font-size:11.5px;color:#cbd5e1;white-space:nowrap}
+.cell{display:flex;flex-direction:column;gap:2px;padding:6px 8px;border:1px solid #1e293b;min-width:0}
+.cell small{font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#64748b}
+.cell span{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row{display:grid;grid-template-columns:96px 1fr 120px 90px 90px 110px 90px;border-bottom:1px solid #1e293b}
+.day{padding:4px 8px;font-size:11px;color:#94a3b8;background:#111c33;border-bottom:1px solid #1e293b}
+.hex{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600}
+.hex i{width:12px;height:12px;display:inline-block;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+</style></head>
+<body>
+<div id="dcroot" style="display: contents;">
+
+<div style="width:760px;height:760px;box-sizing:border-box;padding:20px;display:flex;flex-direction:column;gap:10px;overflow:hidden">
+  <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap">
+    <span class="lbl">Clash 6</span>
+    <span style="font-size:13px;color:#cbd5e1">Main page spends the top third on KPI cards and a policy chart (Netskope, SentinelOne). This version spends nothing on decoration: the total first, eleven filters in one bar, date separators, and every cell self-labelled so a row reads without the header at page 300 (Falcon).</span>
+  </div>
+
+  <div style="display:flex;align-items:baseline;gap:10px">
+    <span style="font-size:18px;font-weight:600">Alerts</span>
+    <span style="font-size:12px;color:#94a3b8">11,487 total · 1 to 20 · page 1 of 575</span>
+  </div>
+
+  <div style="display:flex;gap:5px;flex-wrap:wrap">
+    <span class="f">Severity</span><span class="f">Status</span><span class="f">Verdict</span><span class="f">Assignee</span><span class="f">User</span><span class="f">Host</span><span class="f">Source</span><span class="f">Policy</span><span class="f">Domain</span><span class="f">IP</span><span class="f">Last 24 h</span>
+  </div>
+
+  <div style="border:1px solid #334155;border-radius:6px;overflow:hidden;background:#0b1326">
+    <div class="row" style="background:#111c33;font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:#64748b">
+      <div style="padding:6px 8px">Details</div><div style="padding:6px 8px"></div><div style="padding:6px 8px"></div><div style="padding:6px 8px">Status</div><div style="padding:6px 8px"></div><div style="padding:6px 8px">Attributes</div><div style="padding:6px 8px"></div>
+    </div>
+    <div class="day">Today, 4 Nov 2026</div>
+    <div class="row">
+      <div class="cell"><small>Severity</small><span class="hex"><i style="background:#ef4444"></i>Critical</span></div>
+      <div class="cell"><small>Alert</small><span>Confidential finance file uploaded to personal Gmail</span></div>
+      <div class="cell"><small>Source</small><span>Drive connector</span></div>
+      <div class="cell"><small>Status</small><span>Investigating</span></div>
+      <div class="cell"><small>Assigned</small><span>N. R.</span></div>
+      <div class="cell"><small>User</small><span>A. Rao</span></div>
+      <div class="cell"><small>Host</small><span>laptop-0412</span></div>
+    </div>
+    <div class="row">
+      <div class="cell"><small>Severity</small><span class="hex"><i style="background:#f97316"></i>High</span></div>
+      <div class="cell"><small>Alert</small><span>Bulk export of 1,250 customer records from CRM</span></div>
+      <div class="cell"><small>Source</small><span>Salesforce</span></div>
+      <div class="cell"><small>Status</small><span>Open</span></div>
+      <div class="cell"><small>Assigned</small><span>S. K.</span></div>
+      <div class="cell"><small>User</small><span>svc-reports</span></div>
+      <div class="cell"><small>Host</small><span>api</span></div>
+    </div>
+    <div class="row">
+      <div class="cell"><small>Severity</small><span class="hex"><i style="background:#f97316"></i>High</span></div>
+      <div class="cell"><small>Alert</small><span>API key pasted in Slack channel #eng-infra</span></div>
+      <div class="cell"><small>Source</small><span>Slack</span></div>
+      <div class="cell"><small>Status</small><span>Open</span></div>
+      <div class="cell"><small>Assigned</small><span>—</span></div>
+      <div class="cell"><small>User</small><span>J. Mendes</span></div>
+      <div class="cell"><small>Host</small><span>mbp-2210</span></div>
+    </div>
+    <div class="day">Yesterday, 3 Nov 2026</div>
+    <div class="row">
+      <div class="cell"><small>Severity</small><span class="hex"><i style="background:#eab308"></i>Medium</span></div>
+      <div class="cell"><small>Alert</small><span>Public link created on folder "Board decks"</span></div>
+      <div class="cell"><small>Source</small><span>SharePoint</span></div>
+      <div class="cell"><small>Status</small><span>Resolved</span></div>
+      <div class="cell"><small>Assigned</small><span>Harbor AI</span></div>
+      <div class="cell"><small>User</small><span>L. Chen</span></div>
+      <div class="cell"><small>Host</small><span>web</span></div>
+    </div>
+    <div class="row">
+      <div class="cell"><small>Severity</small><span class="hex"><i style="background:#64748b"></i>Low</span></div>
+      <div class="cell"><small>Alert</small><span>Database user ran SELECT * on customers table</span></div>
+      <div class="cell"><small>Source</small><span>Postgres prod</span></div>
+      <div class="cell"><small>Status</small><span>Muted</span></div>
+      <div class="cell"><small>Assigned</small><span>—</span></div>
+      <div class="cell"><small>User</small><span>etl_runner</span></div>
+      <div class="cell"><small>Host</small><span>etl-03</span></div>
+    </div>
+    <div class="row" style="border-bottom:0">
+      <div class="cell"><small>Severity</small><span class="hex"><i style="background:#64748b"></i>Low</span></div>
+      <div class="cell"><small>Alert</small><span>Sensitivity label removed from 3 files</span></div>
+      <div class="cell"><small>Source</small><span>OneDrive</span></div>
+      <div class="cell"><small>Status</small><span>Open</span></div>
+      <div class="cell"><small>Assigned</small><span>—</span></div>
+      <div class="cell"><small>User</small><span>M. Iyer</span></div>
+      <div class="cell"><small>Host</small><span>laptop-0917</span></div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:10px;font-size:11.5px;color:#94a3b8">
+    <span>1-20 of 11,487 items</span><span style="margin-left:auto">1 of 575 pages</span>
+    <span class="f">Previous</span><span class="f">Next</span>
+  </div>
+  <div style="font-size:11.5px;color:#94a3b8">Selecting a row opens a panel beside the list; "See full alert" is the deliberate step to a whole page with Details, Graph and Events tabs. Query the data lake from any attribute.</div>
+</div>
+</div>
+
+
+
+</body></html>

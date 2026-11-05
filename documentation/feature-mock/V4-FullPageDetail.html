@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Clash 4: alert as a full page with tabs</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#1a1d21;background:#fff}
+a{color:#1f5fbf}a:hover{color:#164a96}
+.lbl{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;font-weight:600}
+.tab{height:36px;display:inline-flex;align-items:center;gap:6px;padding:0 12px;font-size:12.5px;font-weight:500;color:#5b6472;border-bottom:2px solid transparent}
+.tab.on{color:#1a1d21;border-bottom-color:#1f5fbf}
+.cnt{font-size:11px;background:#e6e9ee;border-radius:999px;padding:1px 7px;color:#3b4350}
+.chip{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:5px;font-size:12px;border:1px solid #cfd4dc;background:#fff;gap:6px}
+.btn{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;border:1px solid #cfd4dc;background:#fff;font:500 12px Inter,system-ui,sans-serif;color:#1a1d21}
+.th{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#5b6472;font-weight:600;padding:8px 10px;text-align:left;white-space:nowrap;border-bottom:1px solid #d5d9e0;background:#f8f9fb}
+.td{padding:8px 10px;font-size:12px;vertical-align:top;border-bottom:1px solid #e6e9ee;white-space:nowrap}
+</style></head>
+<body>
+<div id="dcroot" style="display: contents;">
+
+<div style="width:760px;height:760px;box-sizing:border-box;padding:20px;display:flex;flex-direction:column;gap:12px;overflow:hidden">
+  <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap">
+    <span class="lbl">Clash 4</span>
+    <span style="font-size:13px;color:#3b4350">Main page opens the alert as a side panel so the queue stays in view (Falcon, Purview). This version makes the alert a full page with sibling tabs, and investigation is a search screen next door, not a drawer (Varonis, Defender).</span>
+  </div>
+
+  <div style="font-size:12px;color:#5b6472">Alerts / <strong style="color:#1a1d21">ALR-48112</strong></div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <span style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600"><span style="width:10px;height:10px;border-radius:2px;background:#b91c1c;display:inline-block"></span>CRITICAL</span>
+    <h2 style="margin:0;font-size:16px;font-weight:600">Confidential finance file uploaded to personal Gmail</h2>
+    <span class="chip">Intrusion: exfiltration</span>
+    <div style="margin-left:auto;display:flex;gap:6px"><button class="btn" type="button">Previous alert</button><button class="btn" type="button">Next alert</button></div>
+  </div>
+
+  <div style="display:flex;border-bottom:1px solid #d5d9e0">
+    <span class="tab">Overview</span>
+    <span class="tab">Users <span class="cnt">1</span></span>
+    <span class="tab">Data <span class="cnt">1</span></span>
+    <span class="tab on">Events <span class="cnt">14</span></span>
+    <span class="tab">Graph</span>
+    <span class="tab">Similar <span class="cnt">3</span></span>
+    <span class="tab">History <span class="cnt">4</span></span>
+  </div>
+
+  <!-- Events tab: chip query, timeline, facets, table -->
+  <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+    <span class="chip" style="background:#eef3fb;border-color:#c9d8f2">User: A. Rao</span>
+    <span class="chip" style="background:#eef3fb;border-color:#c9d8f2">Object type: file</span>
+    <span class="chip" style="background:#eef3fb;border-color:#c9d8f2">Classification: Confidential</span>
+    <span class="chip" style="background:#eef3fb;border-color:#c9d8f2">Exposure: external</span>
+    <span class="chip" style="background:#eef3fb;border-color:#c9d8f2">Time: today</span>
+    <button class="btn" type="button">Add chip</button>
+    <span style="margin-left:auto"><button class="btn" type="button">Saved searches</button></span>
+  </div>
+  <div style="display:flex;gap:16px;align-items:baseline">
+    <span style="font-size:16px;font-weight:600">14 results</span>
+    <span style="font-size:12px;border:1px solid #cfd4dc;border-radius:5px;padding:3px 8px">9 on sensitive data</span>
+    <span style="font-size:12px;border:1px solid #cfd4dc;border-radius:5px;padding:3px 8px">1 exposed externally</span>
+  </div>
+  <div style="position:relative;height:56px;border-bottom:1px solid #cfd4dc" role="img" aria-label="Timeline of 14 events across today, clustered between 08:50 and 09:15">
+    <span style="position:absolute;left:4%;bottom:0;width:3px;height:8px;background:#94a3b8"></span>
+    <span style="position:absolute;left:30%;bottom:0;width:3px;height:8px;background:#94a3b8"></span>
+    <span style="position:absolute;left:62%;bottom:0;width:3px;height:20px;background:#1f5fbf"></span>
+    <span style="position:absolute;left:66%;bottom:0;width:3px;height:34px;background:#1f5fbf"></span>
+    <span style="position:absolute;left:70%;bottom:0;width:3px;height:44px;background:#b91c1c"></span>
+    <span style="position:absolute;left:74%;bottom:0;width:3px;height:12px;background:#94a3b8"></span>
+    <span style="position:absolute;left:0;top:0;font-size:10.5px;color:#5b6472">00:00</span>
+    <span style="position:absolute;right:0;top:0;font-size:10.5px;color:#5b6472">now</span>
+  </div>
+
+  <div style="display:flex;gap:12px;flex:1 1 auto;min-height:0">
+    <div style="flex:0 0 170px;border:1px solid #d5d9e0;border-radius:8px;padding:10px 12px;font-size:12px;display:flex;flex-direction:column;gap:6px">
+      <span class="lbl">Refine</span>
+      <div style="display:flex;justify-content:space-between"><span>Download</span><span style="color:#5b6472">4</span></div>
+      <div style="display:flex;justify-content:space-between"><span>Rename</span><span style="color:#5b6472">2</span></div>
+      <div style="display:flex;justify-content:space-between"><span>Compress</span><span style="color:#5b6472">1</span></div>
+      <div style="display:flex;justify-content:space-between"><span>Upload</span><span style="color:#5b6472">1</span></div>
+      <div style="display:flex;justify-content:space-between"><span>Open</span><span style="color:#5b6472">6</span></div>
+      <span class="lbl" style="margin-top:6px">Device</span>
+      <div style="display:flex;justify-content:space-between"><span>laptop-0412</span><span style="color:#5b6472">14</span></div>
+    </div>
+    <div style="flex:1 1 auto;min-width:0;overflow:auto;border:1px solid #d5d9e0;border-radius:8px">
+      <table style="border-collapse:collapse;width:100%">
+        <thead><tr><th class="th">Time</th><th class="th">Action</th><th class="th">Object</th><th class="th">Destination</th></tr></thead>
+        <tbody>
+          <tr><td class="td">09:14:02</td><td class="td" style="color:#9a2a1c;font-weight:600">Upload, blocked</td><td class="td">notes.zip</td><td class="td">gmail.com</td></tr>
+          <tr><td class="td">09:06:40</td><td class="td">Compress</td><td class="td">notes.xlsx → notes.zip</td><td class="td">local</td></tr>
+          <tr><td class="td">09:06:12</td><td class="td">Rename</td><td class="td">FY27_budget.xlsx → notes.xlsx</td><td class="td">local</td></tr>
+          <tr><td class="td">08:58:31</td><td class="td">Download</td><td class="td">FY27_budget.xlsx</td><td class="td">laptop-0412</td></tr>
+          <tr><td class="td">08:57:50</td><td class="td">Open</td><td class="td">FY27_budget.xlsx</td><td class="td">Drive web</td></tr>
+          <tr><td class="td">08:40:11</td><td class="td">Open</td><td class="td">HR leads folder</td><td class="td">Drive web</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:8px 10px;font-size:11.5px;color:#5b6472;border-top:1px solid #e6e9ee">1 to 6 of 14 · 20 per page</div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+</body></html>

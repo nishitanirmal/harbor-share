@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Harbor Alerts page</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"><style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#1a1d21;background:#f3f4f6}
+a{color:#1f5fbf}a:hover{color:#164a96}
+.chip{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;font-size:11.5px;font-weight:500;border:1px solid #d5d9e0;background:#fff;color:#3b4350;white-space:nowrap}
+.sev{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;white-space:nowrap}
+.dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+.btn{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:6px;border:1px solid #cfd4dc;background:#fff;font:500 12.5px Inter,system-ui,sans-serif;color:#1a1d21;cursor:pointer}
+.btn.primary{background:#1f5fbf;border-color:#1f5fbf;color:#fff}
+.btn.danger{background:#fff;border-color:#c2410c;color:#9a3412}
+.sel{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 8px;border-radius:5px;border:1px solid #cfd4dc;background:#fff;font-size:12px;font-weight:500;color:#1a1d21;white-space:nowrap}
+.lbl{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;font-weight:600}
+.th{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:#5b6472;font-weight:600;padding:10px 12px;text-align:left;white-space:nowrap;border-bottom:1px solid #d5d9e0;background:#f8f9fb}
+.td{padding:10px 12px;font-size:12.5px;vertical-align:top;border-bottom:1px solid #e6e9ee}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.sec{border:1px solid #d5d9e0;border-radius:8px;background:#fff}
+.sechead{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #e6e9ee}
+.why{margin:0;padding-left:18px;font-size:12.5px;color:#3b4350;line-height:1.5}
+.ai{background:#f1f3fb;border:1px solid #c9d0f0}
+.kpi{flex:1 1 150px;min-width:0;background:#fff;border:1px solid #d5d9e0;border-radius:8px;padding:12px 14px}
+.kpi b{display:block;font-size:24px;font-weight:600;line-height:1.1}
+.kpi span{font-size:11.5px;color:#5b6472}
+.tab{height:36px;display:inline-flex;align-items:center;padding:0 10px;font-size:12.5px;font-weight:500;color:#5b6472;border-bottom:2px solid transparent}
+.tab.on{color:#1a1d21;border-bottom-color:#1f5fbf}
+.step{display:flex;gap:10px;font-size:12.5px;line-height:1.45}
+.step i{width:18px;height:18px;border-radius:999px;background:#e6e9ee;font:600 11px Inter,sans-serif;display:inline-flex;align-items:center;justify-content:center;font-style:normal;flex:none}
+.hop{display:grid;grid-template-columns:72px 1fr;gap:10px;font-size:12px;padding:6px 0;border-bottom:1px dashed #e6e9ee}
+.tag{font-size:10.5px;font-weight:600;border-radius:4px;padding:2px 6px;display:inline-block}
+.tag.ok{background:#e3f1e8;color:#1b5e38}.tag.risk{background:#fde7e4;color:#9a2a1c}.tag.unk{background:#eceef2;color:#4a5260}
+.field{display:grid;grid-template-columns:110px 1fr;gap:6px;font-size:12px;padding:5px 0;border-bottom:1px solid #eef0f3}
+.field span:first-child{color:#5b6472}
+</style></head>
+<body>
+<div id="dcroot" style="display: contents;">
+
+
+<div style="display:flex;flex-direction:column;min-height:1240px;box-sizing:border-box">
+
+  <!-- Top bar: product nav, breadcrumb, where alerts sit -->
+  <div style="display:flex;align-items:center;gap:18px;height:52px;padding:0 20px;background:#0f172a;color:#e5e7eb;flex-wrap:wrap">
+    <div style="font-weight:700;font-size:14px;letter-spacing:.02em;color:#fff">Harbor</div>
+    <div style="font-size:12px;color:#94a3b8">Acme Corp / Production</div>
+    <nav style="display:flex;gap:4px;margin-left:12px;flex-wrap:wrap" aria-label="Product">
+      <a href="#risks" style="color:#cbd5e1;text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:6px">Dashboard</a>
+      <a href="#risks" style="color:#cbd5e1;text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:6px">Risks</a>
+      <a href="#alerts" style="color:#fff;text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:6px;background:#1e293b;font-weight:600">Alerts</a>
+      <a href="#risks" style="color:#cbd5e1;text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:6px">Incidents</a>
+      <a href="#risks" style="color:#cbd5e1;text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:6px">Data inventory</a>
+      <a href="#risks" style="color:#cbd5e1;text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:6px">Policies</a>
+      <a href="#risks" style="color:#cbd5e1;text-decoration:none;font-size:12.5px;padding:6px 10px;border-radius:6px">Ask Harbor</a>
+    </nav>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:10px;font-size:12px;color:#94a3b8">
+      <span>Shift lead: N. R.</span>
+      <span style="width:28px;height:28px;border-radius:999px;background:#334155;display:inline-block"></span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-start;flex:1 1 auto">
+
+    <!-- LEFT: the queue -->
+    <div style="flex:999 1 720px;min-width:0;padding:18px 20px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box">
+
+      <!-- Title row and queue-level CTAs -->
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <h1 style="margin:0;font-size:20px;font-weight:600">Alerts</h1>
+        <span style="font-size:12.5px;color:#5b6472">11,487 total · showing 1 to 10 · last 7 days</span>
+        <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn" type="button">Share view</button>
+          <button class="btn" type="button">Export CSV</button>
+          <button class="btn" type="button">Saved views</button>
+        </div>
+      </div>
+
+      <!-- KPI strip: counts, untriaged bucket, MTTR -->
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div class="kpi"><b>842</b><span>Open</span></div>
+        <div class="kpi"><b style="color:#9a2a1c">19</b><span>Critical and high</span></div>
+        <div class="kpi"><b>63</b><span>Unassigned</span></div>
+        <div class="kpi" style="border-color:#e0a96d;background:#fff8ef"><b>324</b><span>Not triaged by AI</span></div>
+        <div class="kpi"><b>1.2 h</b><span>Median time to resolve, 7 days</span></div>
+        <div class="kpi" style="flex:1.4 1 220px"><span class="lbl">Top policies by alerts</span>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-top:6px;font-size:12px">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:110px;height:6px;background:#1f5fbf;border-radius:3px;display:inline-block"></span>External share of Confidential · 212</div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:70px;height:6px;background:#1f5fbf;border-radius:3px;display:inline-block"></span>Bulk download from CRM · 131</div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:44px;height:6px;background:#1f5fbf;border-radius:3px;display:inline-block"></span>Secrets in SaaS message · 88</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- View tabs -->
+      <div style="display:flex;gap:4px;border-bottom:1px solid #d5d9e0;flex-wrap:wrap">
+        <span class="tab on">All 842</span><span class="tab">Not triaged 324</span><span class="tab">Needs review 71</span><span class="tab">Auto-resolved 447</span><span class="tab">Muted 38</span><span class="tab">Resolved 10,645</span>
+      </div>
+
+      <!-- Search, filters, group by, time window, bulk -->
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <label for="q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search alerts</label>
+        <input id="q" type="search" placeholder="Search alerts, users, files, policies" style="height:32px;width:280px;max-width:100%;padding:0 10px;border:1px solid #cfd4dc;border-radius:6px;font:12.5px Inter,sans-serif;box-sizing:border-box">
+        <span class="sel">Severity: Critical, High</span>
+        <span class="sel">Type: any</span>
+        <span class="sel">Policy: any</span>
+        <span class="sel">User: any</span>
+        <span class="sel">Asset: any</span>
+        <span class="sel">Status: Open</span>
+        <span class="sel">Verdict: any</span>
+        <span class="sel">Assignee: any</span>
+        <span class="sel">Last 7 days</span>
+        <span class="sel">Group by: none</span>
+        <button class="btn" type="button" style="height:28px">Add filter</button>
+      </div>
+
+      <!-- Bulk action bar, shown because 2 rows are selected -->
+      <div style="display:flex;gap:8px;align-items:center;padding:8px 12px;background:#eef3fb;border:1px solid #c9d8f2;border-radius:6px;flex-wrap:wrap;font-size:12.5px">
+        <strong>2 selected</strong>
+        <button class="btn" type="button" style="height:28px">Assign</button>
+        <button class="btn" type="button" style="height:28px">Set status</button>
+        <button class="btn" type="button" style="height:28px">Set verdict</button>
+        <button class="btn" type="button" style="height:28px">Mute</button>
+        <button class="btn" type="button" style="height:28px">Add to incident</button>
+        <button class="btn" type="button" style="height:28px">Create ticket</button>
+      </div>
+
+      <!-- The list -->
+      <div style="overflow-x:auto;border:1px solid #d5d9e0;border-radius:8px;background:#fff">
+      <table style="border-collapse:collapse;width:100%;min-width:1040px">
+        <thead><tr>
+          <th class="th" style="width:30px"><input type="checkbox" aria-label="Select all"></th>
+          <th class="th">Severity</th>
+          <th class="th">Alert</th>
+          <th class="th">User</th>
+          <th class="th">Asset</th>
+          <th class="th">Policy</th>
+          <th class="th">Status</th>
+          <th class="th">Analyst verdict</th>
+          <th class="th">Assignee</th>
+          <th class="th">Detected</th>
+        </tr></thead>
+        <tbody>
+          <tr style="background:#f3f6fc;outline:2px solid #1f5fbf;outline-offset:-2px">
+            <td class="td"><input type="checkbox" checked="" aria-label="Select alert 48112"></td>
+            <td class="td"><span class="sev"><span class="dot" style="background:#b91c1c"></span>CRITICAL</span></td>
+            <td class="td" style="min-width:300px"><a href="#alert" style="font-weight:600;text-decoration:none;color:#1a1d21">Confidential finance file uploaded to personal Gmail</a><div style="font-size:11.5px;color:#4a5260;margin-top:3px"><span class="tag" style="background:#e8eafc;color:#3b45a8">AI</span> True positive. File tagged Confidential moved HR to personal mail; user on notice period.</div><div style="display:flex;gap:4px;margin-top:5px;flex-wrap:wrap"><span class="chip">Data exfiltration</span><span class="chip">Insider threat</span><span class="chip">Anomalous sharing</span></div></td>
+            <td class="td">A. Rao<div style="font-size:11px;color:#5b6472">HR · laptop-0412</div></td>
+            <td class="td">Google Drive<div style="font-size:11px;color:#5b6472">FY27_budget.xlsx</div></td>
+            <td class="td"><a href="#policy" style="font-size:12px">External share of Confidential</a></td>
+            <td class="td"><span class="sel">Investigating</span></td>
+            <td class="td"><span class="sel" style="border-color:#1f5fbf">Not set</span></td>
+            <td class="td"><span class="sel">Me</span></td>
+            <td class="td" style="white-space:nowrap">Today 09:14<div style="font-size:11px;color:#5b6472">12 min ago</div></td>
+          </tr>
+          <tr>
+            <td class="td"><input type="checkbox" checked="" aria-label="Select alert 48110"></td>
+            <td class="td"><span class="sev"><span class="dot" style="background:#c2410c"></span>High</span></td>
+            <td class="td"><a href="#alert" style="font-weight:600;text-decoration:none;color:#1a1d21">Bulk export of 1,250 customer records from CRM</a><div style="font-size:11.5px;color:#4a5260;margin-top:3px"><span class="tag" style="background:#e8eafc;color:#3b45a8">AI</span> Likely benign. Scheduled export by a service account that runs weekly.</div><div style="display:flex;gap:4px;margin-top:5px;flex-wrap:wrap"><span class="chip">Data exfiltration</span></div></td>
+            <td class="td">svc-reports<div style="font-size:11px;color:#5b6472">Automated · Sales</div></td>
+            <td class="td">Salesforce<div style="font-size:11px;color:#5b6472">Report 8841</div></td>
+            <td class="td"><a href="#policy" style="font-size:12px">Bulk download from CRM</a></td>
+            <td class="td"><span class="sel">Open</span></td>
+            <td class="td"><span class="sel">Benign, expected</span></td>
+            <td class="td"><span class="sel">S. K.</span></td>
+            <td class="td" style="white-space:nowrap">Today 08:52</td>
+          </tr>
+          <tr>
+            <td class="td"><input type="checkbox" aria-label="Select alert 48104"></td>
+            <td class="td"><span class="sev"><span class="dot" style="background:#c2410c"></span>High</span></td>
+            <td class="td"><a href="#alert" style="font-weight:600;text-decoration:none;color:#1a1d21">API key pasted in Slack channel #eng-infra</a><div style="font-size:11.5px;color:#4a5260;margin-top:3px"><span class="tag" style="background:#fff1e6;color:#9a3412">Not triaged</span> AI could not confirm the key is live.</div><div style="display:flex;gap:4px;margin-top:5px;flex-wrap:wrap"><span class="chip">Policy violation</span></div></td>
+            <td class="td">J. Mendes<div style="font-size:11px;color:#5b6472">Engineering</div></td>
+            <td class="td">Slack<div style="font-size:11px;color:#5b6472">#eng-infra</div></td>
+            <td class="td"><a href="#policy" style="font-size:12px">Secrets in SaaS message</a></td>
+            <td class="td"><span class="sel">Open</span></td>
+            <td class="td"><span class="sel">Not set</span></td>
+            <td class="td"><span class="sel" style="color:#5b6472">Unassigned</span></td>
+            <td class="td" style="white-space:nowrap">Today 08:31</td>
+          </tr>
+          <tr>
+            <td class="td"><input type="checkbox" aria-label="Select alert 48099"></td>
+            <td class="td"><span class="sev"><span class="dot" style="background:#ca8a04"></span>Medium</span></td>
+            <td class="td"><a href="#alert" style="font-weight:600;text-decoration:none;color:#1a1d21">Public link created on folder "Board decks"</a><div style="font-size:11.5px;color:#4a5260;margin-top:3px"><span class="tag" style="background:#e8eafc;color:#3b45a8">AI</span> Link was removed by the owner 4 minutes later. Auto-resolved.</div><div style="display:flex;gap:4px;margin-top:5px;flex-wrap:wrap"><span class="chip">Anomalous sharing</span><span class="chip">Posture</span></div></td>
+            <td class="td">L. Chen<div style="font-size:11px;color:#5b6472">Finance</div></td>
+            <td class="td">SharePoint<div style="font-size:11px;color:#5b6472">Board decks</div></td>
+            <td class="td"><a href="#policy" style="font-size:12px">Public links on Confidential</a></td>
+            <td class="td"><span class="sel">Resolved: link removed</span></td>
+            <td class="td"><span class="sel">Auto, not a violation</span></td>
+            <td class="td"><span class="sel" style="color:#5b6472">Harbor AI</span></td>
+            <td class="td" style="white-space:nowrap">Yesterday 17:40</td>
+          </tr>
+          <tr>
+            <td class="td"><input type="checkbox" aria-label="Select alert 48090"></td>
+            <td class="td"><span class="sev"><span class="dot" style="background:#64748b"></span>Low</span></td>
+            <td class="td"><a href="#alert" style="font-weight:600;text-decoration:none;color:#1a1d21">Database user ran SELECT * on customers table</a><div style="font-size:11.5px;color:#4a5260;margin-top:3px"><span class="tag" style="background:#e8eafc;color:#3b45a8">AI</span> Same query runs daily from this host. Muted by rule "nightly-etl".</div><div style="display:flex;gap:4px;margin-top:5px;flex-wrap:wrap"><span class="chip">Data access</span></div></td>
+            <td class="td">etl_runner<div style="font-size:11px;color:#5b6472">Database user</div></td>
+            <td class="td">Postgres prod<div style="font-size:11px;color:#5b6472">customers</div></td>
+            <td class="td"><a href="#policy" style="font-size:12px">Full-table reads on PII</a></td>
+            <td class="td"><span class="sel">Muted</span></td>
+            <td class="td"><span class="sel">Not a violation</span></td>
+            <td class="td"><span class="sel" style="color:#5b6472">Unassigned</span></td>
+            <td class="td" style="white-space:nowrap">Yesterday 02:10</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:12px;color:#5b6472;flex-wrap:wrap">
+        <span>Rows per page</span><span class="sel">10</span>
+        <span style="margin-left:auto">1 to 10 of 11,487 · page 1 of 1,149</span>
+        <button class="btn" type="button" style="height:28px">Previous</button><button class="btn" type="button" style="height:28px">Next</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: side panel for the selected alert -->
+    <aside style="flex:1 1 520px;min-width:0;max-width:640px;border-left:1px solid #d5d9e0;background:#fff;display:flex;flex-direction:column;box-sizing:border-box" aria-label="Alert detail">
+
+      <!-- Header: severity, title, chips, state on one line -->
+      <div style="padding:16px 18px;border-bottom:1px solid #e6e9ee;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="sev"><span class="dot" style="background:#b91c1c"></span>CRITICAL</span>
+          <span class="mono" style="font-size:11.5px;color:#5b6472">ALR-48112</span>
+          <span style="font-size:11.5px;color:#5b6472">Detected today 09:14 · Google Drive connector</span>
+          <div style="margin-left:auto;display:flex;gap:6px"><button class="btn" type="button" style="height:28px">Open full page</button><button class="btn" type="button" style="height:28px" aria-label="Close panel">Close</button></div>
+        </div>
+        <h2 style="margin:0;font-size:17px;font-weight:600;line-height:1.3">Confidential finance file uploaded to personal Gmail <span style="color:#9a2a1c">· BLOCKED</span></h2>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <span class="chip">Data exfiltration</span><span class="chip">Insider threat</span><span class="chip">Anomalous sharing</span><span class="chip">Policy violation</span>
+          <span class="chip" style="border-color:#e0a96d;background:#fff8ef;color:#9a3412">Critical asset</span>
+        </div>
+        <!-- State of the work, editable -->
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <span class="lbl">Status</span><span class="sel">Investigating</span>
+          <span class="lbl">Verdict</span><span class="sel" style="border-color:#1f5fbf">Not set</span>
+          <span class="lbl">Assignee</span><span class="sel">Me</span>
+          <span class="lbl">Priority</span><span class="sel">P1</span>
+        </div>
+        <!-- Actions bar -->
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="btn primary" type="button">Confirm verdict</button>
+          <button class="btn" type="button">Close with reason</button>
+          <button class="btn" type="button">Remediate with Harbor</button>
+          <button class="btn" type="button">Create ticket</button>
+          <button class="btn" type="button">Mute</button>
+          <button class="btn" type="button">View policy</button>
+          <button class="btn" type="button">Add to incident</button>
+          <button class="btn" type="button">Escalate to HR or legal</button>
+          <button class="btn" type="button">Notify user</button>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;flex:1 1 auto">
+        <!-- Main column of the panel -->
+        <div style="flex:999 1 340px;min-width:0;padding:16px 18px;display:flex;flex-direction:column;gap:14px;box-sizing:border-box">
+
+          <!-- AI verdict and remediation already run -->
+          <div class="sec ai">
+            <div class="sechead"><span style="font-weight:600;font-size:13px">Harbor AI verdict</span><span style="font-size:11.5px;color:#4a5260">Confidence: Very likely</span></div>
+            <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+              <div style="background:#fde7e4;border:1px solid #f3c2bb;border-radius:6px;padding:10px 12px;font-size:13px"><strong>True positive.</strong> Malicious data exfiltration detected and blocked. A file restricted to finance personnel was sent from an HR account to an external address.</div>
+              <div style="font-size:12.5px"><strong>What the AI checked and could not confirm:</strong> whether the recipient address belongs to the user. Treat the destination as unverified.</div>
+              <div style="font-size:12.5px"><strong>What it ruled out:</strong> a scheduled export, a shared mailbox, and a sanctioned partner domain.</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap">
+                <button class="btn" type="button" style="height:28px">Change verdict</button>
+                <button class="btn" type="button" style="height:28px">Teach Harbor</button>
+                <button class="btn" type="button" style="height:28px">Helpful</button>
+                <button class="btn" type="button" style="height:28px">Not accurate</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="sec">
+            <div class="sechead"><span style="font-weight:600;font-size:13px">Automated remediation completed</span><span class="tag ok">3 of 3 executed</span></div>
+            <div style="padding:10px 14px;font-size:12.5px;display:flex;flex-direction:column;gap:6px">
+              <div>✓ User blocked from file upload on laptop-0412</div>
+              <div>✓ Fingerprint and Confidential tag applied to FY27_budget.xlsx</div>
+              <div>✓ Prevention policy created and deployed</div>
+              <div style="font-size:11.5px;color:#5b6472">Undo any of these from the activity log below.</div>
+            </div>
+          </div>
+
+          <!-- Evidence, four fixed sections -->
+          <div class="lbl">How Harbor reached this verdict</div>
+
+          <div class="sec">
+            <div class="sechead"><span style="font-weight:600;font-size:13px">1 · Classification</span><span style="font-size:11.5px;color:#5b6472">Expanded</span></div>
+            <div style="padding:10px 14px">
+              <div class="field"><span>Document</span><span>FY27_budget.xlsx</span></div>
+              <div class="field"><span>Category</span><span>Financial planning</span></div>
+              <div class="field"><span>Sensitivity</span><span>Confidential</span></div>
+              <div class="field"><span>Access level</span><span>Authorized finance personnel only</span></div>
+              <div class="field"><span>Contains</span><span>Salary bands, headcount plan, 2 bank account numbers</span></div>
+              <div class="lbl" style="margin:10px 0 4px">Why high risk</div>
+              <ul class="why"><li>The user's department is HR, not finance.</li><li>The file carries a Confidential tag applied 3 weeks ago.</li></ul>
+            </div>
+          </div>
+
+          <div class="sec">
+            <div class="sechead"><span style="font-weight:600;font-size:13px">2 · Data lineage</span><span style="font-size:11.5px;color:#5b6472">Expanded</span></div>
+            <div style="padding:10px 14px">
+              <div class="hop"><span class="tag ok">Normal</span><span>Origin · Finance shared drive · FY27_budget.xlsx, Confidential</span></div>
+              <div class="hop"><span class="tag ok">Normal</span><span>L. Chen, Finance · shared to HR leads folder · Mon 14:02</span></div>
+              <div class="hop"><span class="tag risk">Risky</span><span>A. Rao, HR · downloaded to laptop-0412 · Today 08:58</span></div>
+              <div class="hop"><span class="tag risk">Risky</span><span>A. Rao · renamed to notes.xlsx, zipped · Today 09:06</span></div>
+              <div class="hop" style="border-bottom:0"><span class="tag risk">Risky</span><span>Upload to personal Gmail, a.rao.home@gmail.com · Today 09:14 · <strong>Blocked</strong></span></div>
+              <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><a href="#events" style="font-size:12px">View 14 events</a><a href="#capture" style="font-size:12px">Captured file</a><a href="#recording" style="font-size:12px">Screen recording, 30 s before</a></div>
+            </div>
+          </div>
+
+          <div class="sec">
+            <div class="sechead"><span style="font-weight:600;font-size:13px">3 · User behaviour</span><span style="font-size:11.5px;color:#5b6472">Expanded</span></div>
+            <div style="padding:10px 14px;display:flex;gap:14px;flex-wrap:wrap">
+              <div style="flex:1 1 180px;min-width:0">
+                <div class="lbl" style="margin-bottom:6px">Account facts</div>
+                <div class="field"><span>Activity</span><span>Human, not automated</span></div>
+                <div class="field"><span>Watch list</span><span>No</span></div>
+                <div class="field"><span>Privileged</span><span>No</span></div>
+                <div class="field"><span>Prior alerts</span><span><a href="#prior">2 in 90 days</a></span></div>
+                <div class="field"><span>HR context</span><span>On notice period</span></div>
+              </div>
+              <div style="flex:1 1 180px;min-width:0">
+                <div class="lbl" style="margin-bottom:6px">What HR normally touches</div>
+                <div style="position:relative;height:110px;border:1px solid #e6e9ee;border-radius:6px;background:#fafbfc" role="img" aria-label="Bubble chart: HR department normally touches payroll, onboarding and policies; the finance budget file sits outside that cluster">
+                  <span style="position:absolute;left:14px;top:18px;width:56px;height:56px;border-radius:999px;background:#dbe5f7"></span>
+                  <span style="position:absolute;left:50px;top:40px;width:40px;height:40px;border-radius:999px;background:#dbe5f7"></span>
+                  <span style="position:absolute;left:30px;top:60px;width:30px;height:30px;border-radius:999px;background:#dbe5f7"></span>
+                  <span style="position:absolute;left:150px;top:30px;width:22px;height:22px;border-radius:999px;background:#f3c2bb;border:2px solid #b91c1c"></span>
+                  <span style="position:absolute;left:140px;top:60px;font-size:10.5px;color:#9a2a1c">Finance budget</span>
+                  <span style="position:absolute;left:14px;top:92px;font-size:10.5px;color:#5b6472">Payroll · Onboarding · Policies</span>
+                </div>
+              </div>
+              <ul class="why" style="flex:1 1 100%"><li>First external upload from this account in 180 days.</li><li>Rename and compress before upload is an evasion chain.</li></ul>
+            </div>
+          </div>
+
+          <div class="sec">
+            <div class="sechead"><span style="font-weight:600;font-size:13px">4 · Predictive modelling</span><span style="font-size:11.5px;color:#5b6472">Collapsed · Risk scoring indicates strong exfiltration likelihood</span></div>
+          </div>
+
+          <!-- Ask the AI -->
+          <div class="sec">
+            <div class="sechead"><span style="font-weight:600;font-size:13px">Ask Harbor about this alert</span><span style="font-size:11px;color:#5b6472">Harbor AI can make mistakes. Check before acting.</span></div>
+            <div style="padding:10px 14px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn" type="button" style="height:28px">Help me investigate</button><button class="btn" type="button" style="height:28px">Possible remediation steps</button><button class="btn" type="button" style="height:28px">Summarize for a ticket</button></div>
+              <label for="ask" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Ask a question</label>
+              <input id="ask" type="text" placeholder="Ask anything about this alert, the user or the file" style="height:32px;padding:0 10px;border:1px solid #cfd4dc;border-radius:6px;font:12.5px Inter,sans-serif;box-sizing:border-box;width:100%">
+            </div>
+          </div>
+
+          <!-- Tasks, comments, activity -->
+          <div class="sec">
+            <div class="sechead"><span style="font-weight:600;font-size:13px">Tasks</span><span style="font-size:11.5px;color:#5b6472">1 of 3 done</span></div>
+            <div style="padding:10px 14px;display:flex;flex-direction:column;gap:6px;font-size:12.5px">
+              <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" checked=""> Confirm recipient address with the user's manager</label>
+              <label style="display:flex;gap:8px;align-items:center"><input type="checkbox"> Revoke the download on laptop-0412</label>
+              <label style="display:flex;gap:8px;align-items:center"><input type="checkbox"> Hand off to HR with the lineage export</label>
+            </div>
+          </div>
+
+          <div class="sec">
+            <div class="sechead"><span style="font-weight:600;font-size:13px">Activity and comments</span><span style="font-size:11.5px;color:#5b6472">4 entries</span></div>
+            <div style="padding:10px 14px;display:flex;flex-direction:column;gap:8px;font-size:12.5px">
+              <div><strong>Harbor AI</strong> set verdict to True positive and ran 3 remediations · 09:14</div>
+              <div><strong>You</strong> assigned to yourself, status Investigating · 09:18</div>
+              <div><strong>S. K.</strong> commented: "Manager confirms the user gave notice last week." · 09:21</div>
+              <div style="display:flex;gap:8px;align-items:center;margin-top:4px">
+                <label for="cmt" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Comment</label>
+                <input id="cmt" type="text" placeholder="Write a comment" style="flex:1 1 auto;height:32px;padding:0 10px;border:1px solid #cfd4dc;border-radius:6px;font:12.5px Inter,sans-serif;box-sizing:border-box;min-width:0">
+                <button class="btn" type="button">Publish</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Raw fields rail -->
+        <div style="flex:1 1 170px;min-width:0;max-width:220px;padding:16px 14px;border-left:1px solid #e6e9ee;background:#fafbfc;box-sizing:border-box;font-size:12px">
+          <div class="lbl" style="margin-bottom:8px">Alert details</div>
+          <div class="field" style="grid-template-columns:1fr"><span>ID</span><span class="mono">ALR-48112</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>Detected</span><span>2026-11-04 09:14:02</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>Source</span><span>Google Drive connector</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>Account</span><span>acme-prod</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>Datastore</span><span>Google Workspace</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>Datastore type</span><span>SaaS</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>Scope</span><span>HR leads folder</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>Device</span><span>laptop-0412</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>IP</span><span class="mono">10.4.22.18</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>File hash</span><span class="mono">9f3a…c21e</span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>Policy</span><span><a href="#policy">External share of Confidential</a></span></div>
+          <div class="field" style="grid-template-columns:1fr"><span>Rule matched</span><span>Recipient domain not in allow list AND label = Confidential</span></div>
+          <div class="field" style="grid-template-columns:1fr;border-bottom:0"><span>Similar alerts</span><span><a href="#similar">3 in 30 days</a></span></div>
+          <div class="lbl" style="margin:14px 0 8px">Pivots</div>
+          <div style="display:flex;flex-direction:column;gap:6px"><a href="#events">Events search</a><a href="#user">User profile</a><a href="#asset">Asset page</a><a href="#graph">Entity graph</a><a href="#incident">Incident INC-311</a></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+</div>
+
+
+
+</body></html>

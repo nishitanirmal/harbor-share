@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Clash 5: incident as the unit of work</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"><style>
+body{margin:0;font-family:Inter,system-ui,sans-serif;color:#1a1d21;background:#fff}
+a{color:#1f5fbf}a:hover{color:#164a96}
+.lbl{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#5b6472;font-weight:600}
+.tab{height:34px;display:inline-flex;align-items:center;gap:6px;padding:0 10px;font-size:12.5px;font-weight:500;color:#5b6472;border-bottom:2px solid transparent}
+.tab.on{color:#1a1d21;border-bottom-color:#1f5fbf}
+.cnt{font-size:11px;background:#e6e9ee;border-radius:999px;padding:1px 7px;color:#3b4350}
+.chip{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:5px;font-size:12px;border:1px solid #cfd4dc;background:#fff;gap:6px}
+.btn{display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:6px;border:1px solid #cfd4dc;background:#fff;font:500 12px Inter,system-ui,sans-serif;color:#1a1d21}
+.node{position:absolute;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;color:#3b4350;width:80px;text-align:center}
+.node i{width:30px;height:30px;border-radius:999px;border:2px solid #94a3b8;background:#fff;display:block}
+.edge{position:absolute;height:2px;background:#cbd5e1;transform-origin:0 50%}
+.alertrow{display:grid;grid-template-columns:70px 1fr 110px;gap:10px;align-items:center;padding:8px 10px;border-bottom:1px solid #e6e9ee;font-size:12px}
+</style></head>
+<body>
+<div id="dcroot" style="display: contents;">
+
+<div style="width:760px;height:760px;box-sizing:border-box;padding:20px;display:flex;flex-direction:column;gap:12px;overflow:hidden">
+  <div style="display:flex;gap:12px;align-items:baseline;flex-wrap:wrap">
+    <span class="lbl">Clash 5</span>
+    <span style="font-size:13px;color:#3b4350">Main page works one alert at a time. This version groups related alerts into an incident before anyone sees them, with the attack story as a graph, one owner, a task list, and a close that needs a classification plus a written note (Defender).</span>
+  </div>
+
+  <div style="font-size:12px;color:#5b6472">Incidents / <strong style="color:#1a1d21">INC-311</strong></div>
+  <h2 style="margin:0;font-size:16px;font-weight:600">Insider exfiltration of finance planning data via personal mail</h2>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+    <span class="chip" style="color:#9a2a1c;border-color:#f3c2bb;background:#fde7e4">Severity: Critical</span>
+    <span class="chip">Status: In progress</span>
+    <span class="chip">Owner: S. K.</span>
+    <span class="chip" style="border-color:#1f5fbf">Classification: Not set</span>
+    <span class="chip" style="color:#9a3412;border-color:#e0a96d;background:#fff8ef">Critical asset</span>
+    <span style="margin-left:auto;display:flex;gap:6px"><button class="btn" type="button">Manage</button><button class="btn" type="button" style="background:#1f5fbf;border-color:#1f5fbf;color:#fff">Resolve</button></span>
+  </div>
+
+  <div style="display:flex;border-bottom:1px solid #d5d9e0">
+    <span class="tab on">Attack story</span>
+    <span class="tab">Alerts <span class="cnt">3</span></span>
+    <span class="tab">Assets <span class="cnt">6</span></span>
+    <span class="tab">Evidence and response <span class="cnt">24</span></span>
+    <span class="tab">Similar incidents <span class="cnt">1</span></span>
+    <span class="tab">Tasks <span class="cnt">0/7</span></span>
+  </div>
+
+  <div style="display:flex;gap:12px;flex:1 1 auto;min-height:0">
+    <!-- Alerts in this incident -->
+    <div style="flex:0 0 250px;border:1px solid #d5d9e0;border-radius:8px;overflow:hidden">
+      <div style="padding:8px 10px;font-weight:600;font-size:12.5px;border-bottom:1px solid #e6e9ee;background:#f8f9fb">3 alerts, grouped by Harbor</div>
+      <div class="alertrow"><span style="font-weight:600;color:#9a2a1c">Critical</span><span>Confidential file to personal Gmail</span><span style="color:#5b6472">09:14</span></div>
+      <div class="alertrow"><span style="font-weight:600;color:#b45309">High</span><span>Rename and compress before upload</span><span style="color:#5b6472">09:06</span></div>
+      <div class="alertrow" style="border-bottom:0"><span style="font-weight:600;color:#ca8a04">Medium</span><span>Download from HR leads folder</span><span style="color:#5b6472">08:58</span></div>
+      <div style="padding:8px 10px;font-size:11.5px;color:#5b6472;border-top:1px solid #e6e9ee">Severity of the incident is the highest of its alerts. Resolving the incident resolves all three.</div>
+    </div>
+
+    <!-- Entity graph, drawn from placed elements -->
+    <div style="flex:1 1 auto;min-width:0;border:1px solid #d5d9e0;border-radius:8px;position:relative;background:#fafbfc" role="img" aria-label="Entity graph: user A. Rao connects to laptop-0412, the budget file, the HR leads folder and an external Gmail address; the path to Gmail is marked red">
+      <span class="edge" style="left:120px;top:92px;width:120px;transform:rotate(-28deg)"></span>
+      <span class="edge" style="left:120px;top:92px;width:110px;transform:rotate(32deg)"></span>
+      <span class="edge" style="left:120px;top:92px;width:150px"></span>
+      <span class="edge" style="left:268px;top:92px;width:120px;transform:rotate(-20deg);background:#b91c1c"></span>
+      <span class="edge" style="left:120px;top:92px;width:120px;transform:rotate(95deg)"></span>
+      <div class="node" style="left:80px;top:62px"><i style="border-color:#1f5fbf;background:#eef3fb"></i>A. Rao, HR</div>
+      <div class="node" style="left:190px;top:10px"><i></i>HR leads folder</div>
+      <div class="node" style="left:200px;top:120px"><i></i>laptop-0412</div>
+      <div class="node" style="left:228px;top:62px"><i style="border-color:#ca8a04"></i>FY27_budget.xlsx</div>
+      <div class="node" style="left:340px;top:30px"><i style="border-color:#b91c1c;background:#fde7e4"></i>a.rao.home@gmail.com</div>
+      <div class="node" style="left:60px;top:160px"><i></i>10.4.22.18</div>
+      <div style="position:absolute;right:10px;bottom:10px;font-size:11px;color:#5b6472;display:flex;flex-direction:column;gap:3px">
+        <span>Users 1 · Devices 1 · Files 1 · Folders 1 · External 1 · IPs 1</span>
+        <span><a href="#g">Group similar nodes</a> · <a href="#g">Show hidden types</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copilot-style summary with linked entities and classify prompt -->
+  <div style="border:1px solid #c9d0f0;border-radius:8px;background:#f1f3fb;padding:10px 14px;display:flex;flex-direction:column;gap:8px">
+    <span style="font-weight:600;font-size:13px">Incident summary, written by Harbor AI</span>
+    <div style="font-size:12.5px;line-height:1.5">At 08:58 <a href="#u">A. Rao</a> downloaded <a href="#f">FY27_budget.xlsx</a> from <a href="#f">HR leads folder</a> to <a href="#d">laptop-0412</a>, renamed and compressed it, and at 09:14 attempted an upload to <a href="#x">a.rao.home@gmail.com</a>, which was blocked. One similar incident, <a href="#i">INC-287</a>, was classified True positive, insider.</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn" type="button">Classify this incident from similar ones</button><button class="btn" type="button">Draft the resolution note</button></div>
+  </div>
+</div>
+</div>
+
+
+
+</body></html>
