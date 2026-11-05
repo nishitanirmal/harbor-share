@@ -45,33 +45,31 @@
     <a class="ni" href="06-AI-Workflow.html" style="background:#fff;font-weight:600;color:#0058b9;box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px -8px rgba(0,0,0,.14)"><b>06</b><span>The AI workflow</span></a>
     
       <div class="sl">
-        <a class="si" href="#decides">Decides versus suggests</a>
+        <a class="si" href="#decides">Harbor AI's actions</a>
         <a class="si" href="#priority">Prioritization logic</a>
-        <a class="si" href="#reasoning">Reasoning and review</a>
-        <a class="si" href="#rejection">What happens to a correction</a>
+        <a class="si" href="#reasoning">Confirming, restoring, marking as expected</a>
         <a class="si" href="#reversible">What is reversible</a>
       </div>
     
-    <a class="ni" href="08-Wireframes.html" style="font-weight:500;color:#3a3a3f"><b>08</b><span>Wireframes</span></a>
-    <a class="ni" href="09-HiFi.html" style="font-weight:500;color:#3a3a3f"><b>09</b><span>High-fidelity UI</span></a>
+    <a class="ni" href="09-HiFi.html" style="font-weight:500;color:#3a3a3f"><b>07</b><span>High-fidelity UI</span></a>
     
-    <a class="ni" href="10-Prototype.html" style="font-weight:500;color:#3a3a3f"><b>10</b><span>Prototype</span></a>
+    <a class="ni" href="10-Prototype.html" style="font-weight:500;color:#3a3a3f"><b>08</b><span>Prototype</span></a>
     <div style="display:flex;align-items:center;gap:8px;margin:12px 11px 4px"><span style="flex:1 1 auto;height:1px;background:#d2d2d7"></span><span style="font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6e6e73;white-space:nowrap">Additional context</span><span style="flex:1 1 auto;height:1px;background:#d2d2d7"></span></div>
-    <a class="ni" href="11-Test.html" style="font-weight:500;color:#3a3a3f"><b>11</b><span>Test</span></a>
-    <a class="ni" href="12-Appendix.html" style="font-weight:500;color:#3a3a3f"><b>12</b><span>Appendix</span></a>
-    <a class="ni" href="13-Brief.html" style="font-weight:500;color:#3a3a3f"><b>13</b><span>Back to the brief</span></a>
+    
+    <a class="ni" href="12-Appendix.html" style="font-weight:500;color:#3a3a3f"><b>09</b><span>Appendix</span></a>
+    <a class="ni" href="13-Brief.html" style="font-weight:500;color:#3a3a3f"><b>10</b><span>Back to the brief</span></a>
   </div>
 </nav>
 </div></div>
-  <div class="main">
+  <div class="main" style="align-items: flex-start">
 
     <div class="title">
       <span class="eyebrow">06 · The AI workflow</span>
       <h1>What the AI decides, what the analyst decides</h1>
-      <p class="lead">Harbor acts alone only where the action can be undone. Anything irreversible waits for a person. And every correction is logged.</p>
+      <p class="lead">Harbor acts on its own only where the action can be undone. Irreversible actions need a person to confirm them. Every action is logged in the audit trail.</p>
     </div>
 
-    <div class="g2" id="decides">
+    <span class="h2">Harbor AI's actions</span><div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 12px"><div class="g2" id="decides">
       <div class="card tint">
         <span class="tag white">Decides, each with an undo</span>
         <ul class="l">
@@ -87,69 +85,55 @@
           <li>The verdict, in Harbor's call</li>
           <li>Recommended next steps</li>
           <li>Grouping alerts into an incident, under Harbor suggests</li>
-          <li>Irreversible actions, which wait for a named confirmation</li>
+          <li>Irreversible actions, which need a named confirmation</li>
         </ul>
       </div>
-    </div>
+    </div></div>
 
     <div class="card" id="priority">
       <div class="row"><span class="h2">Prioritization logic</span><button class="tog" type="button" data-on="tp"><span data-v="lp"></span></button></div>
-      <p class="p">Alerts are listed by severity, with alerts on high-value assets first. Each alert carries a Priority and Reasoning section that says what moved it.</p>
+      <p class="p">Alerts are listed by severity, with alerts on high-value assets first. Each alert has a Priority and Reasoning section.</p>
       <div class="g4">
         <div class="sub"><span class="small muted">Weighs</span><span class="h3">Sensitivity of the data</span></div>
         <div class="sub"><span class="small muted">Weighs</span><span class="h3">Exposure: internal, external, public</span></div>
         <div class="sub"><span class="small muted">Weighs</span><span class="h3">Distance from the user's and device's baseline</span></div>
         <div class="sub"><span class="small muted">Weighs</span><span class="h3">Whether the asset is marked critical</span></div>
       </div>
-      <div class="sub" style="background:#fff4e5"><span class="small" style="color:#8a4b08;font-weight:600">Listed first</span><span class="h3">Alerts on high-value assets sit under High-value assets · Critical, above Other alerts</span></div>
+      <div class="sub" style="background:#fff4e5"><span class="small" style="color: rgb(138, 75, 8); font-weight: 600">Listed first</span><span class="h3">Alerts on high-value assets are in the first section shown before other alerts&nbsp;</span></div>
       <div data-if="p" style="display:none">
         <p class="p muted">Splunk is the precedent: its urgency combines the finding's severity with the priority of the asset or identity, so a medium alert on a crown-jewel system can outrank a high one elsewhere.</p>
       </div>
     </div>
 
     <div class="g2" id="reasoning">
-      <div class="card">
-        <span class="h2">How its reasoning is shown</span>
-        <ul class="l">
-          <li>A short Summary in plain words</li>
-          <li>Data lineage shows each hop with an icon, and a risky step says so in words, such as "Unusual destination for this user"</li>
-          <li>Harbor's call says what it did and why, and the details page adds Priority and Reasoning</li>
-          <li>While a query runs, Harbor says so and the list shows row skeletons</li>
-        </ul>
-      </div>
+      
       <div class="card">
         <span class="h2">Confirming, restoring and marking as expected</span>
-        <p class="p">Harbor's call carries three buttons.</p>
+        <p class="p">Harbor's call-to-action has three buttons.</p>
         <div class="wrap">
           <span class="chip" style="background:#0071e3;color:#fff;border-color:#0071e3;font-weight:600">Confirm</span><span class="chip" style="font-weight:600">Restore link</span><span class="chip" style="font-weight:600">Mark as expected</span>
         </div>
         <ul class="l small">
-          <li><strong>Confirm</strong> keeps what Harbor did and sets the verdict to True positive.</li>
-          <li><strong>Restore link</strong> brings the link back, then asks whether to edit the response or change the verdict.</li>
-          <li><strong>Mark as expected</strong> sets the verdict to Expected activity and opens Teach Harbor.</li>
+          <li><strong>Confirm:</strong> keep what Harbor did and set the verdict to True positive.</li>
+          <li><strong>Restore link:</strong> bring the link back, then ask whether to edit the response or change the verdict.</li>
+          <li><b>Mark behavior or pattern as expected:</b> sets the verdict to Expected activity and opens 'Teach Harbor'.</li>
         </ul>
       </div>
     </div>
 
-    <div class="card tint" id="rejection">
-      <span class="h2">What happens to a correction</span>
-      <div class="wrap">
-        <span class="step" style="background:#fff"><span class="num">1</span>Logged on the alert with your name and time</span><span class="step" style="background:#fff"><span class="num">2</span>Shows in the Audit trail</span><span class="step" style="background:#fff"><span class="num">3</span>Teach Harbor asks why, with reasons to pick or your own</span><span class="step" style="background:#fff"><span class="num">4</span>False positive and Expected activity stay separate verdicts</span>
-      </div>
-      <p class="p muted">None of the products studied showed what happened to a rejection afterwards. In the prototype the reason is logged. How Harbor learns from it is not built.</p>
-    </div>
+    
 
     <div class="card" id="reversible">
       <span class="h2">What is reversible</span>
       <div class="g2">
-        <div class="sub" style="background:#dff2e3"><span class="h3" style="color:#14532d">Reversible</span><p class="small" style="color:#14532d">Harbor does it at once and the alert says what it did. Restore link undoes it.</p></div>
-        <div class="sub" style="background:#fbe3e0"><span class="h3" style="color:#7f1d1d">Not reversible</span><p class="small" style="color:#7f1d1d">A flag icon and the words "This action is irreversible", with a button that names the object. Only these actions get one.</p></div>
+        <div class="sub" style="background:#dff2e3"><span class="h3" style="color:#14532d">Reversible</span><p class="small" style="color:#14532d">Harbor does it at once and the alert shows what was done. The user can use an undo action or reopen a closed alert.</p></div>
+        <div class="sub" style="background:#fbe3e0"><span class="h3" style="color:#7f1d1d">Not reversible</span><p class="small" style="color:#7f1d1d">A flag icon and the a labeled button describing which action is being performed, along with a confirmation modal.</p></div>
       </div>
     </div>
 
     <div class="foot">
       <a class="btn ghost" href="05-IA.html">Previous</a>
-      <a class="btn" href="08-Wireframes.html">Next: Wireframes</a>
+      <a class="btn" href="09-HiFi.html">Next: High-fidelity UI</a>
     </div>
   </div>
 </div>

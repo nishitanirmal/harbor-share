@@ -52,10 +52,9 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF 
     <a class="ni" href="04-Ideate.html" style="background:#fff;font-weight:600;color:#0058b9;box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 16px -8px rgba(0,0,0,.14)"><b>04</b><span>Ideate</span></a>
     
       <div class="sl">
-        <a class="si" href="#directions">From insights to directions</a>
-        <a class="si" href="#tradeoffs">Trade-offs</a>
         <a class="si" href="#ideasketches">Sketches</a>
-        <a class="si" href="#won">Why one direction won</a>
+        <a class="si" href="#tradeoffs">Chosen versus tradeoffs</a>
+        <a class="si" href="#won">Ideas that made it</a>
         <a class="si" href="#scale">Designing for scale</a>
       </div>
     
@@ -63,14 +62,13 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF 
     
     <a class="ni" href="06-AI-Workflow.html" style="font-weight:500;color:#3a3a3f"><b>06</b><span>The AI workflow</span></a>
     
-    <a class="ni" href="08-Wireframes.html" style="font-weight:500;color:#3a3a3f"><b>08</b><span>Wireframes</span></a>
-    <a class="ni" href="09-HiFi.html" style="font-weight:500;color:#3a3a3f"><b>09</b><span>High-fidelity UI</span></a>
+    <a class="ni" href="09-HiFi.html" style="font-weight:500;color:#3a3a3f"><b>07</b><span>High-fidelity UI</span></a>
     
-    <a class="ni" href="10-Prototype.html" style="font-weight:500;color:#3a3a3f"><b>10</b><span>Prototype</span></a>
+    <a class="ni" href="10-Prototype.html" style="font-weight:500;color:#3a3a3f"><b>08</b><span>Prototype</span></a>
     <div style="display:flex;align-items:center;gap:8px;margin:12px 11px 4px"><span style="flex:1 1 auto;height:1px;background:#d2d2d7"></span><span style="font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6e6e73;white-space:nowrap">Additional context</span><span style="flex:1 1 auto;height:1px;background:#d2d2d7"></span></div>
-    <a class="ni" href="11-Test.html" style="font-weight:500;color:#3a3a3f"><b>11</b><span>Test</span></a>
-    <a class="ni" href="12-Appendix.html" style="font-weight:500;color:#3a3a3f"><b>12</b><span>Appendix</span></a>
-    <a class="ni" href="13-Brief.html" style="font-weight:500;color:#3a3a3f"><b>13</b><span>Back to the brief</span></a>
+    
+    <a class="ni" href="12-Appendix.html" style="font-weight:500;color:#3a3a3f"><b>09</b><span>Appendix</span></a>
+    <a class="ni" href="13-Brief.html" style="font-weight:500;color:#3a3a3f"><b>10</b><span>Back to the brief</span></a>
   </div>
 </nav>
 </div></div>
@@ -87,8 +85,8 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF 
     <div class="card" id="ideasketches">
       <span class="h2">Sketches</span>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;align-items:start">
-<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0"><img src="img/sketch-teach-harbor.jpg" alt="Teach Harbor: quick cards" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">Teach Harbor: quick cards</span><span class="small muted">Cards you flip through quickly. Each card describes the alert on the left. On the right are the reasons for dismissing it.</span></figcaption></figure>
-<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0;grid-column:1/-1"><img src="img/sketch-nav.jpg" alt="Main nav, alert list, preview panel, detail page" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">Main nav, alert list, preview panel, detail page</span><span class="small muted">Start with the main navigation on the left and the alerts list. Clicking an alert opens a preview panel on the right: a description of everything that happened, what the AI is confident about, and what it did or is waiting on you to do. The detail page holds all the metadata (serials, numbers, IPs) and the Ask Harbor chat, where you can dig deeper and drive down into the details.</span></figcaption></figure>
+<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0"><img src="img/sketch-teach-harbor.jpg" alt="Teach Harbor: quick cards" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">Teach Harbor: swipe cards</span><span class="small muted">You swipe through cards of alerts you dismissed or disposed of, and the AI provides you with options for why you dismissed them. You quickly answer this and gain points for training.</span></figcaption></figure>
+<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0;grid-column:1/-1"><img src="img/sketch-nav.jpg" alt="Main nav, alert list, preview panel, detail page" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">Main nav, alert list, preview panel, detail page</span><span class="small muted">Start with the main navigation on the left and the alerts list. Clicking an alert opens a preview panel on the right: a description of everything that happened, what the AI is confident about, and what it did or is waiting on you to do. The detail page has all the metadata (serials, numbers, IPs) and the Ask Harbor chat, where you can dig deeper and drive down into the details.</span></figcaption></figure>
       </div>
     </div><div class="card" id="tradeoffs">
       <div class="row"><span class="small muted"><font color="#1d1d1f"><span style="font-size: 24px; letter-spacing: -0.6px"><b>Chosen versus tradeoffs</b></span></font></span></div>
@@ -100,7 +98,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF 
         <div class="sub" style="gap:10px"><span class="tag grey">Alert or incident as the unit</span><div class="vs"><div class="pick" style="background: #e8f0fb; color: #1d1d1f; border-color: #c5d8f3"><span class="h3" style="color: #1d1d1f">Alerts, grouped into incidents when related</span><span class="small" style="color: #515154">chosen</span></div><div class="alt"><span class="h3">Incident as the only unit</span><span class="small">Defender</span></div></div></div>
         <div class="sub" style="gap:10px"><span class="tag grey">Summary widgets or a dense list</span><div class="vs"><div class="pick" style="background: #e8f0fb; color: #1d1d1f; border-color: #c5d8f3"><span class="h3" style="color: #1d1d1f">Four counts, then the list. The rest of the overview collapses</span><span class="small" style="color: #515154">Purview</span></div><div class="alt"><span class="h3">A full KPI dashboard above the queue</span><span class="small">Netskope, SentinelOne</span></div></div></div>
       </div>
-      <p class="small muted">The exploration canvas that puts every feature on one page and draws each clash as a variant: <a href="feature-mock/index.html">open the mockups</a>. It is part of the ideation, not the final prototype.</p>
+      <p class="small muted">The exploration canvas that puts every feature on one page and draws each clash as a variant: <a href="https://nishitanirmal.github.io/harbor-share/documentation/feature-mock/index.html">open the mockups</a>. It is part of the ideation, not the final prototype.</p>
     </div>
 
     
@@ -117,41 +115,25 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF 
           <li>Providing statistics relevant to alert triage above the queue and showing a manager's overview, including MTTR policies overview and assignees overview within a collapsed overview</li>
         <li><strong>The decision is made without leaving the alerts page.</strong> Only the deep evidence trail goes elsewhere.</li><li><strong>Designing for irreversible actions.</strong> Human intervention is required to confirm a step where an action is irreversible. For example, closing an alert, muting it or changing its severity can be undone. Disabling accounts or deleting a file cannot, so only those get a confirmation step.</li></ul>
       </div>
-      <div class="card">
-        <span class="h2">Trade-off</span>
-        <ul class="l small">
-          <li>A side panel cannot show the full event timeline and graph at once; that lives one step away.</li>
-          <li>2 fields take 1 more click to close than 1 field would.</li>
-          <li>Filters ask more of a junior than a single slider would, which Ask Harbor and Suggested filters have to absorb.</li>
-          <li>The overview row stays collapsed, so the manager's detail is one click away.</li>
-        </ul>
-      </div>
+      
     </div>
 
     <div class="title" id="scale" style="padding-top:24px">
       <span class="eyebrow">04 · Ideate: Designing for scale</span>
-      <h1 style="font-size:34px">The same screen at 10, 200 and 10,000 alerts</h1>
-      <p class="lead">The base is a few hundred open alerts a day. Above it, counts come before lists and the incident becomes the unit. Below it, the queue simply fits.</p>
+      <h1 style="font-size:34px">Screens according to scale: 10 endpoints, 200 endpoints, and 10,000 endpoints</h1>
+      <p class="lead">Assuming that a higher endpoint count is correlated to a higher alert count</p>
     </div>
 
     <div class="card" id="sketches">
       <div class="kv"><span class="tag">Sketches</span><span class="h2">The alerts page at 3 scales</span></div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px">
-<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0"><img src="img/sketch-scale-5-10.jpg" alt="5 to 10 endpoints: the columns, nothing else" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">5 to 10 endpoints: the columns, nothing else</span><span class="small muted">The list is the whole page. Severity, alert, user, asset, policy, status, verdict, assignee and time. A time range can sit here too.</span></figcaption></figure>
-<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0"><img src="img/sketch-scale-10-200.jpg" alt="10 to 200 endpoints: time range and filtering" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">10 to 200 endpoints: time range and filtering</span><span class="small muted">A time range and filters above the list, with severity tabs that carry counts: critical, medium, low and untriaged.</span></figcaption></figure>
-<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0"><img src="img/sketch-scale-200-10k.jpg" alt="200 to 10,000 endpoints: stats first, then a guided start" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">200 to 10,000 endpoints: stats first, then a guided start</span><span class="small muted">Stats come before the list: MTTR, policy stats (which policies are violated most) and what is assigned to whom. Below them, the Harbor task manager. At 2,000+ alerts an analyst may not know where to start, so they can ask it to get them started, answer its questions and run bulk actions with it. A guided workflow manager.</span></figcaption></figure>
+<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0"><img src="img/sketch-scale-5-10.jpg" alt="5 to 10 endpoints: the columns, nothing else" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">5 to 10 endpoints:&nbsp;simple filterable grid&nbsp;</span></figcaption></figure>
+<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0"><img src="img/sketch-scale-10-200.jpg" alt="10 to 200 endpoints: time range and filtering" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">10 to 200 endpoints: time range and filtering</span></figcaption></figure>
+<figure style="margin:0;display:flex;flex-direction:column;gap:10px;min-width:0"><img src="img/sketch-scale-200-10k.jpg" alt="200 to 10,000 endpoints: stats first, then a guided start" style="width:100%;height:auto;border:1px solid #e5e5ea;border-radius:12px;display:block;background:#fff"><figcaption style="display:flex;flex-direction:column;gap:4px"><span class="h3">200 to 10,000 endpoints: stats +&nbsp;Harbor task manager&nbsp;that guides you through bulk actions like assigning, disposing, confirming, and also prioritizing critical tasks.&nbsp;</span></figcaption></figure>
       </div>
     </div>
 
-    <div class="card">
-      <span class="h2">3 bands</span>
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <div class="band"><span class="lbl">5-10</span><div class="track"><div class="bar soft" style="width:32%"></div><span class="small muted">Whole queue fits without paging</span></div></div>
-        <div class="band"><span class="lbl">0.2k- 10k</span><div class="track"><div class="bar" style="width:65%"></div><span class="small muted">Base. Filters, counts, incidents</span></div></div>
-        <div class="band"><span class="lbl">10,000 +</span><div class="track"><div class="bar" style="width:100%;background:#1d1d1f;flex:1 1 auto"></div></div></div>
-        <div class="band"><span></span><span class="small muted">We show statistics up front, and Harbor AI guides you through bulk actions in the form of a task manager.(Out of scope for this assignment. )</span></div>
-      </div>
-    </div>
+    
 
     <div class="g3">
       <div class="card">
@@ -164,22 +146,22 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF 
         </ul>
       </div>
       <div class="card tint">
-        <span class="tag white">400, the base</span>
+        <span class="tag white">200, the base</span>
         <ul class="l small">
-          <li>Filters and view tabs do the cutting</li>
-          <li>Grouping, with high-value assets first, and sortable columns make the order legible</li>
-          <li>Four counts sit at the top of the queue</li>
-          <li>Incidents group related alerts so the analyst works fewer units</li>
+          <li>Filters and view tabs&nbsp;cut the data.&nbsp;</li>
+          <li>The data is cut with filters and view tabs.</li>
+          
+          <li>Related alerts are grouped into incidents, so the analyst works fewer units</li>
         </ul>
       </div>
       <div class="card dark">
         <span class="tag" style="background:#3a3a3f;color:#fff">10,000</span>
         <ul class="l small" style="color:#fff">
-          <li>Counts come before lists; the incident is the default unit</li>
-          <li>Every cell is self-labeled so a row reads without its header on page 300</li>
-          <li>Saved searches replace repeated filtering</li>
-          <li>Auto-resolve below a threshold does the bulk of the closing, every auto-closed alert listed and undoable</li>
-          <li>Bulk actions state their scope in words before running</li>
+          <li>Counts come before lists. Start with incidents as the default unit</li>
+          
+          <li>Harbor builds context from your repeated filters and searches and suggests them to you</li>
+          <li>Bulk alerts are auto-resolved by Harbor Every auto-closed alert listed and undoable</li>
+          <li>Bulk actions are stated in words.</li>
         </ul>
       </div>
     </div>
