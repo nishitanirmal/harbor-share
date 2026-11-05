@@ -1,0 +1,197 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Alerts Flow Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: title, key, then one tall flowchart on a grid with orthogonal arrows, in a horizontally scrollable panel */
+:root{--bg:#f4f6f9;--surface:#ffffff;--fg:#17202b;--muted:#5a6676;--line:#cfd7e2;--accent:#2f5d8a;--edge:#3b4654;
+ --screen:#e3ecf6;--screen-s:#2f5d8a;--dec:#fbf0de;--dec-s:#a35f00;--act:#ffffff;--act-s:#5a6676;--end:#e2f2e8;--end-s:#2c7a4b;--park:#f1e8f6;--park-s:#8a5a9e;
+ --sans:"IBM Plex Sans",-apple-system,"Segoe UI",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11161d;--surface:#18202a;--fg:#e6ebf1;--muted:#9aa6b5;--line:#2e3a48;--accent:#86b2dd;--edge:#aab6c5;
+ --screen:#1f3044;--screen-s:#86b2dd;--dec:#3a2b14;--dec-s:#f0b35a;--act:#1e2834;--act-s:#8e9bab;--end:#16301f;--end-s:#73c897;--park:#2c2133;--park-s:#c9a2dc;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11161d;--surface:#18202a;--fg:#e6ebf1;--muted:#9aa6b5;--line:#2e3a48;--accent:#86b2dd;--edge:#aab6c5;
+ --screen:#1f3044;--screen-s:#86b2dd;--dec:#3a2b14;--dec-s:#f0b35a;--act:#1e2834;--act-s:#8e9bab;--end:#16301f;--end-s:#73c897;--park:#2c2133;--park-s:#c9a2dc;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.55}
+.wrap{max-width:1640px;margin:0 auto;padding-block:36px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:20px}
+h1{font-size:32px;line-height:1.15;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lead{color:var(--muted);max-width:70ch;margin:0}
+.key{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:13px;color:var(--muted);align-items:center}
+.key span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:16px;height:12px;border:1.5px solid;border-radius:2px;display:inline-block}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px;overflow:auto;display:flex;justify-content:center}
+svg{display:block;font-family:var(--sans)}
+.edge{fill:none;stroke:var(--edge);stroke-width:1.6}
+.n{stroke-width:1.5}
+.n.dec{fill:var(--dec);stroke:var(--dec-s)}
+.n.screen{fill:var(--screen);stroke:var(--screen-s)}
+.n.act{fill:var(--act);stroke:var(--act-s)}
+.n.start{fill:var(--screen);stroke:var(--screen-s)}
+.n.end{fill:var(--end);stroke:var(--end-s)}
+.n.park{fill:var(--park);stroke:var(--park-s)}
+.t{font-size:12.5px;fill:var(--fg)}
+.t.head{font-weight:600;font-size:13px}
+.lab{font-size:12px;font-weight:600;fill:var(--edge);paint-order:stroke;stroke:var(--surface);stroke-width:4px;stroke-linejoin:round}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.notes section{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.notes h2{font-size:15px;margin:0}
+.notes ol,.notes ul{margin:0;padding-left:18px;font-size:14px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+a{color:var(--accent)}
+@media (max-width:600px){h1{font-size:26px}}
+</style>
+<div class="wrap">
+ <div style="display:flex;flex-direction:column;gap:10px">
+  <span class="eyebrow">Harbor · Step 4 input</span>
+  <h1>Alerts flow map</h1>
+  <p class="lead">One averaged alerts experience, drawn as a flowchart. Every diamond is a decision the analyst makes and splits two ways. The chart merges the flows of the products in the research report; it is not any one product.</p>
+ </div>
+ <div class="key">
+  <span><i class="sw" style="background:var(--screen);border-color:var(--screen-s)"></i>Screen the analyst sees</span>
+  <span><i class="sw" style="background:var(--dec);border-color:var(--dec-s);transform:rotate(45deg) scale(.8)"></i>Decision, two ways out</span>
+  <span><i class="sw" style="background:var(--act);border-color:var(--act-s)"></i>Action</span>
+  <span><i class="sw" style="background:var(--end);border-color:var(--end-s);border-radius:8px"></i>Recorded, back to the queue</span>
+  <span><i class="sw" style="background:var(--park);border-color:var(--park-s);border-radius:8px"></i>Parked with an owner</span>
+ </div>
+ <div class="panel"><svg id="svg" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="var(--edge)"/></marker></defs><g id="g"></g></svg></div>
+ <div class="notes">
+  <section><h2>The 13 decisions, in order</h2><ol>
+   <li>Is the queue small enough to work?</li><li>Can I decide from the row alone?</li><li>Is there enough here to judge it?</li><li>Is the alert real?</li><li>Is only part of it wrong?</li><li>Should future alerts like this change?</li><li>Can I handle it now?</li><li>Did the AI already act?</li><li>Keep each automated action?</li><li>Can the response be undone?</li><li>Does the end user need to be involved?</li><li>Did they answer in time?</li><li>Does it need to go outside security?</li>
+  </ol></section>
+  <section><h2>Where each piece comes from</h2><ul>
+   <li>Queue counts, narrowing and AI buckets: Netskope, Matters.AI, Purview.</li>
+   <li>Deciding from the row: Matters.AI verdict column, Netskope status dropdown.</li>
+   <li>Investigate options: Matters.AI evidence sections, Varonis assistant and events, Cyberhaven history.</li>
+   <li>Partial false matches and teaching the AI: Purview, Nightfall.</li>
+   <li>Close reasons: Varonis.</li>
+   <li>AI already acted: Matters.AI automated remediation.</li>
+   <li>End user justification and expiry: Nightfall, Cyberhaven.</li>
+   <li>Hand off outside security: Cyberhaven.</li>
+   <li>The "can it be undone" split and the timed-out branch are my additions from the Ideate page, not observed in a product.</li>
+  </ul></section>
+ </div>
+</div>
+<script>
+// grid layout: col 0..5, row 0..19
+var N={
+ S:{t:'start',c:1,r:0,l:'Analyst opens the Alerts page'},
+ Q:{t:'screen',c:1,r:1,l:'Sees the queue\nlist, severity, status, owner,\nopen and untriaged counts'},
+ D1:{t:'dec',c:1,r:2,l:'Is the queue small\nenough to work?'},
+ N:{t:'act',c:0,r:2,l:'Narrow it\nfilter, search, group, or open\nthe AI\'s sorted buckets'},
+ P:{t:'act',c:1,r:3,l:'Pick an alert row'},
+ D2:{t:'dec',c:1,r:4,l:'Can I decide from\nthe row alone?'},
+ R:{t:'act',c:0,r:4,l:'Act in the row\nset verdict or status, assign,\nmute, or read the policy'},
+ LR:{t:'end',c:0,r:5,l:'Recorded in the\nactivity log'},
+ O:{t:'screen',c:1,r:5,l:'Opens the alert\nAI verdict and summary, who,\nwhat data, evidence, actions'},
+ D3:{t:'dec',c:1,r:6,l:'Is there enough\nhere to judge it?'},
+ I:{t:'act',c:0,r:6,l:'Investigate\nevidence sections, ask the AI,\nevents timeline, prior alerts'},
+ D4:{t:'dec',c:1,r:7,l:'Is the alert real?'},
+ D5:{t:'dec',c:1,r:8,l:'Is only part\nof it wrong?'},
+ M:{t:'act',c:0,r:9,l:'Mark the wrong findings\nas false matches,\nkeep the rest'},
+ D6:{t:'dec',c:1,r:9,l:'Should future alerts\nlike this change?'},
+ T:{t:'act',c:0,r:10,l:'Teach or tune\ntell the AI what to weigh less,\nor change the policy'},
+ CF:{t:'act',c:1,r:11,l:'Close with a reason\nbenign, authorized,\nmisconfiguration, bad logic'},
+ D7:{t:'dec',c:2,r:8,l:'Can I handle\nit now?'},
+ PK:{t:'act',c:3,r:8,l:'Park it\nassign, ticket,\nunder investigation, snooze'},
+ PE:{t:'park',c:4,r:8,l:'Waits in the queue\nwith an owner'},
+ D8:{t:'dec',c:2,r:9,l:'Did the AI\nalready act?'},
+ RV:{t:'act',c:3,r:10,l:'Review each\nautomated action'},
+ D9:{t:'dec',c:3,r:11,l:'Keep it?'},
+ AC:{t:'act',c:3,r:12,l:'Accept the action'},
+ UN:{t:'act',c:4,r:12,l:'Undo or reject it,\nwith a reason'},
+ D10:{t:'dec',c:2,r:13,l:'Pick a response.\nCan it be undone?'},
+ AP:{t:'act',c:2,r:14,l:'Apply it right away\ntag, restrict a share,\nmute, notify'},
+ CFM:{t:'act',c:3,r:14,l:'Confirm first\nsee what it affects, then\ndelete, revoke, report'},
+ D11:{t:'dec',c:2,r:15,l:'Does the end user\nneed to be involved?'},
+ EU:{t:'act',c:3,r:15,l:'Notify, or ask\nfor a justification'},
+ D12:{t:'dec',c:3,r:16,l:'Did they answer\nin time?'},
+ ES:{t:'act',c:4,r:16,l:'Escalate, or apply\nthe stricter action'},
+ D13:{t:'dec',c:2,r:17,l:'Does it need to go\noutside security?'},
+ HO:{t:'act',c:3,r:17,l:'Hand off\nHR, legal, offboarding,\nSIEM or SOAR'},
+ CL:{t:'act',c:2,r:18,l:'Close\nset status, record the\nverdict, add a comment'},
+ LOG:{t:'end',c:1,r:19,l:'Activity log records\nwho did what and when'}
+};
+var LX=52;// extra gap between column 0 and the decision column, so Yes/No labels have room
+var CW=212,RH=124,W=186,H=68,DH=96,X0=112+LX,Y0=24;
+function cx(c){return X0+c*CW+W/2-(c===0?LX:0)}
+function cy(r){return Y0+r*RH+DH/2}
+function box(k){var n=N[k],h=n.t==='dec'?DH:H;return {x:cx(n.c)-W/2,y:cy(n.r)-h/2,w:W,h:h,cx:cx(n.c),cy:cy(n.r)}}
+function side(k,s){var b=box(k);return s==='t'?[b.cx,b.y]:s==='b'?[b.cx,b.y+b.h]:s==='l'?[b.x,b.cy]:[b.x+b.w,b.cy]}
+var GAP=RH-DH; // vertical gap between rows (20)
+function midY(r){return cy(r)+DH/2+GAP/2} // y between row r and r+1
+var busA=X0-LX-44, busB=X0-LX-82;
+// edges: [from, to, label, route]  route = array of points or a type
+var E=[
+ ['S','Q','',[side('S','b'),side('Q','t')]],
+ ['Q','D1','',[side('Q','b'),side('D1','t')]],
+ ['D1','N','No',[side('D1','l'),side('N','r')]],
+ ['N','Q','',[side('N','t'),[cx(0),cy(1)],side('Q','l')]],
+ ['D1','P','Yes',[side('D1','b'),side('P','t')]],
+ ['P','D2','',[side('P','b'),side('D2','t')]],
+ ['D2','R','Yes',[side('D2','l'),side('R','r')]],
+ ['R','LR','',[side('R','b'),side('LR','t')]],
+ ['LR','Q','',[side('LR','l'),[busA,cy(5)],[busA,cy(1)],side('Q','l')]],
+ ['D2','O','No',[side('D2','b'),side('O','t')]],
+ ['O','D3','',[side('O','b'),side('D3','t')]],
+ ['D3','I','No',[side('D3','l'),side('I','r')]],
+ ['I','D3','',[side('I','t'),[cx(0),midY(5)],[cx(1),midY(5)],side('D3','t')]],
+ ['D3','D4','Yes',[side('D3','b'),side('D4','t')]],
+ ['D4','D5','No',[side('D4','b'),side('D5','t')]],
+ ['D4','D7','Yes',[side('D4','r'),[cx(2),cy(7)],side('D7','t')]],
+ ['D5','M','Yes',[side('D5','l'),[cx(0),cy(8)],side('M','t')]],
+ ['M','D4','',[side('M','l'),[busA,cy(9)],[busA,cy(7)],side('D4','l')]],
+ ['D5','D6','No',[side('D5','b'),side('D6','t')]],
+ ['D6','T','Yes',[side('D6','l'),[cx(0),cy(9)+DH/2+2],side('T','t')]],
+ ['T','CF','',[side('T','b'),[cx(0),midY(10)],[cx(1),midY(10)],side('CF','t')]],
+ ['D6','CF','No',[side('D6','b'),side('CF','t')]],
+ ['CF','LOG','',[side('CF','b'),side('LOG','t')]],
+ ['D7','PK','No',[side('D7','r'),side('PK','l')]],
+ ['PK','PE','',[side('PK','r'),side('PE','l')]],
+ ['D7','D8','Yes',[side('D7','b'),side('D8','t')]],
+ ['D8','RV','Yes',[side('D8','r'),[cx(3),cy(9)],side('RV','t')]],
+ ['RV','D9','',[side('RV','b'),side('D9','t')]],
+ ['D9','AC','Yes',[side('D9','b'),side('AC','t')]],
+ ['D9','UN','No',[side('D9','r'),[cx(4),cy(11)],side('UN','t')]],
+ ['D8','D10','No',[side('D8','b'),side('D10','t')]],
+ ['AC','D10','',[side('AC','b'),[cx(3),midY(12)],[cx(2),midY(12)],side('D10','t')]],
+ ['UN','D10','',[side('UN','b'),[cx(4),midY(12)],[cx(2),midY(12)],side('D10','t')]],
+ ['D10','AP','Yes',[side('D10','b'),side('AP','t')]],
+ ['D10','CFM','No',[side('D10','r'),[cx(3),cy(13)],side('CFM','t')]],
+ ['AP','D11','',[side('AP','b'),side('D11','t')]],
+ ['CFM','D11','',[side('CFM','b'),[cx(3),midY(14)],[cx(2),midY(14)],side('D11','t')]],
+ ['D11','EU','Yes',[side('D11','r'),side('EU','l')]],
+ ['EU','D12','',[side('EU','b'),side('D12','t')]],
+ ['D12','ES','No',[side('D12','r'),side('ES','l')]],
+ ['D11','D13','No',[side('D11','b'),side('D13','t')]],
+ ['D12','D13','Yes',[side('D12','b'),[cx(3),midY(16)],[cx(2),midY(16)],side('D13','t')]],
+ ['ES','D13','',[side('ES','b'),[cx(4),midY(16)],[cx(2),midY(16)],side('D13','t')]],
+ ['D13','HO','Yes',[side('D13','r'),side('HO','l')]],
+ ['HO','CL','',[side('HO','b'),[cx(3),midY(17)],[cx(2),midY(17)],side('CL','t')]],
+ ['D13','CL','No',[side('D13','b'),side('CL','t')]],
+ ['CL','LOG','',[side('CL','b'),[cx(2),midY(18)],[cx(1),midY(18)],side('LOG','t')]],
+ ['LOG','Q','',[side('LOG','l'),[busB,cy(19)],[busB,cy(1)],side('Q','l')]]
+];
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function draw(){
+ var out=[];
+ E.forEach(function(e){var pts=e[3];var d='M'+pts.map(function(p){return p[0]+','+p[1]}).join('L');
+  out.push('<path d="'+d+'" class="edge" marker-end="url(#ah)"/>');
+  if(e[2]){var a=pts[0],b=pts[1];if(pts.length>2&&Math.abs(b[1]-a[1])+Math.abs(b[0]-a[0])<40){a=pts[1];b=pts[2]}
+   var mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,lx,ly,anc='start';
+   if(a[0]===b[0]){lx=mx+7;ly=my+4}else{lx=mx;ly=my-7;anc='middle'}
+   out.push('<text class="lab" x="'+lx+'" y="'+ly+'" text-anchor="'+anc+'">'+e[2]+'</text>')}});
+ Object.keys(N).forEach(function(k){var n=N[k],b=box(k),lines=n.l.split('\n');
+  if(n.t==='dec'){out.push('<polygon class="n dec" points="'+b.cx+','+b.y+' '+(b.x+b.w+22)+','+b.cy+' '+b.cx+','+(b.y+b.h)+' '+(b.x-22)+','+b.cy+'"/>')}
+  else if(n.t==='screen'){var sk=10;out.push('<polygon class="n screen" points="'+(b.x+sk)+','+b.y+' '+(b.x+b.w+sk)+','+b.y+' '+(b.x+b.w-sk)+','+(b.y+b.h)+' '+(b.x-sk)+','+(b.y+b.h)+'"/>')}
+  else{out.push('<rect class="n '+n.t+'" x="'+b.x+'" y="'+b.y+'" width="'+b.w+'" height="'+b.h+'" rx="'+(n.t==='act'?6:34)+'"/>')}
+  var lh=15,ty=b.cy-(lines.length-1)*lh/2;
+  lines.forEach(function(t,i){out.push('<text class="t'+(i===0&&lines.length>1&&n.t!=='dec'?' head':'')+'" x="'+b.cx+'" y="'+(ty+i*lh)+'" text-anchor="middle" dominant-baseline="middle">'+esc(t)+'</text>')});
+ });
+ var w=X0+5*CW-(CW-W)+16,h=Y0+20*RH;
+ document.getElementById('svg').setAttribute('viewBox','0 0 '+w+' '+h);
+ document.getElementById('svg').setAttribute('width','100%');document.getElementById('svg').style.maxWidth=w+'px';
+ document.getElementById('g').innerHTML=out.join('');
+}
+draw();
+</script>
+
+</body></html>
