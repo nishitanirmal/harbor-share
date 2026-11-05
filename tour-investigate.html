@@ -2140,47 +2140,47 @@ renderPanes(0);
 <script>var L=function(name){return {label:name[0],href:name[1]}};
 var FULL='prototype.html';
 window.__TOURS={
-prioritize:{kicker:'Tour 1 of 3 · Prioritization',title:'Identify alerts that require action',
- intro:'Harbor resolves most alerts automatically. This tour shows where the alerts that require human review are displayed.',
- endTitle:'Prioritization tour complete',endBody:'Continue to the investigation tour.',
+prioritize:{kicker:'Tour 1 of 3 · Prioritize',title:'Find alerts where action is required',
+ intro:'Harbor closes most alerts automatically. This tour identifies the human touch points: the alerts that require action.',
+ endTitle:'Alerts requiring action are identified',endBody:'Next, investigate one alert.',
  steps:[
- {title:'Alerts not auto-closed today',what:'163 alerts not closed automatically today, divided into Critical · high-value, Awaiting analyst and Remediated by Harbor.',helps:'Indicates the volume of alerts that remain for analyst review.',before:async function(S){await S.list()},find:function(F,$){return $('#f1 .vbar')},side:'bottom'},
- {title:'Awaiting analyst',what:'42 alerts that require an analyst decision before they can be closed.',helps:'Defines the analyst’s working queue.',find:function(F,$){return $('#f1 .vbar .st.warn')},side:'bottom'},
- {title:'Auto-resolved',what:'The percentage of today’s alerts closed without analyst involvement.',helps:'Indicates how much of the volume was resolved before review.',find:function(F,$){return V($,'#f1 .ring',function(e){return /Auto-resolved/.test(e.textContent)})},side:'bottom'},
- {title:'Overview',what:'Top policies, assignee load and response times. Expand overview displays the charts.',helps:'Shows which policies generate the most alerts and how work is distributed across assignees.',find:function(F,$){return V($,'#f1 details.ins summary .tg')||$('#f1 details.ins summary')},side:'bottom'},
- {title:'Ask Harbor',what:'A search field that accepts questions in natural language, for example “critical alerts on finance assets”.',helps:'Converts the question into filters on the alert list.',find:function(F,$){return $('#f1 .qask')},side:'bottom'},
- {title:'Filters',what:'Status, severity, verdict and assignee, displayed as chips. Add applies a further filter.',helps:'Filters remain applied until they are cleared.',find:function(F,$){return $('#f1 .qrow')||F('#f1','Filters')},side:'bottom'},
- {title:'High-value assets · Critical',what:'Critical alerts on high-value assets, grouped at the top of the list.',helps:'These alerts carry the highest business risk and are reviewed first.',find:function(F){return F('#f1','High-value assets')},side:'bottom'},
- {title:'Severity',what:'Critical, High, Medium or Low, each with a distinct icon.',helps:'Indicates the seriousness of an alert before it is opened.',find:function(F,$){return $('#f1 tbody tr .sev')},side:'right'},
- {title:'Harbor action',what:'Remediated indicates that Harbor has already acted. Action required indicates that the proposed action requires approval.',helps:'The line below states the action taken, for example “share link revoked”.',find:function(F,$){return $('#f1 tbody tr .hs')},side:'left'},
- {title:'Open an alert',what:'Selecting a row opens the alert in a side panel.',helps:'The alert list remains visible alongside the panel.',find:function(F,$){return $('#f1 tbody tr td.al')},side:'bottom'}
- ],links:[L(['Next: Investigation tour','tour-investigate.html']),L(['Full prototype',FULL])]},
-investigate:{kicker:'Tour 2 of 3 · Investigation',title:'Investigate a single alert',
- intro:'This tour covers the information used to assess an alert: the summary, the data lineage, Harbor’s reasoning and the recommended next steps.',
- endTitle:'Investigation tour complete',endBody:'Continue to the remediation tour.',
+ {title:'Alerts not auto-closed today',what:'163 alerts that Harbor did not close on its own, split into Critical, Awaiting analyst and Remediated by Harbor.',helps:'Read this first to see how much is left for a person today.',before:async function(S){await S.list()},find:function(F,$){return $('#f1 .vbar')},side:'bottom'},
+ {title:'Awaiting analyst',what:'42 alerts that wait for an analyst to decide.',helps:'This is your queue.',find:function(F,$){return $('#f1 .vbar .st.warn')},side:'bottom'},
+ {title:'Auto-resolved',what:'The share of today’s alerts closed with no analyst involved.',helps:'Most of the list is closed before you start.',find:function(F,$){return V($,'#f1 .ring',function(e){return /Auto-resolved/.test(e.textContent)})},side:'bottom'},
+ {title:'Overview',what:'Top policies, assignee load and response times. Expand overview opens the charts.',helps:'Check which policies fire most and who has room for more work.',find:function(F,$){return $('#f1 details.ins summary')||F('#f1','Overview')},side:'bottom'},
+ {title:'Ask Harbor',what:'A search box for questions in plain words, such as “critical alerts on finance assets”.',helps:'Harbor turns the question into filters on the list.',find:function(F,$){return $('#f1 .qask')},side:'bottom'},
+ {title:'Filters',what:'Status, severity, verdict and assignee as chips. Add puts another filter on the list.',helps:'Filters stay applied until you clear them.',find:function(F,$){return $('#f1 .qrow')||F('#f1','Filters')},side:'bottom'},
+ {title:'High-value assets · Critical',what:'Critical alerts on high-value assets, grouped at the top of the list.',helps:'Start here. These carry the most business risk.',find:function(F){return F('#f1','High-value assets')},side:'bottom'},
+ {title:'Severity',what:'Critical, High, Medium or Low, each with its own icon.',helps:'You see how serious an alert is before you open it.',find:function(F,$){return $('#f1 tbody tr .sev')},side:'right'},
+ {title:'Harbor action',what:'Remediated means Harbor already acted. Action required means Harbor waits for your approval.',helps:'The line below says what Harbor did, for example “share link revoked”.',find:function(F,$){return $('#f1 tbody tr .hs')},side:'left'},
+ {title:'Open an alert',what:'Click a row to open the alert in a side panel.',helps:'The list stays visible beside it.',find:function(F,$){return $('#f1 tbody tr td.al')},side:'bottom'}
+ ],links:[L(['Next: investigate an alert','tour-investigate.html']),L(['Full prototype',FULL])]},
+investigate:{kicker:'Tour 2 of 3 · Investigate',title:'Understand one alert',
+ intro:'Open one alert to see why Harbor flagged it, what it found and how to check its answer.',
+ endTitle:'You can check Harbor’s answer',endBody:'Next, remediate the alert.',
  steps:[
- {title:'Alert header',what:'Severity, detection time and alert title.',helps:'Confirms which alert is under review.',before:async function(S){await S.panel(1)},find:function(F,$){return V($,'#f2 .panel .tt')},side:'left'},
- {title:'Summary',what:'A two to three sentence account of the event.',helps:'Provides the context required to judge severity.',find:function(F){return B(F('#f2 .panel','Summary'))},side:'left'},
- {title:'Data lineage',what:'The path from the user, through the data, to its destination.',helps:'The step marked Risky identifies where the policy was breached.',find:function(F){return B(F('#f2 .panel','Data lineage'))},side:'left'},
- {title:'Harbor’s status',what:'A statement that Harbor has not yet acted on this alert.',helps:'No change has been applied. The decision remains with the analyst.',find:function(F,$){return V($,'#f2 .panel .fstop')},side:'left'},
- {title:'Reasoning',what:'The evidence supporting Harbor’s verdict, listed as individual points.',helps:'Each point can be verified before an action is approved.',find:function(F){return B(F('#f2 .panel','Reasoning'))},side:'left'},
- {title:'Remediation',what:'The action proposed by Harbor, with an approval button and a less disruptive alternative.',helps:'States the effect of the action before it is approved.',find:function(F){return B(F('#f2 .panel','Remediation'))},side:'left'},
- {title:'Open alert',what:'Opens the full alert details page.',helps:'Provides the complete evidence when the panel is not sufficient.',find:function(F){return F('#f2 .panel','Open alert')},side:'bottom'},
- {title:'Reasoning, in detail',what:'Pattern, sources and exposure, each with supporting evidence.',helps:'Allows the reasoning to be reviewed point by point.',before:async function(S){await S.details(1)},find:function(F){return D(F('#f3','Reasoning'))},side:'left'},
- {title:'Recommended next steps',what:'Actions ranked by Harbor. The highest-ranked action is marked Recommended.',helps:'Allows the options to be compared before one is selected.',find:function(F){return D(F('#f3','Recommended next steps'))},side:'left'},
- {title:'Ask Harbor',what:'A chat panel for questions about this alert, with suggested questions.',helps:'Supports clarification of the verdict and its consequences before a decision is made.',find:function(F,$){var c=V($,'#f3 .ch');return c&&c.parentElement||c},side:'left'}
- ],links:[L(['Next: Remediation tour','tour-remediate.html']),L(['Full prototype',FULL])]},
-act:{kicker:'Tour 3 of 3 · Remediation',title:'Remediate an alert',
- intro:'All remediation actions are reversible except one. That action is marked and requires confirmation.',
- endTitle:'Remediation tour complete',endBody:'The full prototype is available for further exploration.',
+ {title:'Alert header',what:'Severity, detection time and title.',helps:'Check that this is the alert you meant to open.',before:async function(S){await S.panel(1)},find:function(F,$){return V($,'#f2 .panel .tt')},side:'left'},
+ {title:'Summary',what:'What happened, in two or three sentences.',helps:'Read this first. It is usually enough to judge how serious the alert is.',find:function(F){return B(F('#f2 .panel','Summary'))},side:'left'},
+ {title:'Data lineage',what:'The chain from the user to the data to where it went.',helps:'The step marked Risky is where the problem is.',find:function(F){return B(F('#f2 .panel','Data lineage'))},side:'left'},
+ {title:'Harbor’s status',what:'A note that Harbor has not acted on this alert yet.',helps:'Nothing has changed yet, so the decision is still yours.',find:function(F,$){return V($,'#f2 .panel .fstop')},side:'left'},
+ {title:'Reasoning',what:'The evidence for Harbor’s verdict, as short points.',helps:'Check each point before you approve anything.',find:function(F){return B(F('#f2 .panel','Reasoning'))},side:'left'},
+ {title:'Remediation',what:'The action Harbor proposes, with a button to approve it and a smaller option.',helps:'Read what will change before you approve it.',find:function(F){return B(F('#f2 .panel','Remediation'))},side:'left'},
+ {title:'Open alert',what:'Opens the full details page.',helps:'Use it when the panel is not enough.',find:function(F){return F('#f2 .panel','Open alert')},side:'bottom'},
+ {title:'Reasoning, in detail',what:'Pattern, sources and exposure, each with its evidence.',helps:'Check Harbor’s reasoning one point at a time.',before:async function(S){await S.details(1)},find:function(F){return D(F('#f3','Reasoning'))},side:'left'},
+ {title:'Recommended next steps',what:'Actions ranked by Harbor. The best one is marked Recommended.',helps:'Compare the options before you pick one.',find:function(F){return D(F('#f3','Recommended next steps'))},side:'left'},
+ {title:'Ask Harbor',what:'A chat about this alert, with suggested questions.',helps:'Ask why, or what happens if, before you decide.',find:function(F,$){var c=V($,'#f3 .ch');return c&&c.parentElement||c},side:'left'}
+ ],links:[L(['Next: remediate an alert','tour-remediate.html']),L(['Full prototype',FULL])]},
+act:{kicker:'Tour 3 of 3 · Remediate',title:'Confirm, undo or teach Harbor',
+ intro:'Every action here can be undone except one. Harbor marks that one before you click.',
+ endTitle:'You can remediate with confidence',endBody:'Try it yourself in the full prototype.',
  steps:[
- {title:'Approve the proposal',what:'Disables the six accounts, as proposed by Harbor.',helps:'This action is irreversible and requires confirmation on a screen that lists the affected accounts.',before:async function(S){await S.panel(1)},find:function(F){return F('#f2 .panel','Disable 6 accounts')},side:'left'},
- {title:'Alternative action',what:'Blocks the 11 IP addresses while the accounts remain active.',helps:'A less disruptive option when the evidence is inconclusive.',find:function(F){return F('#f2 .panel','Block IPs only')},side:'left'},
- {title:'Verdict',what:'Not set, Pending, True positive, False positive or Expected activity.',helps:'The verdict is shown in the alert list and recorded in the Audit trail.',find:function(F,$){return F('#f2 .panel','Verdict')},side:'bottom'},
- {title:'Assign',what:'Assigns the alert to an analyst.',helps:'Establishes ownership of the alert.',find:function(F){return F('#f2 .panel','Assign')},side:'bottom'},
- {title:'Snooze',what:'Hides the alert for a set period, with an optional note.',helps:'Suitable for alerts that do not require immediate action.',find:function(F,$){return V($,'#f2 .panel .snz')},side:'bottom'},
- {title:'Mark as expected',what:'Records the activity as expected and opens Teach Harbor.',helps:'The selected reason is applied to how Harbor classifies similar alerts.',before:async function(S){await S.details(1)},find:function(F){return F('#f3','Mark as expected')},side:'bottom'},
- {title:'Part of an incident',what:'Related alerts grouped into a single incident, in this case INC-1042 with 4 alerts.',helps:'Go to incident opens the full group for review.',find:function(F,$){return V($,'#f3 .incb')},side:'bottom'}
+ {title:'Approve the proposal',what:'Disables the six accounts, as Harbor proposed.',helps:'This one cannot be undone, so you confirm it on a screen that names the accounts.',before:async function(S){await S.panel(1)},find:function(F){return F('#f2 .panel','Disable 6 accounts')},side:'left'},
+ {title:'A smaller option',what:'Blocks the 11 IP addresses and leaves the accounts active.',helps:'Use it when you are not sure.',find:function(F){return F('#f2 .panel','Block IPs only')},side:'left'},
+ {title:'Verdict',what:'Not set, Pending, True positive, False positive or Expected activity.',helps:'The verdict shows in the list and in the Audit trail.',find:function(F,$){return F('#f2 .panel','Verdict')},side:'bottom'},
+ {title:'Assign',what:'Gives the alert to a person.',helps:'Every alert has an owner.',find:function(F){return F('#f2 .panel','Assign')},side:'bottom'},
+ {title:'Snooze',what:'Hides the alert for a set time, with an optional note.',helps:'For alerts that can wait.',find:function(F,$){return V($,'#f2 .panel .snz')},side:'bottom'},
+ {title:'Mark as expected',what:'Records the activity as normal and opens Teach Harbor.',helps:'Pick a reason, and Harbor treats similar alerts differently.',before:async function(S){await S.details(1)},find:function(F){return F('#f3','Mark as expected')},side:'bottom'},
+ {title:'Part of an incident',what:'Related alerts grouped into one incident, here INC-1042 with 4 alerts.',helps:'Go to incident to work on the whole group.',find:function(F,$){return V($,'#f3 .incb')},side:'bottom'}
  ],links:[L(['Open the full prototype',FULL])]}
 };
 /* helpers for step targets: first visible match, the section block around a label, the open card around a summary */
@@ -2289,8 +2289,8 @@ function place(target,side){
 function body(s){
  return '<div class="hbt-n"><span>'+(idx>=0?'Step '+(idx+1)+' of '+N:T.kicker)+'</span><button class="hbt-x" data-a="x">Close tour</button></div>'
  +'<h4 class="hbt-t">'+s.title+'</h4>'
- +(s.what?'<p class="hbt-l"><b>Description</b>'+s.what+'</p>':'')
- +(s.helps?'<p class="hbt-l"><b>Purpose</b>'+s.helps+'</p>':'')
+ +(s.what?'<p class="hbt-l"><b>What it is</b>'+s.what+'</p>':'')
+ +(s.helps?'<p class="hbt-l"><b>How it helps you decide</b>'+s.helps+'</p>':'')
  +'<div class="hbt-f"><button class="hbt-b" data-a="b"'+(idx<=0?' disabled':'')+'>Back</button><span class="hbt-bar"><i style="width:'+((idx+1)/N*100)+'%"></i></span><button class="hbt-b p" data-a="n">'+(idx>=N-1?'Finish':'Next')+'</button></div>'}
 async function show(i){
  if(busy)return;busy=true;idx=i;var s=T.steps[i];
